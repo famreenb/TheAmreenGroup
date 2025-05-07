@@ -173,7 +173,8 @@
     <a onclick="showSection('contact')">Contact</a>
   </nav>
 
-  <section id="home">
+ <div class="content">
+    <div id="home" class="section active">
     <div id="particles-js"></div>
     <h2>Welcome</h2>
     <p style="position: relative; z-index: 1;">
@@ -210,7 +211,7 @@
 </div>
   </section>
 
-  <section id="people" class="hidden-section">
+  <section id="people" class="section">
     <h2>Our Team</h2>
     <div class="pi-block" style="text-align: center; margin-bottom: 3rem;">
       <img src="images/amreen_pic.jpg" alt="Dr. Amreen Bano" style="width: 160px; height: 160px; border-radius: 50%; object-fit: cover;">
@@ -240,7 +241,7 @@
     </div>
   </section>
 
-  <section id="research" class="hidden-section">
+  <section id="research" class="section">
     <h2>Research Areas</h2>
     <ul>
       <li>High-Entropy Materials</li>
@@ -250,7 +251,7 @@
     </ul>
   </section>
 
-  <section id="publications" class="hidden-section">
+  <section id="publications" class="section">
     <h2>Publications</h2>
     <p>A list of selected publications with links to journal articles and DOI.</p>
     <ul>
@@ -273,28 +274,26 @@
   </div>
 </section>
 
-   <section id="positions" class="hidden-section">
+   <section id="positions" class="section">
     <h1>Open Positions</h1>
     <p>Will be updated soon....</p>
   </section>
   
-  <section id="contact" class="hidden-section">
+  <section id="contact" class="section">
     <h2>Contact</h2>
     <p>Email: amreen.bano@tcgcrest.org; banoamreen.7@gmail.com</p>
     <p>Address: Research Institute for Sustainable Energy (RISE), TCG CREST, Kolkata, India</p>
   </section>
 
 <!-- JavaScript -->
-  <script>
+ <script>
     function showSection(id) {
-      const sections = document.querySelectorAll("section");
-      sections.forEach(section => section.classList.add("hidden-section"));
-      const target = document.getElementById(id);
-      if (target) {
-        target.classList.remove("hidden-section");
-      }
+      const sections = document.querySelectorAll(".section");
+      sections.forEach(section => section.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
     }
   </script>
+
 </body>
 </html>
   
