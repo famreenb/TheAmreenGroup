@@ -28,6 +28,7 @@
       position: sticky;
       top: 0;
       z-index: 1000;
+      animation: fadeInDown 1s ease;
     }
     nav a {
       color: white;
@@ -35,6 +36,10 @@
       margin: 0 1rem;
       font-weight: bold;
       cursor: pointer;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #00ccff;
     }
     section {
       padding: 2rem;
@@ -45,15 +50,21 @@
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       position: relative;
       z-index: 1;
+      animation: fadeInUp 1s ease;
     }
     footer {
       text-align: center;
       padding: 1rem;
       background-color: #002b5c;
       color: white;
+      animation: fadeIn 2s ease;
     }
     .hidden {
       display: none;
+    }
+    .research-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
     }
     #particles-js {
       position: absolute;
@@ -67,6 +78,25 @@
       font-weight: bold;
       color: #00ccff;
       font-size: 1.2rem;
+    }
+    img {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
   </style>
 
@@ -104,7 +134,7 @@
 
       // Initialize typing effect
       new Typed('#typed-text', {
-        strings: ['computational materials modeling.', 'machine learning for energy.', 'battery interface simulations.'],
+        strings: ['Computational materials modeling', 'Machine learning for energy storage', 'Battery interface simulations'],
         typeSpeed: 60,
         backSpeed: 30,
         loop: true
@@ -128,53 +158,71 @@
   </nav>
 
   <section id="home">
-    <!-- Particle background -->
     <div id="particles-js"></div>
-
     <h2>Welcome</h2>
     <p style="position: relative; z-index: 1;">
       We are a research group at RISE, focusing on designing advanced materials for energy storage applications using computational approaches including Density functional theory (DFT), Molecular dynamics (MD), Machine learning methods etc.
     </p>
     <img src="images/Group2.jpeg" alt="Group Photo" style="max-width:100%; border-radius: 8px; margin-top: 1rem; position: relative; z-index: 1;">
+    <div class="research-highlights" style="margin-top: 2rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1.5rem;">
+  <!-- Card 1 -->
+  <div class="research-card" style="flex: 1 1 30%; background: white; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); overflow: hidden; transition: transform 0.3s; cursor: pointer;">
+    <img src="images/electrolyte_design_figure.jpg" alt="Research Figure 1" style="width: 100%; height: 180px; object-fit: cover;">
+    <div style="padding: 1rem;">
+      <h3 style="margin-top: 0;">Electrolyte Design</h3>
+      <p style="font-size: 0.95rem;">Modeling the non-aqueous liquid electrolyte to understand ion transport and interface composition.</p>
+    </div>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="research-card" style="flex: 1 1 30%; background: white; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); overflow: hidden; transition: transform 0.3s; cursor: pointer;">
+    <img src="images/ml_figure.jpg" alt="Research Figure 2" style="width: 100%; height: 180px; object-fit: cover;">
+    <div style="padding: 1rem;">
+      <h3 style="margin-top: 0;">Machine Learning Approach</h3>
+      <p style="font-size: 0.95rem;">Using machine learning potentials to design novel battery materials.</p>
+    </div>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="research-card" style="flex: 1 1 30%; background: white; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); overflow: hidden; transition: transform 0.3s; cursor: pointer;">
+    <img src="images/high_entropy_figure.jpg" alt="Research Figure 3" style="width: 100%; height: 180px; object-fit: cover;">
+    <div style="padding: 1rem;">
+      <h3 style="margin-top: 0;">High-Entropy Materials</h3>
+      <p style="font-size: 0.95rem;">Exploring compositional complexity to develop next-gen battery electrodes with improved cycling.</p>
+    </div>
+  </div>
+</div>
   </section>
+
   <section id="people" class="hidden">
-  <h2>Our Team</h2>
-
-  <!-- PI Block (Full Width Centered) -->
-  <div class="pi-block" style="text-align: center; margin-bottom: 3rem;">
-    <img src="images/amreen_pic.jpg" alt="Dr. Amreen Bano" style="width: 160px; height: 160px; border-radius: 50%; object-fit: cover;">
-    <h3 style="margin-top: 1rem;">Dr. Amreen Bano</h3>
-    <p><strong>Principal Investigator</strong></p>
-    <p>Computational modeling of battery materials, electrolyte design, ML for materials discovery</p>
-    <p><a href="mailto:amreen.bano@tcgcrest.org">amreen.bano@tcgcrest.org</a></p>
-  </div>
-
-  <!-- Students -->
-  <h3 style="text-align: center; margin-bottom: 1rem;">PhD Students</h3>
-  <div class="team-container" style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;">
-
-    <!-- Student 1 -->
-    <div class="team-member" style="flex: 1 1 250px; text-align: center;">
-      <img src="images/Antra solo.jpeg" alt="Antra Mohini" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;">
-      <h3 style="margin-top: 1rem;">Antra Mohini</h3>
-      <p><strong>PhD Student</strong></p>
-      <p>Computational design of high entropy anode materials and solid electrolyte interface analysis</p>
-      <p><a href="mailto:antra.mohini.198@tcgcrest.org">antra.mohini.198@tcgcrest.org</a></p>
+    <h2>Our Team</h2>
+    <div class="pi-block" style="text-align: center; margin-bottom: 3rem;">
+      <img src="images/amreen_pic.jpg" alt="Dr. Amreen Bano" style="width: 160px; height: 160px; border-radius: 50%; object-fit: cover;">
+      <h3 style="margin-top: 1rem;">Dr. Amreen Bano</h3>
+      <p><strong>Principal Investigator</strong></p>
+      <p>Computational modeling of battery materials, electrolyte design, ML for materials discovery</p>
+      <p><a href="mailto:amreen.bano@tcgcrest.org">amreen.bano@tcgcrest.org</a></p>
     </div>
-
-    <!-- Student 2 -->
-    <div class="team-member" style="flex: 1 1 250px; text-align: center;">
-      <img src="images/Novotna solo.jpeg" alt="Novotna Seal" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;">
-      <h3 style="margin-top: 1rem;">Novotna Seal</h3>
-      <p><strong>PhD Student</strong></p>
-      <p>Modeling and analysis of high-entropy cathode materials for Na-ion batteries</p>
-      <p><a href="mailto:novotna.seal.185@tcgcrest.org">novotna.seal.185@tcgcrest.org</a></p>
+    
+    <h3 style="text-align: center; margin-bottom: 1rem;">PhD Students</h3>
+    <div class="team-container" style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;">
+      <div class="team-member" style="flex: 1 1 250px; text-align: center;">
+        <img src="images/Antra solo.jpeg" alt="Antra Mohini" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;">
+        <h3 style="margin-top: 1rem;">Antra Mohini</h3>
+        <p><strong>PhD Student</strong></p>
+        <p>Computational design of high entropy anode materials and solid electrolyte interface analysis</p>
+        <p><a href="mailto:antra.mohini.198@tcgcrest.org">antra.mohini.198@tcgcrest.org</a></p>
+      </div>
+      
+      <div class="team-member" style="flex: 1 1 250px; text-align: center;">
+        <img src="images/Novotna solo.jpeg" alt="Novotna Seal" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;">
+        <h3 style="margin-top: 1rem;">Novotna Seal</h3>
+        <p><strong>PhD Student</strong></p>
+        <p>Modeling and analysis of high-entropy cathode materials for Na-ion batteries</p>
+        <p><a href="mailto:novotna.seal.185@tcgcrest.org">novotna.seal.185@tcgcrest.org</a></p>
+      </div>
     </div>
-
-    <!-- Add more students below as needed -->
-
-  </div>
-</section>
+  </section>
 
   <section id="research" class="hidden">
     <h2>Research Areas</h2>
