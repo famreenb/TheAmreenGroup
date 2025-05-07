@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Research Group</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f5f5;
+      scroll-behavior: smooth;
+    }
+    header {
+      background-color: #002b5c;
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    nav {
+      background-color: #004080;
+      display: flex;
+      justify-content: center;
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    section {
+      padding: 2rem;
+      background-color: white;
+      margin: 1rem auto;
+      max-width: 900px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #002b5c;
+      color: white;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+  <script>
+    function showSection(id) {
+      const sections = document.querySelectorAll("section");
+      sections.forEach(section => section.classList.add("hidden"));
+      document.getElementById(id).classList.remove("hidden");
+    }
+    window.onload = () => showSection('home');
+  </script>
+</head>
+<body>
+  <header>
+    <h1>Your Research Group Name</h1>
+    <p>Innovating Advanced Materials and Energy Systems</p>
+  </header>
+
+  <nav>
+    <a onclick="showSection('home')">Home</a>
+    <a onclick="showSection('people')">People</a>
+    <a onclick="showSection('research')">Research</a>
+    <a onclick="showSection('publications')">Publications</a>
+    <a onclick="showSection('contact')">Contact</a>
+  </nav>
+
+  <section id="home">
+    <h2>Welcome</h2>
+    <p>We are a research group at [Institute Name] focusing on high-entropy cathodes, battery materials, and computational design.</p>
+    <img src="images/group_photo.jpg" alt="Group Photo" style="max-width:100%; border-radius: 8px; margin-top: 1rem;">
+  </section>
+
+  <section id="people" class="hidden">
+    <h2>Our Team</h2>
+    <p><strong>Dr. [Your Name]</strong> – Principal Investigator</p>
+    <p>Meet our dedicated team of postdocs, PhD students, and collaborators.</p>
+    <img src="images/team.jpg" alt="Team" style="max-width:100%; border-radius: 8px; margin-top: 1rem;">
+  </section>
+
+  <section id="research" class="hidden">
+    <h2>Research Areas</h2>
+    <ul>
+      <li>High-Entropy Materials</li>
+      <li>Machine Learning Interatomic Potentials</li>
+      <li>Monte Carlo Simulated Annealing</li>
+      <li>DFT & Materials Modelling</li>
+    </ul>
+  </section>
+
+  <section id="publications" class="hidden">
+    <h2>Publications</h2>
+    <p>A list of selected publications with links to journal articles and DOI.</p>
+    <ul>
+      <li>Author, Title, <i>Journal</i>, Year. <a href="#">[DOI]</a></li>
+      <li>Author, Title, <i>Journal</i>, Year. <a href="#">[DOI]</a></li>
+    </ul>
+  </section>
+
+  <section id="contact" class="hidden">
+    <h2>Contact</h2>
+    <p>Email: your.email@institute.edu</p>
+    <p>Address: Department of XYZ, Institute Name, City, Country</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Your Research Group. All rights reserved.</p>
+  </footer>
+</body>
+</html>
+
