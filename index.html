@@ -106,12 +106,16 @@
   <!-- Typed.js for animated text -->
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 
+  <!-- Scroll Reveal for fade-in animations -->
+  <script src="https://unpkg.com/scrollreveal"></script>
+
   <script>
     function showSection(id) {
       const sections = document.querySelectorAll("section");
       sections.forEach(section => section.classList.add("hidden"));
       document.getElementById(id).classList.remove("hidden");
     }
+
     window.onload = () => {
       showSection('home');
 
@@ -139,10 +143,20 @@
         backSpeed: 30,
         loop: true
       });
+
+      // ScrollReveal animations
+      ScrollReveal().reveal('section', {
+        duration: 1000,
+        origin: 'bottom',
+        distance: '20px',
+        easing: 'ease-in-out',
+        reset: false
+      });
     };
   </script>
 </head>
 <body>
+  
   <header>
     <h1>The Amreen's Group</h1>
     <p>Innovating Advanced Materials and Energy Storage</p>
@@ -158,7 +172,7 @@
     <a onclick="showSection('contact')">Contact</a>
   </nav>
 
-  <section id="home">
+  <section id="home"> class="fade-in">
     <div id="particles-js"></div>
     <h2>Welcome</h2>
     <p style="position: relative; z-index: 1;">
