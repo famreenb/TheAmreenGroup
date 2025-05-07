@@ -17,6 +17,8 @@
       color: white;
       padding: 1.5rem;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
     nav {
       background-color: #004080;
@@ -41,6 +43,8 @@
       max-width: 900px;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 1;
     }
     footer {
       text-align: center;
@@ -51,20 +55,68 @@
     .hidden {
       display: none;
     }
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+    .typing-text {
+      font-weight: bold;
+      color: #00ccff;
+      font-size: 1.2rem;
+    }
   </style>
+
+  <!-- Particle background -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+  <!-- Typed.js for animated text -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
   <script>
     function showSection(id) {
       const sections = document.querySelectorAll("section");
       sections.forEach(section => section.classList.add("hidden"));
       document.getElementById(id).classList.remove("hidden");
     }
-    window.onload = () => showSection('home');
+    window.onload = () => {
+      showSection('home');
+
+      // Initialize particles
+      particlesJS("particles-js", {
+        particles: {
+          number: { value: 60 },
+          color: { value: "#00aaff" },
+          shape: { type: "circle" },
+          opacity: { value: 0.3 },
+          size: { value: 3 },
+          move: { enable: true, speed: 2 }
+        },
+        interactivity: {
+          events: {
+            onhover: { enable: true, mode: "repulse" }
+          }
+        }
+      });
+
+      // Initialize typing effect
+      new Typed('#typed-text', {
+        strings: ['computational materials modeling.', 'machine learning for energy.', 'battery interface simulations.'],
+        typeSpeed: 60,
+        backSpeed: 30,
+        loop: true
+      });
+    };
   </script>
 </head>
 <body>
   <header>
     <h1>The Amreen's Group</h1>
-    <p>Innovating Advanced Materials and Energy Storage Materials</p>
+    <p>Innovating Advanced Materials and Energy Storage</p>
+    <p class="typing-text"><span id="typed-text"></span></p>
   </header>
 
   <nav>
@@ -76,11 +128,15 @@
   </nav>
 
   <section id="home">
-    <h2>Welcome</h2>
-    <p>We are a research group at RISE, focusing on designing advanced materials for energy storage applications using computational approaches including Density functional theory (DFT), Molecular dynamics (MD), Machine learning methods etc.</p>
-    <img src="images/Group1.jpeg" alt="Group Photo" style="max-width:100%; border-radius: 8px; margin-top: 1rem;">
-  </section>
+    <!-- Particle background -->
+    <div id="particles-js"></div>
 
+    <h2>Welcome</h2>
+    <p style="position: relative; z-index: 1;">
+      We are a research group at RISE, focusing on designing advanced materials for energy storage applications using computational approaches including Density functional theory (DFT), Molecular dynamics (MD), Machine learning methods etc.
+    </p>
+    <img src="images/Group1.jpeg" alt="Group Photo" style="max-width:100%; border-radius: 8px; margin-top: 1rem; position: relative; z-index: 1;">
+  </section>
   <section id="people" class="hidden">
   <h2>Our Team</h2>
 
@@ -150,4 +206,3 @@
   </footer>
 </body>
 </html>
-
