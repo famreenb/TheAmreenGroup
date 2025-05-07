@@ -169,6 +169,7 @@
     <a onclick="showSection('research')">Research</a>
     <a onclick="showSection('publications')">Publications</a>
     <a onclick="showSection('gallery')">Gallery</a>
+    <a onclick="showSection('positions')">Open Positions</a>
     <a onclick="showSection('contact')">Contact</a>
   </nav>
 
@@ -209,7 +210,7 @@
 </div>
   </section>
 
-  <section id="people" class="hidden">
+  <section id="people" class="hidden-section">
     <h2>Our Team</h2>
     <div class="pi-block" style="text-align: center; margin-bottom: 3rem;">
       <img src="images/amreen_pic.jpg" alt="Dr. Amreen Bano" style="width: 160px; height: 160px; border-radius: 50%; object-fit: cover;">
@@ -239,7 +240,7 @@
     </div>
   </section>
 
-  <section id="research" class="hidden">
+  <section id="research" class="hidden-section">
     <h2>Research Areas</h2>
     <ul>
       <li>High-Entropy Materials</li>
@@ -249,7 +250,7 @@
     </ul>
   </section>
 
-  <section id="publications" class="hidden">
+  <section id="publications" class="hidden-section">
     <h2>Publications</h2>
     <p>A list of selected publications with links to journal articles and DOI.</p>
     <ul>
@@ -258,8 +259,8 @@
     </ul>
   </section>
 
-<!-- Gallery Section -->
-<section id="gallery" style="padding: 3rem 0; background-color: #f9f9f9;">
+<!-- Gallery Section --> 
+<section id="gallery" class="hidden-section"> style="padding: 3rem 0; background-color: #f9f9f9;">
   <div style="text-align: center; margin-bottom: 2rem;">
     <h2 style="font-size: 2rem; color: #333;">Gallery</h2>
     <p style="font-size: 1rem; color: #666;">A glimpse into our group activities and moments</p>
@@ -271,13 +272,32 @@
     <img src="images/Group4.jpg" alt="Gallery Image 4" style="width: 100%; border-radius: 10px; object-fit: cover; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
   </div>
 </section>
+
+   <section id="positions" class="hidden-section">
+    <h1>Open Positions</h1>
+    <p>Will be updated soon....</p>
+  </section>
   
-  <section id="contact" class="hidden">
+  <section id="contact" class="hidden-section">
     <h2>Contact</h2>
     <p>Email: amreen.bano@tcgcrest.org; banoamreen.7@gmail.com</p>
     <p>Address: Research Institute for Sustainable Energy (RISE), TCG CREST, Kolkata, India</p>
   </section>
 
+<!-- JavaScript -->
+  <script>
+    function showSection(id) {
+      const sections = document.querySelectorAll("section");
+      sections.forEach(section => section.classList.add("hidden-section"));
+      const target = document.getElementById(id);
+      if (target) {
+        target.classList.remove("hidden-section");
+      }
+    }
+  </script>
+</body>
+</html>
+  
   <footer>
   <p>&copy; 2025 The Amreen's Group. All rights reserved.</p>
   <p>Visitor Count:</p>
