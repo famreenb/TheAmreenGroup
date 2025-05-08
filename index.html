@@ -98,6 +98,55 @@
       from { opacity: 0; }
       to { opacity: 1; }
     }
+
+    .card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.research-card {
+  width: 300px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.research-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 1rem;
+  background-color: #f5f5f5;
+  text-align: center;
+}
+
+.card-info {
+  display: none;
+  padding: 1rem;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  background-color: #ffffff;
+}
+
+.research-card.expanded .card-info {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .research-card {
+    width: 90%;
+  }
+}
   </style>
 
   <!-- Particle background -->
@@ -142,6 +191,11 @@
     };
   </script>
 </head>
+  <script>
+  function toggleCard(card) {
+    card.classList.toggle('expanded');
+  }
+</script>
 <body>
   <header>
     <h1>The Amreen's Group</h1>
@@ -229,40 +283,40 @@
   </section>
 
   <section id="research" class="hidden">
-    <h2>Research Areas</h2>
-<div class="card-container">
+  <h2>Research Areas</h2>
+  <div class="card-container" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem; margin-top: 2rem;">
 
-  <!-- Card 1 -->
-  <div class="research-card" onclick="toggleCard(this)">
-    <img src="images/electrolyte_design_figure.jpg" alt="Electrolyte Design">
-    <div class="card-title">Electrolyte Design</div>
-    <div class="card-info">
-      <p>We study non-aqueous electrolytes and interfacial behavior to understand ion transport mechanisms and electrochemical stability across different electrodes. In this approach we use molecular dynamics (Classical as well as AIMD).
-      Machine learning assisted MD simulations were also considered for effective analysis of CEI/SEI interfaces.</p>
+    <!-- Card 1 -->
+    <div class="research-card" onclick="toggleCard(this)">
+      <img src="images/electrolyte_design_figure.jpg" alt="Electrolyte Design">
+      <div class="card-title">Electrolyte Design</div>
+      <div class="card-info">
+        <p>We study non-aqueous electrolytes and interfacial behavior to understand ion transport mechanisms and electrochemical stability across different electrodes. In this approach we use molecular dynamics (Classical as well as AIMD).
+        Machine learning assisted MD simulations were also considered for effective analysis of CEI/SEI interfaces.</p>
+      </div>
     </div>
-  </div>
 
-  <!-- Card 2 -->
-  <div class="research-card" onclick="toggleCard(this)">
-    <img src="images/ml_figure.jpg" alt="Machine Learning Approach">
-    <div class="card-title">Machine Learning Approach</div>
-    <div class="card-info">
-      <p>We use available ML interatomic potentials (MLIP) and perform benchmarking analysis to see whic MLIPs are in more efficint in our studies to accelerate materials discovery and 
+    <!-- Card 2 -->
+    <div class="research-card" onclick="toggleCard(this)">
+      <img src="images/ml_figure.jpg" alt="Machine Learning Approach">
+      <div class="card-title">Machine Learning Approach</div>
+      <div class="card-info">
+        <p>We use available ML interatomic potentials (MLIP) and perform benchmarking analysis to see which MLIPs are more efficient in our studies to accelerate materials discovery and 
         property prediction for batteries, reducing computational costs.</p>
+      </div>
     </div>
-  </div>
 
-  <!-- Card 3 -->
-  <div class="research-card" onclick="toggleCard(this)">
-    <img src="images/high_entropy_figure.jpg" alt="High Entropy Materials">
-    <div class="card-title">High-Entropy Materials</div>
-    <div class="card-info">
-      <p>We explore compositional complexity using a combination of DFT, ML and MD simulations to identify high-entropy electrode materials with improved stability and performance.</p>
+    <!-- Card 3 -->
+    <div class="research-card" onclick="toggleCard(this)">
+      <img src="images/high_entropy_figure.jpg" alt="High Entropy Materials">
+      <div class="card-title">High-Entropy Materials</div>
+      <div class="card-info">
+        <p>We explore compositional complexity using a combination of DFT, ML, and MD simulations to identify high-entropy electrode materials with improved stability and performance.</p>
+      </div>
     </div>
-  </div>
 
-</div>
-  </section>
+  </div>
+</section>
 
   <section id="publications" class="hidden">
     <h2>Publications</h2>
