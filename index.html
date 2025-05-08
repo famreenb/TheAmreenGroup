@@ -230,12 +230,38 @@
 
   <section id="research" class="hidden">
     <h2>Research Areas</h2>
-    <ul>
-      <li>High-Entropy Materials</li>
-      <li>Machine Learning Interatomic Potentials</li>
-      <li>Monte Carlo Simulated Annealing</li>
-      <li>DFT & Materials Modelling</li>
-    </ul>
+<div class="card-container">
+
+  <!-- Card 1 -->
+  <div class="research-card" onclick="toggleCard(this)">
+    <img src="images/electrolyte_design_figure.jpg" alt="Electrolyte Design">
+    <div class="card-title">Electrolyte Design</div>
+    <div class="card-info">
+      <p>We study non-aqueous electrolytes and interfacial behavior to understand ion transport mechanisms and electrochemical stability across different electrodes. In this approach we use molecular dynamics (Classical as well as AIMD).
+      Machine learning assisted MD simulations were also considered for effective analysis of CEI/SEI interfaces.</p>
+    </div>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="research-card" onclick="toggleCard(this)">
+    <img src="images/ml_figure.jpg" alt="Machine Learning Approach">
+    <div class="card-title">Machine Learning Approach</div>
+    <div class="card-info">
+      <p>We use available ML interatomic potentials (MLIP) and perform benchmarking analysis to see whic MLIPs are in more efficint in our studies to accelerate materials discovery and 
+        property prediction for batteries, reducing computational costs.</p>
+    </div>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="research-card" onclick="toggleCard(this)">
+    <img src="images/high_entropy_figure.jpg" alt="High Entropy Materials">
+    <div class="card-title">High-Entropy Materials</div>
+    <div class="card-info">
+      <p>We explore compositional complexity using a combination of DFT, ML and MD simulations to identify high-entropy electrode materials with improved stability and performance.</p>
+    </div>
+  </div>
+
+</div>
   </section>
 
   <section id="publications" class="hidden">
