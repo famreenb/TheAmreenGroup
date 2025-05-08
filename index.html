@@ -290,46 +290,55 @@
     <a onclick="showSection('contact')">Contact</a>
   </nav>
 
-  <section id="home" style="position: relative; z-index: 1; padding: 2rem;">
+<section id="home" style="position: relative; z-index: 1; padding: 2rem;">
   <div id="particles-js"></div>
-  <h2>Welcome</h2>
-  <p>
-    We are a research group at RISE, focusing on designing advanced materials for energy storage applications using computational approaches including Density Functional Theory (DFT), Molecular Dynamics (MD), Machine Learning methods, etc.
-  </p>
+  <h2>Welcome To The AMREEN Group</h2>
+    <!-- Brief Intro Section -->
+  <div style="max-width: 1200px; margin: 2rem auto; padding: 1.5rem; background: #f8f9fa; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+    <h3>Brief Introduction</h3>
+    <p>
+     The AMREEN (Advanced Materials Research for Energy Engineering Nexus) group, at the Research Institute for Sustainable Energy (RISE), TCG CREST, is dedicated to exploring and designing advanced materials for next-generation energy storage solutions. Our research focuses on understanding and developing innovative battery components using cutting-edge computational techniques. We specialize in the design and optimization of layered oxide cathodes, anodes, and electrolytes—both liquid and solid—to enhance the efficiency, safety, and sustainability of energy storage systems.
+To achieve this, we leverage powerful computational methods such as Density Functional Theory (DFT), Classical and Ab Initio Molecular Dynamics (AIMD), and Machine Learning. These approaches allow us to study materials at the atomic level, predict their behavior, and identify promising candidates for high-performance batteries. By combining fundamental physics with AI-driven methodologies, we aim to accelerate the discovery of new materials and improve existing technologies, making energy storage more reliable and environmentally friendly.
+At AMREEN, we are committed to pushing the boundaries of materials research to support cleaner energy solutions. Our work contributes to global efforts in developing sustainable and high-efficiency batteries that can power the future of renewable energy, electric vehicles, and grid storage. Through collaboration, innovation, and rigorous scientific exploration, we strive to create impactful advancements that will drive progress in energy engineering and sustainability.
+   </p>
+  </div>
 
-  <!-- Card Row (Top Two Cards Side by Side) -->
-  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem; margin-top: 2rem;">
+  <!-- Two Column Layout -->
+  <div style="display: flex; flex-wrap: wrap; gap: 2rem; margin: 2rem 0; max-width: 1200px; margin-left: auto; margin-right: auto;">
+    <!-- Recent News -->
+    <div style="flex: 1 1 55%; min-width: 300px; background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+      <h3>Recent News</h3>
+      <ul style="list-style-type: none; padding-left: 0;">
+        <li style="margin-bottom: 1rem;">
+          <strong>February 2025:</strong> [A Warm Welcome to Our New PhD Students: Ms. Antra Mohini and Ms. Novotna Seal]
+        </li>
+        <li style="margin-bottom: 1rem;">
+          <strong>May 2025:</strong> [Invited talk at APALI Psi-K 2025, IISER Pune, India]
+        </li>
+        <li style="margin-bottom: 1rem;">
+          <strong>June 2025:</strong> [Soon to be updated....]
+        </li>
+      </ul>
+    </div>
+
+    <!-- Collaborations -->
+    <div style="flex: 1 1 40%; min-width: 250px; background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+      <h3>Collaborations</h3>
+      <ul style="list-style-type: none; padding-left: 0;">
+        <li style="margin-bottom: 1rem;">[Prof. Dan T Major, Bar Ilan University, Israel]</li>
+        <li style="margin-bottom: 1rem;">[Prof. Doron Aurbach, Bar Ilan University, Israel]</li>
+        <li style="margin-bottom: 1rem;">[Prof. Sagar Mitra, IIT Bombay, India]</li>
+        <li style="margin-bottom: 1rem;">[Prof. Malachi Noked, Bar Ilan University, Israel]</li>
+        <li style="margin-bottom: 1rem;">[Prof. Rahul Salunkhe, IIT Jammu, India]</li>
+        <li style="margin-bottom: 1rem;">[Prof. Saikat Datta, Amity University, Noida, India]</li>
+      </ul>
+    </div>
+  </div>
+
     
-    <!-- Card 1 -->
-    <div class="research-card" style="flex: 1 1 45%; background: white; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); overflow: hidden;">
-      <img src="images/electrolyte_design_figure.jpg" alt="Electrolyte Design Figure" style="width: 100%; height: 220px; object-fit: cover;">
-      <div style="padding: 1rem;">
-        <h3>Electrolyte Design</h3>
-        <p style="font-size: 0.95rem;">Modeling the non-aqueous liquid electrolyte to understand ion transport and interface composition.</p>
-      </div>
-    </div>
-
-    <!-- Card 2 -->
-    <div class="research-card" style="flex: 1 1 45%; background: white; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); overflow: hidden;">
-      <img src="images/ml_figure.jpg" alt="Machine Learning Battery Design" style="width: 100%; height: 220px; object-fit: cover;">
-      <div style="padding: 1rem;">
-        <h3>Machine Learning Approach</h3>
-        <p style="font-size: 0.95rem;">Using machine learning potentials to design novel battery materials.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Bottom Card (Full Width) -->
-  <div style="margin-top: 2rem; display: flex; justify-content: center;">
-    <div class="research-card" style="width: 60%; max-width: 1000px; background: white; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); overflow: hidden;">
-      <img src="images/high_entropy_figure.jpg" alt="High Entropy Materials Figure" style="width: 100%; height: 260px; object-fit: cover;">
-      <div style="padding: 1rem;">
-        <h3>High-Entropy Materials</h3>
-        <p style="font-size: 0.95rem;">Exploring compositional complexity to develop next-gen battery electrodes with improved cycling.</p>
-      </div>
-    </div>
-  </div>
 </section>
+
+  
   <section id="people" class="hidden">
     <h2>Our Team</h2>
     <div class="pi-block" style="text-align: center; margin-bottom: 3rem;">
