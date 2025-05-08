@@ -158,41 +158,46 @@
     <a onclick="showSection('contact')">Contact</a>
   </nav>
 
-  <section id="home">
-    <div id="particles-js"></div>
-    <h2>Welcome</h2>
-    <p style="position: relative; z-index: 1;">
-      We are a research group at RISE, focusing on designing advanced materials for energy storage applications using computational approaches including Density functional theory (DFT), Molecular dynamics (MD), Machine learning methods etc.
-    </p>
+  <section id="home" style="position: relative; z-index: 1; padding: 2rem;">
+  <div id="particles-js"></div>
+  <h2>Welcome</h2>
+  <p>
+    We are a research group at RISE, focusing on designing advanced materials for energy storage applications using computational approaches including Density Functional Theory (DFT), Molecular Dynamics (MD), Machine Learning methods, etc.
+  </p>
+
+  <!-- Card Row (Top Two Cards Side by Side) -->
+  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem; margin-top: 2rem;">
+    
     <!-- Card 1 -->
-  <div class="research-card" style="flex: 1 1 30%; background: white; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); overflow: hidden; transition: transform 0.3s; cursor: pointer;">
-    <img src="images/electrolyte_design_figure.jpg" alt="Research Figure 1" style="width: 100%; height: 180px; object-fit: cover;">
-    <div style="padding: 1rem;">
-      <h3 style="margin-top: 0;">Electrolyte Design</h3>
-      <p style="font-size: 0.95rem;">Modeling the non-aqueous liquid electrolyte to understand ion transport and interface composition.</p>
+    <div class="research-card" style="flex: 1 1 45%; background: white; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); overflow: hidden;">
+      <img src="images/electrolyte_design_figure.jpg" alt="Electrolyte Design Figure" style="width: 100%; height: 220px; object-fit: cover;">
+      <div style="padding: 1rem;">
+        <h3>Electrolyte Design</h3>
+        <p style="font-size: 0.95rem;">Modeling the non-aqueous liquid electrolyte to understand ion transport and interface composition.</p>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="research-card" style="flex: 1 1 45%; background: white; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); overflow: hidden;">
+      <img src="images/ml_figure.jpg" alt="Machine Learning Battery Design" style="width: 100%; height: 220px; object-fit: cover;">
+      <div style="padding: 1rem;">
+        <h3>Machine Learning Approach</h3>
+        <p style="font-size: 0.95rem;">Using machine learning potentials to design novel battery materials.</p>
+      </div>
     </div>
   </div>
 
-  <!-- Card 2 -->
-  <div class="research-card" style="flex: 1 1 30%; background: white; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); overflow: hidden; transition: transform 0.3s; cursor: pointer;">
-    <img src="images/ml_figure.jpg" alt="Research Figure 2" style="width: 100%; height: 180px; object-fit: cover;">
-    <div style="padding: 1rem;">
-      <h3 style="margin-top: 0;">Machine Learning Approach</h3>
-      <p style="font-size: 0.95rem;">Using machine learning potentials to design novel battery materials.</p>
+  <!-- Bottom Card (Full Width) -->
+  <div style="margin-top: 2rem; display: flex; justify-content: center;">
+    <div class="research-card" style="width: 90%; max-width: 1000px; background: white; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); overflow: hidden;">
+      <img src="images/high_entropy_figure.jpg" alt="High Entropy Materials Figure" style="width: 100%; height: 260px; object-fit: cover;">
+      <div style="padding: 1rem;">
+        <h3>High-Entropy Materials</h3>
+        <p style="font-size: 0.95rem;">Exploring compositional complexity to develop next-gen battery electrodes with improved cycling.</p>
+      </div>
     </div>
   </div>
-
-  <!-- Card 3 -->
-  <div class="research-card" style="flex: 1 1 30%; background: white; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); overflow: hidden; transition: transform 0.3s; cursor: pointer;">
-    <img src="images/high_entropy_figure.jpg" alt="Research Figure 3" style="width: 100%; height: 180px; object-fit: cover;">
-    <div style="padding: 1rem;">
-      <h3 style="margin-top: 0;">High-Entropy Materials</h3>
-      <p style="font-size: 0.95rem;">Exploring compositional complexity to develop next-gen battery electrodes with improved cycling.</p>
-    </div>
-  </div>
-</div>
-  </section>
-
+</section>
   <section id="people" class="hidden">
     <h2>Our Team</h2>
     <div class="pi-block" style="text-align: center; margin-bottom: 3rem;">
