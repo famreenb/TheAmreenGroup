@@ -204,10 +204,11 @@
     
 .header-content {
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 1.5rem;
-  flex-wrap: wrap;
+  align-items: center;         /* Vertically centers text */
+  justify-content: flex-start; /* Logo on left, text beside it */
+  gap: 1.5rem;                 /* Space between logo and text */
+  padding: 1rem;
+  flex-wrap: wrap;             /* Makes it responsive */
 }
 
 .group-logo {
@@ -220,7 +221,22 @@
 
 .group-logo:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.logo-text {
+  text-align: center;
+}
+
+.logo-text h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.logo-text p {
+  margin: 0;
+  font-size: 1rem;
+  font-style: italic;
 }
 
 
