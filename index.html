@@ -315,26 +315,6 @@ footer a {
   line-height: 1.6;
 }
 
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const headers = document.querySelectorAll(".accordion-header");
-
-    headers.forEach(header => {
-      header.addEventListener("click", () => {
-        const body = header.nextElementSibling;
-        const isOpen = body.style.display === "block";
-
-        // Close all other open bodies
-        document.querySelectorAll(".accordion-body").forEach(b => {
-          b.style.display = "none";
-        });
-
-        // Toggle current
-        body.style.display = isOpen ? "none" : "block";
-      });
-    });
-  });
-</script>
     
 @keyframes pulse {
   0% { transform: translate(-50%, -50%) scale(1); }
@@ -878,3 +858,24 @@ footer a {
     </p>
   </div>
 </footer>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const headers = document.querySelectorAll(".accordion-header");
+
+    headers.forEach(header => {
+      header.addEventListener("click", () => {
+        const body = header.nextElementSibling;
+        const isOpen = body.style.display === "block";
+
+        // Close all other open bodies
+        document.querySelectorAll(".accordion-body").forEach(b => {
+          b.style.display = "none";
+        });
+
+        // Toggle current
+        body.style.display = isOpen ? "none" : "block";
+      });
+    });
+  });
+</script>
