@@ -315,6 +315,27 @@ footer a {
   line-height: 1.6;
 }
 
+.tab-btn {
+    padding: 0.75rem 1.5rem;
+    margin: 0.3rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    background-color: #ddd;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s;
+  }
+
+  .tab-btn:hover,
+  .tab-btn.active {
+    background-color: #007BFF;
+    color: white;
+  }
+
+  .pub-item {
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
     
 @keyframes pulse {
   0% { transform: translate(-50%, -50%) scale(1); }
@@ -531,17 +552,33 @@ footer a {
   </div>
 </section>
 
-<section id="publications" class="hidden">
-<!-- Highlight Image -->
+<section id="publications" style="padding: 3rem 0; background-color: #f9f9f9; text-align: center;">
+  <!-- Highlight Image -->
   <div class="highlight-image">
-    <img src="images/publication_page.png" alt="Publication Highlights" />
+    <img src="images/publication_page.png" alt="Publication Highlights" style="max-width: 100%; height: auto;" />
   </div>
-  
-  <h2>Publications</h2>
-  <p>A list of selected publications (Yearwise).</p>
 
-  <h3>2025</h3>
-  <ul>
+  <h2 style="font-size: 2.5rem; margin: 1rem 0;">Publications</h2>
+  <p style="font-size: 1.1rem;">A list of selected publications (Yearwise).</p>
+
+  <!-- Tabs for years -->
+  <div style="margin-top: 2rem;">
+    <button class="tab-btn active" onclick="showPublications('2025')">2025</button>
+    <button class="tab-btn" onclick="showPublications('2024')">2024</button>
+    <button class="tab-btn" onclick="showPublications('2023')">2023</button>
+    <button class="tab-btn" onclick="showPublications('2022')">2022</button>
+    <button class="tab-btn" onclick="showPublications('2021')">2021</button>
+    <button class="tab-btn" onclick="showPublications('2020')">2020</button>
+    <button class="tab-btn" onclick="showPublications('2019')">2019</button>
+    <button class="tab-btn" onclick="showPublications('2018')">2018</button>
+    <button class="tab-btn" onclick="showPublications('2017')">2017</button>
+    <button class="tab-btn" onclick="showPublications('2016')">2016</button>
+    <!-- Add more years here as needed -->
+  </div>
+ 
+  <!-- Publication Lists -->
+  <div id="2025" class="pub-list" style="display: block; text-align: left; max-width: 900px; margin: 2rem auto;">
+    <ul>
     <li class="pub-item">
       Khorsed Alam, Akanksha Joshi, <u>Amreen Bano</u>, Malachi Noked, Dan Thomas Major, 
       "Theoretical Study on High-Entropy Oxyfluoride Cathodes for Sodium-Ion Batteries", 
@@ -549,9 +586,10 @@ footer a {
       <a href="https://pubs.acs.org/doi/abs/10.1021/acsaem.5c00035" target="_blank">View Publication</a>
     </li>
   </ul>
-
-  <h3>2024</h3>
-  <ul>
+ </div>
+  
+  <div id="2024" class="pub-list" style="display: block; text-align: left; max-width: 900px; margin: 2rem auto;">
+    <ul>
     <li class="pub-item">
       Naresh Vangapally, David Lusztig, Suman Rathod, <u>Amreen Bano</u>, Hadar Scalar, Sri Harsha Akella, 
       Malachi Noked, Dan.T. Major, Ion C. Halalay, Suresh Sriramulu, Shalom Luski, Doron Aurbach, 
@@ -575,9 +613,10 @@ footer a {
       <a href="https://www.sciencedirect.com/science/article/pii/S2405829724002629" target="_blank">View Publication</a>
     </li>
   </ul>
-
-  <h3>2023</h3>
-  <ul>
+ </div>
+  
+  <div id="2023" class="pub-list" style="display: block; text-align: left; max-width: 900px; margin: 2rem auto;">
+    <ul>
     <li class="pub-item">
       Nabil El Halya, Mohamed Aqil, Karim El Ouardi, <u>Amreen Bano</u>, Ayoub El bendali, Loubna Hdidou, Rachid Amine, Seoung-Bum Son, 
       Fouad Ghamouss, Dan Thomas Major, Khalil Amine, Jones Alami, Mouad Dahbi, 
@@ -604,9 +643,21 @@ footer a {
       <a href="https://pubs.rsc.org/en/content/articlehtml/2023/ta/d3ta00444a" target="_blank">View Publication</a>
     </li>
   </ul>
+    </div>
 
-  <h3>2021</h3>
-  <ul>
+<div id="2022" class="pub-list" style="display: block; text-align: left; max-width: 900px; margin: 2rem auto;">
+    <ul>
+    <li class="pub-item">
+      Amreen Bano, Dan Thomas Major,
+      "Coexistence of Rashba Effect and Spin-valley Coupling in TiX2 (X= Te, S and Se) based Heterostructures", 
+      <b><i>Archive</i></b>, 2022. 
+      <a href="https://doi.org/10.48550/arXiv.2212.14508" target="_blank">View Publication</a>
+    </li>
+  </ul>
+ </div>
+  
+  <div id="2021" class="pub-list" style="display: block; text-align: left; max-width: 900px; margin: 2rem auto;">
+    <ul>
     <li class="pub-item">
       <u>Amreen Bano</u>, Lokanath Patra, Ravindra Pandey, 
       "Stability and electronic properties of the graphene-supported FeO nanostructures including clusters and monolayer", 
@@ -632,19 +683,21 @@ footer a {
       <a href="https://www.sciencedirect.com/science/article/pii/S2214785321056212" target="_blank">View Publication</a>
     </li>
   </ul>
+    </div>
 
-  <h3>2020</h3>
-  <ul>
+  <div id="2020" class="pub-list" style="display: block; text-align: left; max-width: 900px; margin: 2rem auto;">
+    <ul>
     <li class="pub-item">
-      A Bano, NK Gaur, 
+      <u>Amreen Bano</u>, NK Gaur, 
       "Chemical topology of 2-dimensional MoB2 sheet: First-principles study", 
       <b><i>AIP Conference Proceedings</i></b>, 2020. 
       <a href="https://doi.org/10.1063/5.0016624" target="_blank">View Publication</a>
     </li>
   </ul>
+    </div>
 
-  <h3>2019</h3>
-  <ul>
+  <div id="2019" class="pub-list" style="display: block; text-align: left; max-width: 900px; margin: 2rem auto;">
+    <ul>
     <li class="pub-item">
       <u>Amreen Bano</u>, Jyoti Krishna, Tulika Maitra, NK Gaur, 
       "CrI3-WTe2: A Novel Two-Dimensional Heterostructure as Multisensor for BrF3 and COCl2 Toxic Gases", 
@@ -676,10 +729,11 @@ footer a {
     <a href="https://doi.org/10.1039/C8CP07038E" target="_blank">View Publication</a>
   </li>
 </ul>
+    </div>
 
-<h3>2018</h3>
-<ul>
-  <li class="pub-item">
+<div id="2018" class="pub-list" style="display: block; text-align: left; max-width: 900px; margin: 2rem auto;">
+    <ul>
+    <li class="pub-item">
     <b>Amreen Bano</b>, D. K. Pandey, A. Modi, N. K. Gaur,  
     "MoB<sub>2</sub> Driven Metallic Behavior and Interfacial Charge Transport Mechanism in MoS<sub>2</sub>/MoB<sub>2</sub> Heterostructure: A First-Principles Study", 
     <b><i>Scientific Reports</i></b>, 2018. 
@@ -704,10 +758,11 @@ footer a {
     <a href="https://www.nature.com/articles/s41598-017-18984-6" target="_blank">View Publication</a>
   </li>
 </ul>
+   </div>
 
-<h3>2017</h3>
-<ul>
-  <li class="pub-item">
+<div id="2017" class="pub-list" style="display: block; text-align: left; max-width: 900px; margin: 2rem auto;">
+    <ul>
+    <li class="pub-item">
     <b>Amreen Bano</b>, Preeti Khare, N. K. Gaur,  
     "Electro-optic response of metal halide: A first-principles study", 
     <b><i>Pramana - J Phys</i></b>, 2017. 
@@ -720,10 +775,11 @@ footer a {
     <a href="https://iopscience.iop.org/article/10.1088/1742-6596/836/1/012052/meta" target="_blank">View Publication</a>
   </li>
 </ul>
+   </div>
 
-    <h3>2016</h3>
-<ul>
-  <li class="pub-item">
+    <div id="2016" class="pub-list" style="display: block; text-align: left; max-width: 900px; margin: 2rem auto;">
+    <ul>
+    <li class="pub-item">
     <b>Amreen Bano</b>, Preeti Khare, N. K. Gaur,  
     "First-principles calculation for phonon and optoelectronic properties of CsSnI<sub>3</sub>", 
     <b><i>AIP Conference Proceedings</i></b>, 2016. 
@@ -748,7 +804,8 @@ footer a {
     <a href="https://doi.org/10.1063/1.4946076" target="_blank">View Publication</a>
   </li>
 </ul>
-
+ </div>
+  
   <!--COPY THIS SECTION TO ADD NEW PUBLICATION  -->
   <!--  <li class="pub-item"> -->
   <!--     Author, Title, <i>Journal</i>, Year -->
@@ -879,4 +936,17 @@ footer a {
       });
     });
   });
+</script>
+
+  <script>
+  function showPublications(year) {
+    const lists = document.querySelectorAll(".pub-list");
+    const buttons = document.querySelectorAll(".tab-btn");
+
+    lists.forEach(list => list.style.display = "none");
+    buttons.forEach(btn => btn.classList.remove("active"));
+
+    document.getElementById(year).style.display = "block";
+    event.target.classList.add("active");
+  }
 </script>
