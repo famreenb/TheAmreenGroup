@@ -358,7 +358,26 @@ footer a {
   to { transform: rotate(0deg); }
 }
 
+.social-links {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
 
+.social-links a img {
+  width: 32px;
+  height: 32px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: grayscale(50%);
+}
+
+.social-links a:hover img {
+  transform: scale(1.2);
+  filter: grayscale(0%);
+}
+    
     .contact-section {
   padding: 4rem 2rem;
   background: linear-gradient(135deg, #f0f4f8, #dbeafe);
@@ -964,7 +983,7 @@ footer a {
       <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12l-4-4-4 4m0 0l4 4 4-4" />
       </svg>
-      <span>Email: 
+      <span>
         <a href="mailto:amreen.bano@tcgcrest.org">amreen.bano@tcgcrest.org</a> / 
         <a href="mailto:banoamreen.7@gmail.com">banoamreen.7@gmail.com</a>
       </span>
@@ -976,6 +995,21 @@ footer a {
       </svg>
       <span>Research Institute for Sustainable Energy (RISE), TCG CREST, Kolkata, India</span>
     </div>
+
+    <div class="social-links">
+  <a href="mailto:banoamreen.7@gmail.com" target="_blank" title="Gmail">
+    <img src="images/gmail_logo.jpg" alt="Gmail" />
+  </a>
+  <a href="https://www.linkedin.com/in/amreen-bano-ph-d-48a28844/" target="_blank" title="LinkedIn">
+    <img src="images/linkedin_logo.png" alt="LinkedIn" />
+  </a>
+  <a href="https://www.researchgate.net/profile/Amreen-Bano?ev=hdr_xprf" target="_blank" title="ResearchGate">
+    <img src="images/researchgate_logo.png" alt="ResearchGate" />
+  </a>
+  <a href="https://scholar.google.com/citations?user=0IR8OWkAAAAJ&hl=en" target="_blank" title="Google Scholar">
+    <img src="images/google_scholar_logo.png" alt="Google Scholar" />
+  </a>
+</div>
   </div>
 </section>
   
