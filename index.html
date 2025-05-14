@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Research Group</title>
+  <title>My Research Group</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -316,22 +316,22 @@ footer a {
 }
 
 <script>
-  const headers = document.querySelectorAll('.accordion-header');
+  document.addEventListener("DOMContentLoaded", function () {
+    const headers = document.querySelectorAll(".accordion-header");
 
-  headers.forEach(header => {
-    header.addEventListener('click', () => {
-      const body = header.nextElementSibling;
-      const isOpen = body.style.display === 'block';
+    headers.forEach(header => {
+      header.addEventListener("click", () => {
+        const body = header.nextElementSibling;
+        const isOpen = body.style.display === "block";
 
-      // Close all other accordion bodies
-      document.querySelectorAll('.accordion-body').forEach(b => {
-        b.style.display = 'none';
+        // Close all other open bodies
+        document.querySelectorAll(".accordion-body").forEach(b => {
+          b.style.display = "none";
+        });
+
+        // Toggle current
+        body.style.display = isOpen ? "none" : "block";
       });
-
-      // Open current body if it wasn't already open
-      if (!isOpen) {
-        body.style.display = 'block';
-      }
     });
   });
 </script>
