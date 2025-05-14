@@ -357,6 +357,64 @@ footer a {
   from { transform: rotate(360deg); }
   to { transform: rotate(0deg); }
 }
+
+
+    .contact-section {
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #f0f4f8, #dbeafe);
+  color: #1f2937;
+  text-align: center;
+  animation: fadeInUp 1s ease-in-out;
+  border-top: 2px solid #cbd5e1;
+}
+
+.contact-title {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #0f172a;
+}
+
+.contact-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.contact-icon {
+  width: 24px;
+  height: 24px;
+  color: #3b82f6;
+}
+
+.contact-item a {
+  color: #1d4ed8;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.contact-item a:hover {
+  text-decoration: underline;
+}
+
+/* Smooth fade-in animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
   </style>
 
   <!-- Particle background -->
@@ -898,12 +956,30 @@ footer a {
 </section>
   
   
-  <section id="contact" class="hidden">
-    <h2>Contact</h2>
-    <p>Email: amreen.bano@tcgcrest.org; banoamreen.7@gmail.com</p>
-    <p>Address: Research Institute for Sustainable Energy (RISE), TCG CREST, Kolkata, India</p>
-  </section>
-
+<section id="contact" class="contact-section">
+  <div class="contact-container">
+    <h2 class="contact-title">Get in Touch</h2>
+    
+    <div class="contact-item">
+      <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12l-4-4-4 4m0 0l4 4 4-4" />
+      </svg>
+      <span>Email: 
+        <a href="mailto:amreen.bano@tcgcrest.org">amreen.bano@tcgcrest.org</a> / 
+        <a href="mailto:banoamreen.7@gmail.com">banoamreen.7@gmail.com</a>
+      </span>
+    </div>
+    
+    <div class="contact-item">
+      <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13 21.314 8.343 16.657a8 8 0 1111.314 0z" />
+      </svg>
+      <span>Research Institute for Sustainable Energy (RISE), TCG CREST, Kolkata, India</span>
+    </div>
+  </div>
+</section>
+  
+  
  <footer>
   <div class="footer-line">
     <p>&copy; 2025 The Amreen's Group | RISE | 
