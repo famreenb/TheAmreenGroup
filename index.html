@@ -266,7 +266,22 @@ footer a {
   font-style: italic;
 }
 
+#publications .highlight-image {
+  text-align: center;
+  margin: 20px 0;
+}
 
+#publications .highlight-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.pub-item {
+  margin-bottom: 1em;
+  line-height: 1.6;
+}
 
 @keyframes pulse {
   0% { transform: translate(-50%, -50%) scale(1); }
@@ -352,7 +367,7 @@ footer a {
     <img src="images/group_logo.png" alt="AMREEN Group Logo" class="group-logo">
     <div class="logo-text">
       <h1>The AMREEN Group</h1>
-      <p>'Advanced Materials Research for Energy Engineering Nanomaterials'</p>
+      <p>'Advanced Modelling and Research in Energy  and Electrochemical Navigation'</p>
     </div>
   </div>
 </header>
@@ -373,7 +388,7 @@ footer a {
   <div style="max-width: 1200px; margin: 2rem auto; padding: 1.5rem; background: #f8f9fa; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
     <h3>Brief Introduction</h3>
     <p style="text-align: justify;">
-    The <strong>AMREEN Group</strong> (Advanced Materials Research for Energy Engineering Nanomaterials) at the <strong>Research Institute for Sustainable Energy (RISE), TCG CREST</strong>, is dedicated to the exploration and development of next-generation energy storage materials. 
+    The <strong>AMREEN Group</strong> (Advanced Modelling and Research in Energy  and Electrochemical Navigation) at the <strong>Research Institute for Sustainable Energy (RISE), TCG CREST</strong>, is dedicated to the exploration and development of next-generation energy storage materials. 
     Our research is driven by the urgent need for efficient, safe, and sustainable battery technologies to power the future of renewable energy, electric mobility, and smart grid infrastructure.
     We focus on the rational design and optimization of battery components—including layered oxide cathodes, high-performance anodes, and both liquid and solid-state electrolytes—using state-of-the-art computational techniques. 
     By leveraging tools such as <strong>Density Functional Theory (DFT)</strong>, <strong>Classical and Ab Initio Molecular Dynamics (AIMD)</strong>, and <strong>Machine Learning</strong>, 
@@ -483,6 +498,11 @@ footer a {
 </section>
 
 <section id="publications" class="hidden">
+<!-- Highlight Image -->
+  <div class="highlight-image">
+    <img src="images/publication_page.png" alt="Publication Highlights" />
+  </div>
+  
   <h2>Publications</h2>
   <p>A list of selected publications (Yearwise).</p>
 
