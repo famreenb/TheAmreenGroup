@@ -283,7 +283,7 @@ footer a {
   line-height: 1.6;
 }
 
-.accordion-item {
+.accordion-item { 
   border: 1px solid #ddd;
   border-radius: 8px;
   margin-bottom: 10px;
@@ -323,11 +323,15 @@ footer a {
       const body = header.nextElementSibling;
       const isOpen = body.style.display === 'block';
 
-      // Close all other open bodies
-      document.querySelectorAll('.accordion-body').forEach(b => b.style.display = 'none');
+      // Close all other accordion bodies
+      document.querySelectorAll('.accordion-body').forEach(b => {
+        b.style.display = 'none';
+      });
 
-      // Toggle current
-      body.style.display = isOpen ? 'none' : 'block';
+      // Open current body if it wasn't already open
+      if (!isOpen) {
+        body.style.display = 'block';
+      }
     });
   });
 </script>
