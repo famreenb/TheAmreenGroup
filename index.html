@@ -434,7 +434,7 @@ footer a {
     transform: translateY(0);
   }
 }
-       .carousel-container {
+          .carousel-container {
       position: relative;
       overflow: hidden;
     }
@@ -475,7 +475,14 @@ footer a {
       transform: scale(1.05);
     }
 
+    /* Pause animation when hovering over any carousel item */
+    .carousel-item:hover ~ .carousel-track,
     .carousel-container:hover .carousel-track {
+      animation-play-state: paused;
+    }
+
+    /* Modern browser support using :has() */
+    .carousel-container:has(.carousel-item:hover) .carousel-track {
       animation-play-state: paused;
     }
   </style>
@@ -594,7 +601,7 @@ footer a {
       </ul>
     </div>
 
-  <!-- Recent Updates Carousel -->
+    <!-- Recent Updates Carousel -->
   <div style="margin: 3rem auto; max-width: 1200px;">
     <h3 style="text-align: center; margin-bottom: 2rem; color: #002b5c;">Recent Publications</h3>
     
@@ -637,6 +644,18 @@ footer a {
           </div>
         </a>
 
+        <!-- Publication Item 4 -->
+        <a href="https://doi.org/10.1002/smll.202504995" class="carousel-item" style="flex: 0 0 300px; text-decoration: none; color: inherit; display: block; background: #f8f9fa; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+          <div style="height: 180px; overflow: hidden;">
+            <img src="images/small_me.jpg" alt="PAN-based Composite Solid Polymer Electrolyte for LIBs" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          <div style="padding: 1.5rem;">
+            <div style="font-weight: bold; color: #002b5c; margin-bottom: 0.5rem;">Black Phosphorus Nanosheets as Efficient Ion Navigators at Room Temperature in Polyacrylonitrile-based Composite Solid Polymer Electrolyte for Li-Ion Batteries</div>
+            <div style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">Small, 2025</div>
+            <div style="font-size: 0.95rem; line-height: 1.4;">An impressive ionicconductivity of 4.41 × 10−4 S cm−1 is realised in PAN-BPN-SO-LiClO4 CPE,which is 65 times higher than that of PAN-LiClO4 (6.8 × 10−6 S cm−1 ).</div>
+          </div>
+        </a>
+
         <!-- Duplicate items for seamless loop -->
         <a href="https://doi.org/10.1002/anie.202511892" class="carousel-item" style="flex: 0 0 300px; text-decoration: none; color: inherit; display: block; background: #f8f9fa; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
           <div style="height: 180px; overflow: hidden;">
@@ -663,6 +682,41 @@ footer a {
       </div>
     </div>
   </div>
+
+  <style>
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(calc(-300px * 3 - 2rem * 3));
+      }
+    }
+
+    .carousel-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }
+
+    /* Pause animation when hovering over ANY carousel item */
+    .carousel-item:hover ~ .carousel-track,
+    .carousel-container:hover .carousel-track {
+      animation-play-state: paused;
+    }
+
+    .carousel-item img {
+      transition: transform 0.3s ease;
+    }
+
+    .carousel-item:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Additional selector to ensure track pauses when hovering over items */
+    .carousel-container:has(.carousel-item:hover) .carousel-track {
+      animation-play-state: paused;
+    }
+  </style>
 
   <style>
     @keyframes scroll {
