@@ -434,6 +434,47 @@ footer a {
     transform: translateY(0);
   }
 }
+
+        .carousel-container {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .carousel-track {
+      display: flex;
+      gap: 2rem;
+      animation: scroll 30s linear infinite;
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(calc(-300px * 4 - 2rem * 4));
+      }
+    }
+
+    .carousel-item {
+      flex: 0 0 300px;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      background: #f8f9fa;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .carousel-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }
+
+    .carousel-container:hover .carousel-track {
+      animation-play-state: paused;
+    }
   </style>
 
   <!-- Particle background -->
@@ -550,6 +591,83 @@ footer a {
       </ul>
     </div>
 
+  <!-- Recent Updates Carousel -->
+  <div style="margin: 3rem auto; max-width: 1200px;">
+    <h3 style="text-align: center; margin-bottom: 2rem; color: #002b5c;">Recent Publications</h3>
+    
+    <div class="carousel-container" style="position: relative; overflow: hidden; background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+      <div class="carousel-track" style="display: flex; gap: 2rem; animation: scroll 30s linear infinite;">
+        
+        <!-- Publication Item 1 -->
+        <a href="https://doi.org/10.1002/anie.202511892" class="carousel-item" style="flex: 0 0 300px; text-decoration: none; color: inherit; display: block; background: #f8f9fa; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+          <div style="padding: 1.5rem;">
+            <div style="font-weight: bold; color: #002b5c; margin-bottom: 0.5rem;">Single-Atomic Ni-N4 Biofuel Cell for Mimicking Intramolecular Electron-Harnessing of Laccase</div>
+            <div style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">Angew. Chem. Int. Ed., 2025</div>
+            <div style="font-size: 0.95rem; line-height: 1.4;">A single Ni–N4–C atomic unit installed in PAN-derived N-carbon electrode accelerates anodic oxidation of BPA in a BFC with an increased power density with increasing BPA concentration.</div>
+          </div>
+        </a>
+
+        <!-- Publication Item 2 -->
+        <a href="https://doi.org/10.1002/aenm.202503588" class="carousel-item" style="flex: 0 0 300px; text-decoration: none; color: inherit; display: block; background: #f8f9fa; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+          <div style="padding: 1.5rem;">
+            <div style="font-weight: bold; color: #002b5c; margin-bottom: 0.5rem;">Decoding Anode Stability: From nucleation kinetics to Pattern-Guided Flux Control for Long-Cycling Anode-Less Sodium Metal Batteries</div>
+            <div style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">Advanced Energy Materials, 2025</div>
+            <div style="font-size: 0.95rem; line-height: 1.4;">Integrated approach including experiments, computaional insights with AIMD and multi-physics modelling together showed that carbon surfaces not only initiate plating more readily but also support partial reversibility even under high scan-rate conditions.</div>
+          </div>
+        </a>
+
+        <!-- Publication Item 3 -->
+        <a href="https://doi.org/10.1002/smll.202507064 " class="carousel-item" style="flex: 0 0 300px; text-decoration: none; color: inherit; display: block; background: #f8f9fa; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+          <div style="padding: 1.5rem;">
+            <div style="font-weight: bold; color: #002b5c; margin-bottom: 0.5rem;">Fe-Single-Atom Incorporated Wood-Derived Anode with Fe-N-C/Fe3C Structural unit and Hollow Diffusion Sites for Enhanced Sodium-Ion Storage</div>
+            <div style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">Small, 2025</div>
+            <div style="font-size: 0.95rem; line-height: 1.4;">The incorporation of Fe-N4-O2 in wood-derived nanoporous carbon (WNC) results in 1) faster Na+ diffusion through hollow (H) sites, 2) stretching of the Fe-N bond during discharge cycles. </div>
+          </div>
+        </a>
+
+       
+        <!-- Duplicate items for seamless loop -->
+        <a href="https://doi.org/10.1002/anie.202511892" class="carousel-item" style="flex: 0 0 300px; text-decoration: none; color: inherit; display: block; background: #f8f9fa; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+          <div style="padding: 1.5rem;">
+            <div style="font-weight: bold; color: #002b5c; margin-bottom: 0.5rem;">Single-Atomic Ni-N4 Biofuel Cell for Mimicking Intramolecular Electron-Harnessing of Laccase</div>
+            <div style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">Angew. Chem. Int. Ed., 2025</div>
+            <div style="font-size: 0.95rem; line-height: 1.4;">A single Ni–N4–C atomic unit installed in PAN-derived N-carbon electrode accelerates anodic oxidation of BPA in a BFC with an increased power density with increasing BPA concentration.</div>
+          </div>
+        </a>
+
+        <a href="https://doi.org/10.1002/aenm.202503588" class="carousel-item" style="flex: 0 0 300px; text-decoration: none; color: inherit; display: block; background: #f8f9fa; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+          <div style="padding: 1.5rem;">
+            <div style="font-weight: bold; color: #002b5c; margin-bottom: 0.5rem;">Decoding Anode Stability: From nucleation kinetics to Pattern-Guided Flux Control for Long-Cycling Anode-Less Sodium Metal Batteries</div>
+            <div style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">Advanced Energy Materials, 2025</div>
+            <div style="font-size: 0.95rem; line-height: 1.4;">Integrated approach of experiments, computaional insights with AIMD and multi-physics modelling together showed that carbon surfaces not only initiate plating more readily but also support partial reversibility even under high scan-rate conditions.</div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </div>
+
+  <style>
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(calc(-300px * 4 - 2rem * 4));
+      }
+    }
+
+    .carousel-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }
+
+    .carousel-container:hover .carousel-track {
+      animation-play-state: paused;
+    }
+  </style>
+
+    
     <!-- Collaborations -->
     <div style="flex: 1 1 40%; min-width: 250px; background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
       <h3>Collaborations</h3>
