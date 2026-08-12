@@ -1,4 +1,4 @@
-+<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -485,7 +485,192 @@ footer a {
     .carousel-container:has(.carousel-item:hover) .carousel-track {
       animation-play-state: paused;
     }
-  </style>
+  
+/* ==========================================================
+   AMREEN GROUP — FULL WIDTH LAYOUT
+   ========================================================== */
+
+html, body {
+  width: 100%;
+  min-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+header {
+  width: 100%;
+}
+
+.header-content {
+  width: 100%;
+  height: 100%;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative;
+  text-align: center;
+}
+
+.logo-text {
+  text-align: center !important;
+  margin: 0 auto !important;
+}
+
+.logo-text h1,
+.logo-text p {
+  text-align: center !important;
+}
+
+.group-logo {
+  position: absolute !important;
+  left: 2rem !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+}
+
+/* Sections use the full browser width */
+section {
+  width: 100% !important;
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  box-sizing: border-box;
+}
+
+/* Keep the Home heading explicitly centered */
+#home > h2 {
+  width: 100%;
+  text-align: center !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ==========================================================
+   GLOBAL COLLABORATIONS — HOME PAGE ONLY
+   ========================================================== */
+
+.global-collaborations {
+  width: 100%;
+  margin: 3rem 0 0;
+  padding: 3.5rem 2rem 3rem;
+  box-sizing: border-box;
+  background: linear-gradient(180deg, #f2f8fb 0%, #ffffff 100%);
+  border-top: 1px solid #dce9ef;
+}
+
+.global-collaborations-inner {
+  width: min(1400px, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.global-collaborations h3 {
+  margin: 0;
+  text-align: center;
+  color: #003b70;
+  font-size: clamp(1.9rem, 3vw, 2.6rem);
+}
+
+.global-collaborations-intro {
+  max-width: 850px;
+  margin: 0.7rem auto 2rem;
+  text-align: center;
+  color: #667085;
+  line-height: 1.65;
+}
+
+.collaboration-map-box {
+  width: 100%;
+  min-height: 560px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #eaf4f8;
+  border: 1px solid #d6e6ee;
+  box-shadow: 0 8px 28px rgba(0, 43, 92, 0.10);
+}
+
+#amreen-collaboration-map {
+  width: 100%;
+  height: 560px;
+}
+
+.collaboration-note {
+  text-align: center;
+  margin: 1rem auto 0;
+  color: #667085;
+  font-size: 0.9rem;
+}
+
+.collaboration-summary {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.collaboration-summary-card {
+  min-width: 150px;
+  padding: 0.8rem 1.2rem;
+  background: #ffffff;
+  border: 1px solid #dce8ee;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 3px 12px rgba(0,43,92,0.06);
+}
+
+.collaboration-summary-card strong {
+  display: block;
+  color: #003b70;
+  font-size: 1.3rem;
+}
+
+.collaboration-summary-card span {
+  color: #667085;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 700px) {
+  .header-content {
+    padding-left: 95px;
+    padding-right: 1rem;
+  }
+
+  .group-logo {
+    left: 0.7rem !important;
+  }
+
+  .logo-text h1 {
+    font-size: 1.5rem !important;
+  }
+
+  .logo-text p {
+    font-size: 0.7rem !important;
+  }
+
+  .global-collaborations {
+    padding: 2.5rem 0.8rem;
+  }
+
+  .global-collaborations-inner {
+    width: 100%;
+  }
+
+  .collaboration-map-box {
+    min-height: 420px;
+    border-radius: 10px;
+  }
+
+  #amreen-collaboration-map {
+    height: 420px;
+  }
+}
+
+</style>
 
   <!-- Particle background -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
@@ -541,6 +726,13 @@ footer a {
       });
     };
   </script>
+
+  <!-- Interactive collaboration world map -->
+  <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/map.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+  <script src="https://cdn.amcharts.com/geodata/worldLow.js"></script>
+
 </head>
   <script>
   function toggleCard(card) {
@@ -763,25 +955,57 @@ footer a {
     }
   </style>
 
-    
-    <!-- Collaborations -->
-    <div style="flex: 1 1 40%; min-width: 250px; background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
-      <h3>Collaborations</h3>
-      <ul style="list-style-type: none; padding-left: 0;">
-        <li style="margin-bottom: 1rem;">Prof. Dan T Major, Bar Ilan University, Israel</li>
-        <li style="margin-bottom: 1rem;">Prof. Doron Aurbach, Bar Ilan University, Israel</li>
-        <li style="margin-bottom: 1rem;">Prof. Sagar Mitra, IIT Bombay, India</li>
-        <li style="margin-bottom: 1rem;">Prof. Malachi Noked, Bar Ilan University, Israel</li>
-        <li style="margin-bottom: 1rem;">Prof. Rahul Salunkhe, IIT Jammu, India</li>
-        <li style="margin-bottom: 1rem;">Prof. Saikat Datta, Amity University, Noida, India</li>
-        <li style="margin-bottom: 1rem;">Prof. Premkumar Senguttuvan, JNCASR, India</li>
-        <li style="margin-bottom: 1rem;">Prof. Rosy, IIT BHU, India</li>
-      </ul>
+  <!-- ========================================================
+       GLOBAL COLLABORATIONS
+       This is part of HOME — there is no separate
+       Collaborations page or navigation item.
+       ======================================================== -->
+  <div class="global-collaborations">
+
+    <div class="global-collaborations-inner">
+
+      <h3>Global Collaborations</h3>
+
+      <p class="global-collaborations-intro">
+        The AMREEN Group collaborates with researchers and institutions
+        across India and internationally, connecting our research in
+        computational materials science, energy storage and electrochemistry.
+      </p>
+
+      <div class="collaboration-map-box">
+        <div id="amreen-collaboration-map"></div>
+      </div>
+
+      <p class="collaboration-note">
+        Hover over a collaboration point to see the collaborator,
+        institution and location.
+      </p>
+
+      <div class="collaboration-summary">
+
+        <div class="collaboration-summary-card">
+          <strong>8</strong>
+          <span>Collaborators</span>
+        </div>
+
+        <div class="collaboration-summary-card">
+          <strong>2</strong>
+          <span>Countries</span>
+        </div>
+
+        <div class="collaboration-summary-card">
+          <strong>6</strong>
+          <span>Institutions</span>
+        </div>
+
+      </div>
+
     </div>
+
   </div>
 
-    
 </section>
+
 
   
   <section id="people" class="hidden">
@@ -835,7 +1059,7 @@ footer a {
   <div class="card-container" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem; margin-top: 2rem;">
 
     <!-- Card 1 -->
-    <div class="research-card style="width: 45%;"" onclick="toggleCard(this)">
+    <div class="research-card" style="width: 45%;" onclick="toggleCard(this)">
       <img src="images/electrolyte_design_figure.jpg" alt="Electrolyte Design">
       <div class="card-title">Electrolyte Design</div>
       <div class="card-info">
@@ -845,7 +1069,7 @@ footer a {
     </div>
 
     <!-- Card 2 -->
-    <div class="research-card style="width: 45%;"" onclick="toggleCard(this)">
+    <div class="research-card" style="width: 45%;" onclick="toggleCard(this)">
       <img src="images/ml_figure.jpg" alt="Machine Learning Approach">
       <div class="card-title">Machine Learning Approach</div>
       <div class="card-info">
@@ -855,7 +1079,7 @@ footer a {
     </div>
 
     <!-- Card 3 -->
-    <div class="research-card style="width: 45%;"" onclick="toggleCard(this)">
+    <div class="research-card" style="width: 45%;" onclick="toggleCard(this)">
       <img src="images/high_entropy_figure.jpg" alt="High Entropy Materials">
       <div class="card-title">High-Entropy Materials</div>
       <div class="card-info">
