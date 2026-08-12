@@ -77,6 +77,18 @@ img {
     display: none !important;
 }
 
+/* =========================================================
+   SINGLE-PAGE TAB NAVIGATION
+   Only the selected top-level page is visible.
+========================================================= */
+.page-section {
+    display: none;
+}
+
+.page-section.active-page {
+    display: block;
+}
+
 
 /* =========================================================
    TOP INSTITUTION BAR
@@ -1287,21 +1299,21 @@ footer {
 
         <div class="nav-links" id="navLinks">
 
-            <a href="#home" class="active">Home</a>
+            <a href="#home" data-page="home" class="active">Home</a>
 
-            <a href="#research">Research</a>
+            <a href="#research" data-page="research">Research</a>
 
-            <a href="#people">People</a>
+            <a href="#people" data-page="people">People</a>
 
-            <a href="#publications">Publications</a>
+            <a href="#publications" data-page="publications">Publications</a>
 
-            <a href="#news">News</a>
+            <a href="#news" data-page="news">News</a>
 
-            <a href="#gallery">Gallery</a>
+            <a href="#gallery" data-page="gallery">Gallery</a>
 
-            <a href="#opportunities">Opportunities</a>
+            <a href="#opportunities" data-page="opportunities">Opportunities</a>
 
-            <a href="#contact">Contact</a>
+            <a href="#contact" data-page="contact">Contact</a>
 
         </div>
 
@@ -1314,7 +1326,7 @@ footer {
      HERO
 ======================================================== -->
 
-<section class="hero" id="home">
+<section class="hero page-section active-page" data-page="home" id="home">
 
     <div class="container">
 
@@ -1358,7 +1370,7 @@ footer {
      INTRODUCTION
 ======================================================== -->
 
-<section class="section">
+<section class="section page-section active-page" data-page="home">
 
     <div class="container">
 
@@ -1464,7 +1476,7 @@ footer {
      RESEARCH AREAS
 ======================================================== -->
 
-<section class="section section-light" id="research">
+<section class="section section-light page-section" data-page="research" id="research">
 
     <div class="container">
 
@@ -1625,7 +1637,7 @@ footer {
      COMPUTATIONAL APPROACH
 ======================================================== -->
 
-<section class="section section-dark">
+<section class="section section-dark page-section" data-page="research">
 
     <div class="container">
 
@@ -1725,7 +1737,7 @@ footer {
      RESEARCH HIGHLIGHTS
 ======================================================== -->
 
-<section class="section">
+<section class="section page-section" data-page="research">
 
     <div class="container">
 
@@ -1902,7 +1914,7 @@ footer {
      NEWS
 ======================================================== -->
 
-<section class="section section-light" id="news">
+<section class="section section-light page-section" data-page="news" id="news">
 
     <div class="container">
 
@@ -2019,7 +2031,7 @@ footer {
      PUBLICATIONS
 ======================================================== -->
 
-<section class="section" id="publications">
+<section class="section page-section" data-page="publications" id="publications">
 
     <div class="container">
 
@@ -2690,7 +2702,7 @@ footer {
      PEOPLE
 ======================================================== -->
 
-<section class="section section-light" id="people">
+<section class="section section-light page-section" data-page="people" id="people">
 
     <div class="container">
 
@@ -2874,7 +2886,7 @@ footer {
      COLLABORATIONS
 ======================================================== -->
 
-<section class="section">
+<section class="section page-section" data-page="people">
 
     <div class="container">
 
@@ -2950,7 +2962,7 @@ footer {
      GALLERY
 ======================================================== -->
 
-<section class="section section-light" id="gallery">
+<section class="section section-light page-section" data-page="gallery" id="gallery">
 
     <div class="container">
 
@@ -3041,7 +3053,7 @@ footer {
      OPPORTUNITIES
 ======================================================== -->
 
-<section class="section" id="opportunities">
+<section class="section page-section" data-page="opportunities" id="opportunities">
 
     <div class="container">
 
@@ -3162,7 +3174,7 @@ footer {
      CONTACT
 ======================================================== -->
 
-<section class="section contact-section" id="contact">
+<section class="section contact-section page-section" data-page="contact" id="contact">
 
     <div class="container">
 
@@ -3610,40 +3622,96 @@ function showYear(year, button) {
 
 
 /* =========================================================
-   ACTIVE NAVIGATION
+   TOP-LEVEL TAB / PAGE NAVIGATION
 ========================================================= */
 
-const sections = document.querySelectorAll("section[id]");
+const pageSections = document.querySelectorAll(".page-section");
+const navLinks = document.querySelectorAll(".nav-links a[data-page]");
 
-const navLinks = document.querySelectorAll(".nav-links a");
-
-
-window.addEventListener("scroll", function() {
-
-    let current = "";
-
-    sections.forEach(section => {
-
-        const sectionTop = section.offsetTop - 150;
-
-        if (window.scrollY >= sectionTop) {
-            current = section.getAttribute("id");
-        }
-
+function showPage(page, updateHash = true) {
+    pageSections.forEach(section => {
+        section.classList.toggle(
+            "active-page",
+            section.dataset.page === page
+        );
     });
 
     navLinks.forEach(link => {
-
-        link.classList.remove("active");
-
-        if (
-            link.getAttribute("href") === "#" + current
-        ) {
-            link.classList.add("active");
-        }
-
+        link.classList.toggle(
+            "active",
+            link.dataset.page === page
+        );
     });
 
+    if (updateHash) {
+        history.pushState(null, "", "#" + page);
+    }
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
+    document.getElementById("navLinks").classList.remove("open");
+}
+
+navLinks.forEach(link => {
+    link.addEventListener("click", function(event) {
+        event.preventDefault();
+        showPage(this.dataset.page);
+    });
+});
+
+/* Internal buttons/links that point to a top-level page */
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+    const target = link.getAttribute("href").substring(1);
+
+    if ([
+        "home",
+        "research",
+        "people",
+        "publications",
+        "news",
+        "gallery",
+        "opportunities",
+        "contact"
+    ].includes(target) && !link.dataset.page) {
+        link.addEventListener("click", function(event) {
+            event.preventDefault();
+            showPage(target);
+        });
+    }
+});
+
+/* Open the correct tab when a page is loaded with a hash. */
+const initialPage = window.location.hash.substring(1);
+if ([
+    "home",
+    "research",
+    "people",
+    "publications",
+    "news",
+    "gallery",
+    "opportunities",
+    "contact"
+].includes(initialPage)) {
+    showPage(initialPage, false);
+} else {
+    showPage("home", false);
+}
+
+window.addEventListener("popstate", function() {
+    const page = window.location.hash.substring(1);
+    showPage(
+        [
+            "home",
+            "research",
+            "people",
+            "publications",
+            "news",
+            "gallery",
+            "opportunities",
+            "contact"
+        ].includes(page) ? page : "home",
+        false
+    );
 });
 
 
