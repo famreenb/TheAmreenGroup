@@ -1,1437 +1,3794 @@
-+<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Research Group</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f5f5f5;
-      scroll-behavior: smooth;
-    }
-    header {
-      background-color: #002b5c;
-      color: white;
-      padding: 2rem 1.5rem; /*1.5rem;*/
-      text-align: center;
-      position: relative;
-      height: 120px; /* adjust height as needed */
-      overflow: hidden;   
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  #particles-header {
-   position: absolute;
-   width: 100%;
-   height: 100%;
-   z-index: 0;
+<title>The AMREEN Group | Computational Energy Materials</title>
+
+<meta name="description"
+      content="The AMREEN Group at RISE, TCG CREST, Kolkata — computational design and atomistic modelling of next-generation energy materials.">
+
+<style>
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+:root {
+    --navy: #102a43;
+    --blue: #1d4f73;
+    --light-blue: #eaf2f8;
+    --accent: #0f6b8f;
+    --dark: #17202a;
+    --text: #394b59;
+    --muted: #6b7c8c;
+    --light: #f6f8fa;
+    --white: #ffffff;
+    --border: #d9e2ec;
+    --gold: #b88917;
+
+    --max-width: 1180px;
 }
 
-.header-content {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  height: 100%;
-}
-    nav {
-      background-color: #004080;
-      display: flex;
-      justify-content: center;
-      padding: 1rem 0;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      animation: fadeInDown 1s ease;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 1rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: color 0.3s;
-    }
-    nav a:hover {
-      color: #00ccff;
-    }
-    section {
-      padding: 2rem;
-      background-color: white;
-      margin: 1rem auto;
-      max-width: 900px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      position: relative;
-      z-index: 1;
-      animation: fadeInUp 1s ease;
-    }
-    footer {
-      text-align: center;
-      padding: 1rem;
-      font-size: 14px;
-      background-color: #002b5c;
-      color: white;
-      animation: fadeIn 2s ease;
-    }
-
-
-.footer-line {
-  margin: 5px 0;
+* {
+    box-sizing: border-box;
 }
 
-footer a {
-  text-decoration: none;
-}
-    
-    .hidden {
-      display: none;
-    }
-    .research-card:hover {
-      transform: scale(1.03);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-    }
-    #particles-js {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      z-index: 0;
-    }
-    .typing-text {
-      font-weight: bold;
-      color: #00ccff;
-      font-size: 1.2rem;
-    }
-    img {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-    }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .card-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center;
+html {
+    scroll-behavior: smooth;
 }
 
-.research-card {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
+body {
+    margin: 0;
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+    color: var(--text);
+    background: #ffffff;
+    line-height: 1.7;
 }
 
-.research-card img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
+a {
+    color: var(--accent);
+    text-decoration: none;
 }
 
-.card-title {
-  font-size: 1.1rem;
-  font-weight: bold;
-  padding: 1rem;
-  background-color: #f5f5f5;
-  text-align: center;
+a:hover {
+    color: var(--blue);
 }
 
-.card-info {
-  display: none;
-  padding: 1rem;
-  font-size: 0.95rem;
-  line-height: 1.4;
-  background-color: #ffffff;
+img {
+    max-width: 100%;
+    display: block;
 }
 
-.research-card.expanded .card-info {
-  display: block;
+.container {
+    width: min(92%, var(--max-width));
+    margin: auto;
 }
 
-@media (max-width: 768px) {
-  .research-card {
-    width: 90%;
-  }
+.hidden {
+    display: none !important;
 }
 
-.logo-container img {
-  max-width: 150px;
-  height: auto;
+
+/* =========================================================
+   TOP INSTITUTION BAR
+========================================================= */
+
+.institution-bar {
+    background: #f2f5f7;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.82rem;
+    color: #607080;
 }
 
-.atom-symbol {
-  position: relative;
-  width: 80px;
-  height: 80px;
-  margin: 0 20px;
+.institution-bar .container {
+    min-height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.nucleus {
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  background: #00ccff;
-  border-radius: 50%;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  animation: pulse 2s infinite;
-  box-shadow: 0 0 12px rgba(0,204,255,0.5);
+.institution-links {
+    display: flex;
+    gap: 22px;
 }
 
-.orbit {
-  position: absolute;
-  border: 2px solid rgba(255,255,255,0.8);
-  border-radius: 50%;
-  left: 50%;
-  top: 50%;
+.institution-links a {
+    color: #607080;
 }
 
-.orbit:nth-child(2) {
-  width: 60px;
-  height: 60px;
-  margin: -30px 0 0 -30px;
-  animation: rotate 20s linear infinite;
+.institution-links a:hover {
+    color: var(--accent);
 }
 
-.orbit.orbit-2 {
-  width: 40px;
-  height: 40px;
-  margin: -20px 0 0 -20px;
-  border-color: #00ccff;
-  animation: rotate-reverse 25s linear infinite;
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.site-header {
+    background: #ffffff;
+    border-bottom: 1px solid var(--border);
 }
 
-.pub-item {
-  margin-bottom: 1.5em;
+.header-main {
+    min-height: 135px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 35px;
 }
-    
-.header-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 25px;
 }
 
 .group-logo {
-  pointer-events: none;
-  position: absolute;
-  left: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  max-height: 180px;
-  width: auto;
+    width: 115px;
+    height: auto;
+    object-fit: contain;
 }
 
-.logo-text {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  top: 50%;
-  transform: translate(-50%, -50%);
+.brand-text h1 {
+    margin: 0;
+    color: var(--navy);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 2.25rem;
+    font-weight: 500;
+    letter-spacing: -0.5px;
 }
 
-.logo-text h1 {
-  margin: 0;
-  font-size: 2rem;
+.brand-text p {
+    margin: 3px 0 0;
+    color: var(--muted);
+    font-size: 0.92rem;
 }
 
-.logo-text p {
-  margin: 0;
-  font-size: 1rem;
-  font-style: italic;
+.header-affiliation {
+    text-align: right;
+    color: var(--muted);
+    font-size: 0.9rem;
 }
 
-#publications .highlight-image {
-  text-align: center;
-  margin: 20px 0;
+.header-affiliation strong {
+    display: block;
+    color: var(--navy);
+    font-size: 1rem;
 }
 
-#publications .highlight-image img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.main-nav {
+    background: var(--navy);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    color: white;
+    padding: 15px 17px;
+    font-size: 0.91rem;
+    font-weight: 500;
+    transition: background 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    background: var(--blue);
+    color: white;
+}
+
+.mobile-menu {
+    display: none;
+    border: none;
+    background: transparent;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(16,42,67,0.97),
+            rgba(29,79,115,0.91)
+        ),
+        url("images/high_entropy_figure.jpg") center/cover;
+    color: white;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+}
+
+.hero-content {
+    max-width: 880px;
+    padding: 80px 0;
+}
+
+.hero-kicker {
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #b9d9e8;
+    margin-bottom: 18px;
+}
+
+.hero h2 {
+    margin: 0 0 20px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 400;
+    font-size: clamp(2.5rem, 6vw, 4.6rem);
+    line-height: 1.1;
+}
+
+.hero p {
+    max-width: 800px;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #edf5f8;
+}
+
+.hero-buttons {
+    margin-top: 30px;
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-block;
+    padding: 11px 22px;
+    border: 1px solid rgba(255,255,255,0.65);
+    color: white;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.btn:hover {
+    background: white;
+    color: var(--navy);
+}
+
+.btn-primary {
+    background: white;
+    color: var(--navy);
+    border-color: white;
+}
+
+
+/* =========================================================
+   SECTION STRUCTURE
+========================================================= */
+
+.section {
+    padding: 80px 0;
+}
+
+.section-light {
+    background: var(--light);
+}
+
+.section-dark {
+    background: var(--navy);
+    color: white;
+}
+
+.section-header {
+    max-width: 780px;
+    margin-bottom: 45px;
+}
+
+.section-header.center {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.section-label {
+    text-transform: uppercase;
+    color: var(--accent);
+    letter-spacing: 2px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.section-dark .section-label {
+    color: #9ed2e5;
+}
+
+.section h2 {
+    margin: 0 0 15px;
+    font-family: Georgia, "Times New Roman", serif;
+    color: var(--navy);
+    font-weight: 400;
+    font-size: 2.35rem;
+    line-height: 1.25;
+}
+
+.section-dark h2 {
+    color: white;
+}
+
+.section-header p {
+    margin: 0;
+    color: var(--muted);
+}
+
+.section-dark .section-header p {
+    color: #d2dde6;
+}
+
+
+/* =========================================================
+   INTRODUCTION
+========================================================= */
+
+.introduction {
+    display: grid;
+    grid-template-columns: 1.65fr 1fr;
+    gap: 65px;
+    align-items: start;
+}
+
+.introduction-text {
+    font-size: 1.03rem;
+}
+
+.introduction-text p:first-child {
+    margin-top: 0;
+}
+
+.research-statement {
+    border-left: 4px solid var(--accent);
+    padding: 10px 0 10px 25px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.35rem;
+    line-height: 1.6;
+    color: var(--navy);
+}
+
+.focus-list {
+    border-top: 1px solid var(--border);
+}
+
+.focus-item {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.focus-item span:first-child {
+    font-weight: 600;
+    color: var(--navy);
+}
+
+.focus-item span:last-child {
+    color: var(--muted);
+    text-align: right;
+    font-size: 0.9rem;
+}
+
+
+/* =========================================================
+   RESEARCH AREAS
+========================================================= */
+
+.research-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.research-item {
+    background: white;
+    border: 1px solid var(--border);
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    cursor: pointer;
+}
+
+.research-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(16,42,67,0.12);
+}
+
+.research-image {
+    height: 205px;
+    overflow: hidden;
+    background: #edf2f5;
+}
+
+.research-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.research-item:hover .research-image img {
+    transform: scale(1.04);
+}
+
+.research-content {
+    padding: 24px;
+}
+
+.research-number {
+    color: var(--accent);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.research-content h3 {
+    margin: 7px 0 9px;
+    color: var(--navy);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.35rem;
+    font-weight: 500;
+}
+
+.research-content p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.92rem;
+}
+
+
+/* =========================================================
+   RESEARCH MODAL
+========================================================= */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(10,25,40,0.78);
+    z-index: 2000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+}
+
+.modal.open {
+    display: flex;
+}
+
+.modal-box {
+    background: white;
+    width: min(850px, 100%);
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 42px;
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    border: none;
+    background: transparent;
+    font-size: 1.8rem;
+    color: #657786;
+    cursor: pointer;
+}
+
+.modal-box h2 {
+    margin-top: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    color: var(--navy);
+    font-weight: 400;
+}
+
+
+/* =========================================================
+   RESEARCH APPROACH
+========================================================= */
+
+.approach-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid rgba(255,255,255,0.25);
+    border-bottom: 1px solid rgba(255,255,255,0.25);
+}
+
+.approach-item {
+    padding: 30px 25px;
+    border-right: 1px solid rgba(255,255,255,0.25);
+}
+
+.approach-item:last-child {
+    border-right: none;
+}
+
+.approach-number {
+    font-size: 0.78rem;
+    color: #9ed2e5;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.approach-item h3 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 400;
+    color: white;
+    font-size: 1.25rem;
+}
+
+.approach-item p {
+    color: #cdd9e2;
+    font-size: 0.88rem;
+}
+
+
+/* =========================================================
+   HIGHLIGHTS
+========================================================= */
+
+.highlight-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.highlight {
+    display: grid;
+    grid-template-columns: 190px 1fr;
+    background: white;
+    border: 1px solid var(--border);
+}
+
+.highlight-image {
+    min-height: 210px;
+}
+
+.highlight-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.highlight-content {
+    padding: 25px;
+}
+
+.highlight-content h3 {
+    margin: 0 0 8px;
+    color: var(--navy);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+.highlight-content p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.91rem;
+}
+
+
+/* =========================================================
+   NEWS
+========================================================= */
+
+.news-list {
+    border-top: 1px solid var(--border);
+}
+
+.news-item {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 30px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.news-date {
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.news-item h3 {
+    margin: 0;
+    color: var(--navy);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.news-item p {
+    margin: 4px 0 0;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+
+/* =========================================================
+   PUBLICATIONS
+========================================================= */
+
+.publication-tabs {
+    display: flex;
+    gap: 7px;
+    flex-wrap: wrap;
+    margin-bottom: 35px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 12px;
+}
+
+.pub-tab {
+    border: none;
+    background: transparent;
+    padding: 8px 14px;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.pub-tab:hover,
+.pub-tab.active {
+    color: var(--navy);
+    background: var(--light-blue);
+}
+
+.pub-year {
+    display: none;
+}
+
+.pub-year.active {
+    display: block;
+}
+
+.pub-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
 .pub-item {
-  margin-bottom: 1em;
-  line-height: 1.6;
+    padding: 20px 0 20px 22px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
 }
 
-.accordion-item { 
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  margin-bottom: 10px;
-  overflow: hidden;
+.pub-item::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 29px;
+    width: 7px;
+    height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
 }
 
-.accordion-header {
-  background-color: #f3f3f3;
-  color: #333;
-  cursor: pointer;
-  padding: 15px 20px;
-  text-align: left;
-  font-weight: bold;
-  border: none;
-  width: 100%;
-  outline: none;
-  transition: background-color 0.3s ease;
+.pub-title {
+    color: var(--navy);
+    font-weight: 500;
 }
 
-.accordion-header:hover {
-  background-color: #e6e6e6;
+.pub-journal {
+    color: var(--accent);
+    font-style: italic;
 }
 
-.accordion-body {
-  padding: 15px 20px;
-  display: none;
-  background-color: #fff;
-  color: #444;
-  line-height: 1.6;
+.pub-link {
+    margin-left: 8px;
+    font-size: 0.82rem;
+    white-space: nowrap;
 }
 
-.tab-btn {
-    padding: 0.75rem 1.5rem;
-    margin: 0.3rem;
-    font-size: 1rem;
-    cursor: pointer;
-    border: none;
-    background-color: #ddd;
-    border-radius: 0.5rem;
-    transition: background-color 0.3s;
-  }
 
-  .tab-btn:hover,
-  .tab-btn.active {
-    background-color: #007BFF;
+/* =========================================================
+   PEOPLE
+========================================================= */
+
+.pi-profile {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 45px;
+    align-items: center;
+    padding-bottom: 55px;
+    border-bottom: 1px solid var(--border);
+}
+
+.pi-photo {
+    width: 210px;
+    height: 210px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.pi-profile h3 {
+    font-family: Georgia, "Times New Roman", serif;
+    color: var(--navy);
+    font-size: 2rem;
+    font-weight: 400;
+    margin: 0 0 5px;
+}
+
+.position {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.people-title {
+    margin: 50px 0 25px;
+    color: var(--navy);
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 400;
+    font-size: 1.8rem;
+}
+
+.people-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+}
+
+.person {
+    text-align: center;
+}
+
+.person img {
+    width: 145px;
+    height: 145px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 18px;
+    border: 5px solid #edf2f5;
+}
+
+.person h3 {
+    color: var(--navy);
+    font-size: 1.05rem;
+    margin: 0;
+}
+
+.person .role {
+    color: var(--accent);
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+
+.person p {
+    color: var(--muted);
+    font-size: 0.84rem;
+}
+
+
+/* =========================================================
+   COLLABORATIONS
+========================================================= */
+
+.collaboration-intro {
+    max-width: 800px;
+    margin-bottom: 30px;
+}
+
+.collaboration-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border-top: 1px solid var(--border);
+}
+
+.collaboration {
+    padding: 18px 20px;
+    border-bottom: 1px solid var(--border);
+    color: var(--navy);
+}
+
+.collaboration span {
+    display: block;
+    color: var(--muted);
+    font-size: 0.82rem;
+}
+
+
+/* =========================================================
+   GALLERY
+========================================================= */
+
+.gallery-grid {
+    columns: 3;
+    column-gap: 18px;
+}
+
+.gallery-grid figure {
+    margin: 0 0 18px;
+    break-inside: avoid;
+    overflow: hidden;
+}
+
+.gallery-grid img {
+    width: 100%;
+    transition: transform 0.4s ease;
+}
+
+.gallery-grid figure:hover img {
+    transform: scale(1.025);
+}
+
+
+/* =========================================================
+   OPPORTUNITIES
+========================================================= */
+
+.opportunity-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.opportunity {
+    border-top: 4px solid var(--accent);
+    background: white;
+    padding: 30px;
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.opportunity h3 {
+    margin-top: 0;
+    color: var(--navy);
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 400;
+    font-size: 1.4rem;
+}
+
+.opportunity p {
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.contact-section {
+    background: var(--navy);
     color: white;
-  }
+}
 
-  .pub-item {
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
-  }
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 70px;
+}
 
-   .highlight-name {
-    color: #dc2626; /* You can change this to any hex or color name */
+.contact-section h2 {
+    color: white;
+}
+
+.contact-section p {
+    color: #cdd9e2;
+}
+
+.contact-details {
+    border-top: 1px solid rgba(255,255,255,0.25);
+}
+
+.contact-row {
+    padding: 17px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.25);
+}
+
+.contact-label {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.72rem;
+    color: #9ed2e5;
     font-weight: bold;
-  }
-    
-@keyframes pulse {
-  0% { transform: translate(-50%, -50%) scale(1); }
-  50% { transform: translate(-50%, -50%) scale(1.3); }
-  100% { transform: translate(-50%, -50%) scale(1); }
 }
 
-@keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.contact-value {
+    color: white;
 }
 
-@keyframes rotate-reverse {
-  from { transform: rotate(360deg); }
-  to { transform: rotate(0deg); }
+.contact-value a {
+    color: #d9f1fa;
 }
 
 .social-links {
-  margin-top: 2rem;
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
+    display: flex;
+    gap: 12px;
+    margin-top: 25px;
 }
 
-.social-links a img {
-  width: 32px;
-  height: 32px;
-  transition: transform 0.3s ease, filter 0.3s ease;
-  filter: grayscale(50%);
+.social-links a {
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(255,255,255,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
 }
 
-.social-links a:hover img {
-  transform: scale(1.2);
-  filter: grayscale(0%);
-}
-    
-    .contact-section {
-  padding: 4rem 2rem;
-  background: linear-gradient(135deg, #f0f4f8, #dbeafe);
-  color: #1f2937;
-  text-align: center;
-  animation: fadeInUp 1s ease-in-out;
-  border-top: 2px solid #cbd5e1;
+.social-links a:hover {
+    background: white;
 }
 
-.contact-title {
-  font-size: 2rem;
-  margin-bottom: 2rem;
-  color: #0f172a;
+.social-links img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
 }
 
-.contact-container {
-  max-width: 800px;
-  margin: 0 auto;
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    background: #091c2c;
+    color: #9fb0bd;
+    padding: 25px 0;
+    font-size: 0.8rem;
 }
 
-.contact-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-  font-size: 1.1rem;
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
-.contact-icon {
-  width: 24px;
-  height: 24px;
-  color: #3b82f6;
-}
 
-.contact-item a {
-  color: #1d4ed8;
-  text-decoration: none;
-  font-weight: 500;
-}
+/* =========================================================
+   BACK TO TOP
+========================================================= */
 
-.contact-item a:hover {
-  text-decoration: underline;
-}
-
-/* Smooth fade-in animation */
-@keyframes fadeInUp {
-  from {
+.back-to-top {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    width: 42px;
+    height: 42px;
+    border: none;
+    background: var(--accent);
+    color: white;
+    cursor: pointer;
     opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1500;
 }
-          .carousel-container {
-      position: relative;
-      overflow: hidden;
+
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .research-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    .carousel-track {
-      display: flex;
-      gap: 2rem;
-      animation: scroll 30s linear infinite;
+    .people-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    @keyframes scroll {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(calc(-300px * 3 - 2rem * 3));
-      }
+    .approach-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    .carousel-item {
-      flex: 0 0 300px;
-      text-decoration: none;
-      color: inherit;
-      display: block;
-      background: #f8f9fa;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    .approach-item:nth-child(2) {
+        border-right: none;
     }
 
-    .carousel-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    .approach-item:nth-child(1),
+    .approach-item:nth-child(2) {
+        border-bottom: 1px solid rgba(255,255,255,0.25);
     }
 
-    .carousel-item:hover img {
-      transform: scale(1.05);
+    .highlight-grid {
+        grid-template-columns: 1fr;
     }
 
-    /* Pause animation when hovering over any carousel item */
-    .carousel-item:hover ~ .carousel-track,
-    .carousel-container:hover .carousel-track {
-      animation-play-state: paused;
+    .opportunity-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 760px) {
+
+    .institution-links {
+        display: none;
     }
 
-    /* Modern browser support using :has() */
-    .carousel-container:has(.carousel-item:hover) .carousel-track {
-      animation-play-state: paused;
+    .header-main {
+        min-height: 105px;
     }
-  </style>
 
-  <!-- Particle background -->
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-
-  <!-- Typed.js for animated text -->
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-
-  <script>
-    function showSection(id) {
-      const sections = document.querySelectorAll("section");
-      sections.forEach(section => section.classList.add("hidden"));
-      document.getElementById(id).classList.remove("hidden");
+    .brand {
+        gap: 14px;
     }
-    window.onload = () => {
-      showSection('home');
 
-      // Initialize particles
-      particlesJS("particles-header", {
-        particles: {
-          number: { value: 40 },
-          color: { value: "#00aaff" },
-          shape: { type: "circle" },
-          opacity: { value: 0.3 },
-          size: { value: 5 },
-          move: { enable: true, speed: 2 }
-        }
-        });
+    .group-logo {
+        width: 75px;
+    }
 
-      
-      // Initialize particles
-      particlesJS("particles-js", {
-        particles: {
-          number: { value: 40 },
-          color: { value: "#00aaff" },
-          shape: { type: "circle" },
-          opacity: { value: 0.3 },
-          size: { value: 4 },
-          move: { enable: true, speed: 2 }
-        },
-        interactivity: {
-          events: {
-            onhover: { enable: true, mode: "repulse" }
-          }
-        }
-      });
+    .brand-text h1 {
+        font-size: 1.55rem;
+    }
 
-      // Initialize typing effect
-      new Typed('#typed-text', {
-        strings: ['Computational materials modeling', 'Machine learning for energy storage', 'Battery interface simulations'],
-        typeSpeed: 60,
-        backSpeed: 30,
-        loop: true
-      });
-    };
-  </script>
+    .brand-text p {
+        font-size: 0.75rem;
+    }
+
+    .header-affiliation {
+        display: none;
+    }
+
+    .mobile-menu {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-inner {
+        flex-wrap: wrap;
+    }
+
+    .nav-links a {
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .hero {
+        min-height: 470px;
+    }
+
+    .hero-content {
+        padding: 60px 0;
+    }
+
+    .section {
+        padding: 55px 0;
+    }
+
+    .section h2 {
+        font-size: 1.9rem;
+    }
+
+    .introduction,
+    .contact-grid,
+    .pi-profile {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .research-grid,
+    .people-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .people-grid {
+        gap: 40px;
+    }
+
+    .collaboration-list {
+        grid-template-columns: 1fr;
+    }
+
+    .highlight {
+        grid-template-columns: 1fr;
+    }
+
+    .highlight-image {
+        height: 210px;
+    }
+
+    .news-item {
+        grid-template-columns: 1fr;
+        gap: 5px;
+    }
+
+    .gallery-grid {
+        columns: 2;
+    }
+
+    .approach-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .approach-item {
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.25);
+    }
+
+    .approach-item:last-child {
+        border-bottom: none;
+    }
+
+    .pi-photo {
+        margin: auto;
+    }
+
+    .pi-profile {
+        text-align: center;
+    }
+
+    .contact-grid {
+        gap: 40px;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .gallery-grid {
+        columns: 1;
+    }
+
+    .hero h2 {
+        font-size: 2.4rem;
+    }
+
+    .research-image {
+        height: 180px;
+    }
+
+    .publication-tabs {
+        gap: 3px;
+    }
+
+    .pub-tab {
+        padding: 7px 9px;
+        font-size: 0.8rem;
+    }
+}
+
+</style>
 </head>
-  <script>
-  function toggleCard(card) {
-    card.classList.toggle('expanded');
-  }
-</script>
+
+
 <body>
-<header>
-  <div id="particles-header"></div>
-  <div class="header-content">
-    <img src="images/group_logo.png" alt="AMREEN Group Logo" class="group-logo">
-    <div class="logo-text">
-      <h1>The AMREEN Group</h1>
-      <p>'Advanced Modelling and Research in Energy  and Electrochemical Navigation'</p>
+
+
+<!-- =======================================================
+     INSTITUTION BAR
+======================================================== -->
+
+<div class="institution-bar">
+    <div class="container">
+        <div>
+            Research Institute for Sustainable Energy (RISE)
+        </div>
+
+        <div class="institution-links">
+            <a href="https://www.tcgcrest.org/" target="_blank">
+                TCG CREST
+            </a>
+
+            <a href="https://www.tcgcrest.org/institutes/rise/" target="_blank">
+                RISE
+            </a>
+        </div>
     </div>
-  </div>
+</div>
+
+
+<!-- =======================================================
+     HEADER
+======================================================== -->
+
+<header class="site-header">
+
+    <div class="container header-main">
+
+        <div class="brand">
+
+            <img
+                src="images/group_logo.png"
+                alt="The AMREEN Group Logo"
+                class="group-logo"
+            >
+
+            <div class="brand-text">
+
+                <h1>The AMREEN Group</h1>
+
+                <p>
+                    Advanced Modelling and Research in Energy and Electrochemical Navigation
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="header-affiliation">
+
+            <strong>Computational Energy Materials</strong>
+
+            RISE · TCG CREST · Kolkata, India
+
+        </div>
+
+    </div>
+
 </header>
-  
-  <nav>
-    <a onclick="showSection('home')">Home</a>
-    <a onclick="showSection('people')">People</a>
-    <a onclick="showSection('research')">Research</a>
-    <a onclick="showSection('publications')">Publications</a>
-    <a onclick="showSection('gallery')">Gallery</a>
-    <a onclick="showSection('opportunities')">Opportunities</a>
-    <a onclick="showSection('contact')">Contact</a>
-  </nav>
 
-<section id="home" style="position: relative; z-index: 1; padding: 2rem;">
-  <div id="particles-js"></div>
-  <h2>Welcome To The AMREEN Group</h2>
-    <!-- Brief Intro Section -->
-  <div style="max-width: 1200px; margin: 2rem auto; padding: 1.5rem; background: #f8f9fa; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
-    <h3>Brief Introduction</h3>
-    <p style="text-align: justify;">
-    The <strong>AMREEN Group</strong> (Advanced Modelling and Research in Energy  and Electrochemical Navigation) at the <strong>Research Institute for Sustainable Energy (RISE), TCG CREST</strong>, is dedicated to the exploration and development of next-generation energy storage materials. 
-    Our research is driven by the urgent need for efficient, safe, and sustainable battery technologies to power the future of renewable energy, electric mobility, and smart grid infrastructure.
-    We focus on the rational design and optimization of battery components—including layered oxide cathodes, high-performance anodes, and both liquid and solid-state electrolytes—using state-of-the-art computational techniques. 
-    By leveraging tools such as <strong>Density Functional Theory (DFT)</strong>, <strong>Classical and Ab Initio Molecular Dynamics (AIMD)</strong>, and <strong>Machine Learning</strong>, 
-    we investigate materials at the atomic and electronic scale to understand their behavior, predict performance, and accelerate material discovery.
-    Our interdisciplinary approach bridges fundamental physics, data-driven modeling, and advanced simulations to address key challenges in energy storage. 
-    Through collaborative innovation and rigorous scientific methodology, the AMREEN Group is committed to advancing the frontier of materials research, contributing to a cleaner and more sustainable energy future.
-  </p>
-  </div>
 
-  <!-- Two Column Layout -->
-  <div style="display: flex; flex-wrap: wrap; gap: 2rem; margin: 2rem 0; max-width: 1200px; margin-left: auto; margin-right: auto;">
-    <!-- Recent News -->
-    <div style="flex: 1 1 55%; min-width: 300px; background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
-      <h3>Recent News</h3>
-      <ul style="list-style-type: none; padding-left: 0;">
-        <li style="margin-bottom: 1rem;">
-          <strong>February 2025:</strong> A Warm Welcome to Our New PhD Students: Ms. Antra Mohini and Ms. Novotna Seal </li>
-        <li style="margin-bottom: 1rem;">
-          <strong>May 2025:</strong> Invited talk at APALI Psi-K 2025, IISER Pune, India </li>
-        <li style="margin-bottom: 1rem;">
-          <strong>August 2025:</strong> Warm Welcome to New Addition to Our Group: Ms. Soumya U K </li>
-        <li style="margin-bottom: 1rem;">
-          <strong>June 2026:</strong> Huge congratulations to Ms. Antra Mohini for getting Best Poster Award at 2D MatTechGlobal, held at IIT Indore, India </li>
-      </ul>
+<!-- =======================================================
+     NAVIGATION
+======================================================== -->
+
+<nav class="main-nav">
+
+    <div class="container nav-inner">
+
+        <button
+            class="mobile-menu"
+            onclick="toggleMenu()"
+            aria-label="Open navigation"
+        >
+            ☰
+        </button>
+
+        <div class="nav-links" id="navLinks">
+
+            <a href="#home" class="active">Home</a>
+
+            <a href="#research">Research</a>
+
+            <a href="#people">People</a>
+
+            <a href="#publications">Publications</a>
+
+            <a href="#news">News</a>
+
+            <a href="#gallery">Gallery</a>
+
+            <a href="#opportunities">Opportunities</a>
+
+            <a href="#contact">Contact</a>
+
+        </div>
+
     </div>
 
-    <!-- Recent Updates Carousel -->
-  <div style="margin: 3rem auto; max-width: 1200px;">
-    <h3 style="text-align: center; margin-bottom: 2rem; color: #002b5c;">Recent Publications</h3>
-    
-    <div class="carousel-container" style="position: relative; overflow: hidden; background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
-      <div class="carousel-track" style="display: flex; gap: 2rem; animation: scroll 30s linear infinite;">
- 
- <!-- Publication Item 1 -->
-        <a href="https://doi.org/10.1002/anie.202511892" class="carousel-item" style="flex: 0 0 300px; text-decoration: none; color: inherit; display: block; background: #f8f9fa; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
-          <div style="height: 180px; overflow: hidden;">
-            <img src="images/aem_mg.jpg" alt="Mg-Doped NaNi0.2Fe0.4Mn0.4O2 (NFM244) Cathodes" style="width: 100%; height: 100%; object-fit: cover;">
-          </div>
-          <div style="padding: 1.5rem;">
-            <div style="font-weight: bold; color: #002b5c; margin-bottom: 0.5rem;">Mitigating Structural Degradation in O3-Layered Sodium-Ion Cathodes: Insights from Mg Doping in NaNi0.2Fe0.4Mn0.4O2</div>
-            <div style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">Advanced Energy Materials, 2025</div>
-            <div style="font-size: 0.95rem; line-height: 1.4;">Impact of Mg doping on the transition metal site in O3-type NaNi0.2Fe0.4Mn0.4O2 (NFM244) cathodes is investigated, revealing its influence on phase stability, anion redox ability, and Na-ion diffusion kinetics. 
-              Experimental and theoretical studies confirmed that Mg2+ preferentially substitution mitigates transition metal ions migration and lattice strain while suppressing irreversible oxygen release. </div>
-          </div>
-        </a>
-  
-        
-        <!-- Publication Item 2 -->
-        <a href="https://doi.org/10.1002/anie.202511892" class="carousel-item" style="flex: 0 0 300px; text-decoration: none; color: inherit; display: block; background: #f8f9fa; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
-          <div style="height: 180px; overflow: hidden;">
-            <img src="images/angew_chem.jpg" alt="Single-Atomic Ni-N4 Biofuel Cell" style="width: 100%; height: 100%; object-fit: cover;">
-          </div>
-          <div style="padding: 1.5rem;">
-            <div style="font-weight: bold; color: #002b5c; margin-bottom: 0.5rem;">Single-Atomic Ni-N4 Biofuel Cell for Mimicking Intramolecular Electron-Harnessing of Laccase</div>
-            <div style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">Angew. Chem. Int. Ed., 2025</div>
-            <div style="font-size: 0.95rem; line-height: 1.4;">A single Ni–N4–C atomic unit installed in PAN-derived N-carbon electrode accelerates anodic oxidation of BPA in a BFC with an increased power density with increasing BPA concentration.</div>
-          </div>
-        </a>
-
-        <!-- Publication Item 3 -->
-        <a href="https://doi.org/10.1002/aenm.202503588" class="carousel-item" style="flex: 0 0 300px; text-decoration: none; color: inherit; display: block; background: #f8f9fa; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
-          <div style="height: 180px; overflow: hidden;">
-            <img src="images/aem_antra.jpg" alt="Decoding Anode Stability" style="width: 100%; height: 100%; object-fit: cover;">
-          </div>
-          <div style="padding: 1.5rem;">
-            <div style="font-weight: bold; color: #002b5c; margin-bottom: 0.5rem;">Decoding Anode Stability: From nucleation kinetics to Pattern-Guided Flux Control for Long-Cycling Anode-Less Sodium Metal Batteries</div>
-            <div style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">Advanced Energy Materials, 2025</div>
-            <div style="font-size: 0.95rem; line-height: 1.4;">Integrated approach including experiments, computaional insights with AIMD and multi-physics modelling together showed that carbon surfaces not only initiate plating more readily but also support partial reversibility even under high scan-rate conditions.</div>
-          </div>
-        </a>
-
-        <!-- Publication Item 4 -->
-        <a href="https://doi.org/10.1002/smll.202507064" class="carousel-item" style="flex: 0 0 300px; text-decoration: none; color: inherit; display: block; background: #f8f9fa; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
-          <div style="height: 180px; overflow: hidden;">
-            <img src="images/small_antra.jpg" alt="Fe-Single-Atom Wood-Derived Anode" style="width: 100%; height: 100%; object-fit: cover;">
-          </div>
-          <div style="padding: 1.5rem;">
-            <div style="font-weight: bold; color: #002b5c; margin-bottom: 0.5rem;">Fe-Single-Atom Incorporated Wood-Derived Anode with Fe-N-C/Fe3C Structural unit and Hollow Diffusion Sites for Enhanced Sodium-Ion Storage</div>
-            <div style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">Small, 2025</div>
-            <div style="font-size: 0.95rem; line-height: 1.4;">The incorporation of Fe-N4-O2 in wood-derived nanoporous carbon (WNC) results in 1) faster Na+ diffusion through hollow (H) sites, 2) stretching of the Fe-N bond during discharge cycles.</div>
-          </div>
-        </a>
+</nav>
 
 
-        <!-- Duplicate items for seamless loop -->
-         <a href="https://doi.org/10.1002/anie.202511892" class="carousel-item" style="flex: 0 0 300px; text-decoration: none; color: inherit; display: block; background: #f8f9fa; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
-          <div style="height: 180px; overflow: hidden;">
-            <img src="images/aem_mg.jpg" alt="Mg-Doped NaNi0.2Fe0.4Mn0.4O2 (NFM244) Cathodes" style="width: 100%; height: 100%; object-fit: cover;">
-          </div>
-          <div style="padding: 1.5rem;">
-            <div style="font-weight: bold; color: #002b5c; margin-bottom: 0.5rem;">Mitigating Structural Degradation in O3-Layered Sodium-Ion Cathodes: Insights from Mg Doping in NaNi0.2Fe0.4Mn0.4O2</div>
-            <div style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">Advanced Energy Materials, 2025</div>
-            <div style="font-size: 0.95rem; line-height: 1.4;">Impact of Mg doping on the transition metal site in O3-type NaNi0.2Fe0.4Mn0.4O2 (NFM244) cathodes is investigated, revealing its influence on phase stability, anion redox ability, and Na-ion diffusion kinetics. 
-              Experimental and theoretical studies confirmed that Mg2+ preferentially substitution mitigates transition metal ions migration and lattice strain while suppressing irreversible oxygen release. </div>
-          </div>
-        </a>
-        
-        <a href="https://doi.org/10.1002/anie.202511892" class="carousel-item" style="flex: 0 0 300px; text-decoration: none; color: inherit; display: block; background: #f8f9fa; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
-          <div style="height: 180px; overflow: hidden;">
-            <img src="images/angew_chem.jpg" alt="Single-Atomic Ni-N4 Biofuel Cell" style="width: 100%; height: 100%; object-fit: cover;">
-          </div>
-          <div style="padding: 1.5rem;">
-            <div style="font-weight: bold; color: #002b5c; margin-bottom: 0.5rem;">Single-Atomic Ni-N4 Biofuel Cell for Mimicking Intramolecular Electron-Harnessing of Laccase</div>
-            <div style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">Angew. Chem. Int. Ed., 2025</div>
-            <div style="font-size: 0.95rem; line-height: 1.4;">A single Ni–N4–C atomic unit installed in PAN-derived N-carbon electrode accelerates anodic oxidation of BPA in a BFC with an increased power density with increasing BPA concentration.</div>
-          </div>
-        </a>
+<!-- =======================================================
+     HERO
+======================================================== -->
 
-        <a href="https://doi.org/10.1002/aenm.202503588" class="carousel-item" style="flex: 0 0 300px; text-decoration: none; color: inherit; display: block; background: #f8f9fa; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
-          <div style="height: 180px; overflow: hidden;">
-            <img src="images/aem_antra.jpg" alt="Decoding Anode Stability" style="width: 100%; height: 100%; object-fit: cover;">
-          </div>
-          <div style="padding: 1.5rem;">
-            <div style="font-weight: bold; color: #002b5c; margin-bottom: 0.5rem;">Decoding Anode Stability: From nucleation kinetics to Pattern-Guided Flux Control for Long-Cycling Anode-Less Sodium Metal Batteries</div>
-            <div style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">Advanced Energy Materials, 2025</div>
-            <div style="font-size: 0.95rem; line-height: 1.4;">Integrated approach of experiments, computaional insights with AIMD and multi-physics modelling together showed that carbon surfaces not only initiate plating more readily but also support partial reversibility even under high scan-rate conditions.</div>
-          </div>
-        </a>
+<section class="hero" id="home">
 
-      </div>
+    <div class="container">
+
+        <div class="hero-content">
+
+            <div class="hero-kicker">
+                The AMREEN Group · RISE · TCG CREST
+            </div>
+
+            <h2>
+                Computational Design of Next-Generation Energy Materials
+            </h2>
+
+            <p>
+                We develop and understand materials for sustainable energy
+                storage by combining first-principles calculations,
+                atomistic simulations, molecular dynamics and
+                machine-learning approaches.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#research" class="btn btn-primary">
+                    Explore Our Research
+                </a>
+
+                <a href="#people" class="btn">
+                    Meet the Group
+                </a>
+
+            </div>
+
+        </div>
+
     </div>
-  </div>
 
-  <style>
-    @keyframes scroll {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(calc(-300px * 3 - 2rem * 3));
-      }
-    }
-
-    .carousel-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-    }
-
-    /* Pause animation when hovering over ANY carousel item */
-    .carousel-item:hover ~ .carousel-track,
-    .carousel-container:hover .carousel-track {
-      animation-play-state: paused;
-    }
-
-    .carousel-item img {
-      transition: transform 0.3s ease;
-    }
-
-    .carousel-item:hover img {
-      transform: scale(1.05);
-    }
-
-    /* Additional selector to ensure track pauses when hovering over items */
-    .carousel-container:has(.carousel-item:hover) .carousel-track {
-      animation-play-state: paused;
-    }
-  </style>
-
-  <style>
-    @keyframes scroll {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(calc(-300px * 3 - 2rem * 3));
-      }
-    }
-
-    .carousel-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-    }
-
-    .carousel-container:hover .carousel-track {
-      animation-play-state: paused;
-    }
-
-    .carousel-item img {
-      transition: transform 0.3s ease;
-    }
-
-    .carousel-item:hover img {
-      transform: scale(1.05);
-    }
-  </style>
-
-    
-    <!-- Collaborations -->
-    <div style="flex: 1 1 40%; min-width: 250px; background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
-      <h3>Collaborations</h3>
-      <ul style="list-style-type: none; padding-left: 0;">
-        <li style="margin-bottom: 1rem;">Prof. Dan T Major, Bar Ilan University, Israel</li>
-        <li style="margin-bottom: 1rem;">Prof. Doron Aurbach, Bar Ilan University, Israel</li>
-        <li style="margin-bottom: 1rem;">Prof. Sagar Mitra, IIT Bombay, India</li>
-        <li style="margin-bottom: 1rem;">Prof. Malachi Noked, Bar Ilan University, Israel</li>
-        <li style="margin-bottom: 1rem;">Prof. Rahul Salunkhe, IIT Jammu, India</li>
-        <li style="margin-bottom: 1rem;">Prof. Saikat Datta, Amity University, Noida, India</li>
-        <li style="margin-bottom: 1rem;">Prof. Premkumar Senguttuvan, JNCASR, India</li>
-        <li style="margin-bottom: 1rem;">Prof. Rosy, IIT BHU, India</li>
-      </ul>
-    </div>
-  </div>
-
-    
 </section>
 
-  
-  <section id="people" class="hidden">
-    <h2>Our Team</h2>
-    <div class="pi-block" style="text-align: center; margin-bottom: 3rem;">
-      <img src="images/amreen_2026.jpg" alt="Dr. Amreen Bano" style="width: 160px; height: 160px; border-radius: 50%; object-fit: cover;">
-      <h3 style="margin-top: 1rem;">Dr. Amreen Bano</h3>
-      <p><strong>Principal Investigator</strong></p>
-      <p>Computational modeling of battery materials, electrolyte design, ML for materials discovery</p>
-      <p><a href="mailto:amreen.bano@tcgcrest.org">amreen.bano@tcgcrest.org</a></p>
+
+<!-- =======================================================
+     INTRODUCTION
+======================================================== -->
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="introduction">
+
+            <div class="introduction-text">
+
+                <div class="section-label">
+                    About the Group
+                </div>
+
+                <h2>
+                    Understanding materials from the atomic scale
+                </h2>
+
+                <p>
+                    The <strong>AMREEN Group</strong> (Advanced Modelling and
+                    Research in Energy and Electrochemical Navigation) at the
+                    <strong>Research Institute for Sustainable Energy (RISE),
+                    TCG CREST</strong>, is focused on the computational
+                    exploration and development of next-generation energy
+                    materials.
+                </p>
+
+                <p>
+                    Our research addresses fundamental challenges in
+                    rechargeable batteries, including the design of
+                    high-performance cathodes and anodes, electrolyte
+                    chemistry, ion transport, electrode–electrolyte
+                    interfaces and solid-state ion conductors.
+                </p>
+
+                <p>
+                    We combine <strong>Density Functional Theory (DFT)</strong>,
+                    <strong>Classical and Ab Initio Molecular Dynamics</strong>,
+                    <strong>machine-learning interatomic potentials</strong>,
+                    electronic-structure analysis and atomistic modelling to
+                    connect microscopic structure and chemistry with
+                    macroscopic electrochemical behaviour.
+                </p>
+
+                <p>
+                    An important component of our research is collaboration
+                    with experimental groups, allowing computational
+                    predictions to be tested and translated into materials
+                    with improved electrochemical performance.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <div class="research-statement">
+
+                    Our central goal is to establish
+                    <strong>structure–property–performance relationships</strong>
+                    that enable rational materials design for sustainable
+                    energy storage.
+
+                </div>
+
+
+                <div class="focus-list">
+
+                    <div class="focus-item">
+                        <span>Energy Storage</span>
+                        <span>Li-ion · Na-ion</span>
+                    </div>
+
+                    <div class="focus-item">
+                        <span>Atomistic Modelling</span>
+                        <span>DFT · MD · AIMD</span>
+                    </div>
+
+                    <div class="focus-item">
+                        <span>Machine Learning</span>
+                        <span>MLIPs · Materials Discovery</span>
+                    </div>
+
+                    <div class="focus-item">
+                        <span>Interfaces</span>
+                        <span>SEI · CEI · Grain Boundaries</span>
+                    </div>
+
+                    <div class="focus-item">
+                        <span>Complex Materials</span>
+                        <span>High-Entropy Systems</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
-    
-    <h3 style="text-align: center; margin-bottom: 1rem;">PhD Students</h3>
-    <div class="team-container" style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;">
-      <div class="team-member" style="flex: 1 1 250px; text-align: center;">
-        <img src="images/Antra solo.jpeg" alt="Antra Mohini" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;">
-        <h3 style="margin-top: 1rem;">Antra Mohini</h3>
-        <p><strong>PhD Student (2025)</strong></p>
-        <p>Computational design of high entropy anode materials and SEI analysis</p>
-        <p><a href="mailto:antra.mohini.198@tcgcrest.org">antra.mohini.198@tcgcrest.org</a></p>
-      </div>
-      
-      <div class="team-member" style="flex: 1 1 250px; text-align: center;">
-        <img src="images/Novotna solo.jpeg" alt="Novotna Seal" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;">
-        <h3 style="margin-top: 1rem;">Novotna Seal</h3>
-        <p><strong>PhD Student (2025)</strong></p>
-        <p>Modeling and analysis of high-entropy cathode materials for Na-ion batteries</p>
-        <p><a href="mailto:novotna.seal.185@tcgcrest.org">novotna.seal.185@tcgcrest.org</a></p>
-      </div>
 
-      <div class="team-member" style="flex: 1 1 250px; text-align: center;">
-        <img src="images/Soumya.jpg" alt="Soumya U K" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;">
-        <h3 style="margin-top: 1rem;">Soumya U K</h3>
-        <p><strong>PhD Student (2025)</strong></p>
-        <p>Designing and understanding solid electrolytes for Li-ion batteries</p>
-        <p><a href="mailto:soumya.uk_phd25@tcgcrestdtbu.ac.in">soumya.uk_phd25@tcgcrestdtbu.ac.in</a></p>
-      </div>
-
-      <div class="team-member" style="flex: 1 1 250px; text-align: center;">
-        <img src="images/nayan.jpg" alt="Nayan Dey" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;">
-        <h3 style="margin-top: 1rem;">Nayan Dey</h3>
-        <p><strong>Co-PI, PhD Student, IISER Pune</strong></p>
-        <p>Doping strategies in P2-type Na-ion batteries</p>
-        <p><a href="mailto:nayan.dey@students.iiserpune.ac.in">nayan.dey@students.iiserpune.ac.in</a></p>
-      </div>
-    </div>
-  </section>
-
-  <section id="research" class="hidden">
-  <h2>Research Areas</h2>
-  <div class="card-container" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem; margin-top: 2rem;">
-
-    <!-- Card 1 -->
-    <div class="research-card style="width: 45%;"" onclick="toggleCard(this)">
-      <img src="images/electrolyte_design_figure.jpg" alt="Electrolyte Design">
-      <div class="card-title">Electrolyte Design</div>
-      <div class="card-info">
-        <p>We study non-aqueous electrolytes and interfacial behavior to understand ion transport mechanisms and electrochemical stability across different electrodes. In this approach we use molecular dynamics (Classical as well as AIMD).
-        Machine learning assisted MD simulations were also considered for effective analysis of CEI/SEI interfaces.</p>
-      </div>
-    </div>
-
-    <!-- Card 2 -->
-    <div class="research-card style="width: 45%;"" onclick="toggleCard(this)">
-      <img src="images/ml_figure.jpg" alt="Machine Learning Approach">
-      <div class="card-title">Machine Learning Approach</div>
-      <div class="card-info">
-        <p>We use available ML interatomic potentials (MLIP) and perform benchmarking analysis to see which MLIPs are more efficient in our studies to accelerate materials discovery and 
-        property prediction for batteries, reducing computational costs.</p>
-      </div>
-    </div>
-
-    <!-- Card 3 -->
-    <div class="research-card style="width: 45%;"" onclick="toggleCard(this)">
-      <img src="images/high_entropy_figure.jpg" alt="High Entropy Materials">
-      <div class="card-title">High-Entropy Materials</div>
-      <div class="card-info">
-        <p>We explore compositional complexity using a combination of DFT, ML, and MD simulations to identify high-entropy electrode materials with improved stability and performance.</p>
-      </div>
-    </div>
-
-  </div>
 </section>
 
-<section id="publications" style="padding: 3rem 0; background-color: #f9f9f9; text-align: center;">
+
+<!-- =======================================================
+     RESEARCH AREAS
+======================================================== -->
+
+<section class="section section-light" id="research">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <div class="section-label">
+                Research
+            </div>
+
+            <h2>
+                Research Areas
+            </h2>
+
+            <p>
+                Our research spans electrode materials, electrolytes,
+                interfaces and computational methodologies for energy
+                storage.
+            </p>
+
+        </div>
 
 
-  <h2 style="font-size: 2.5rem; margin: 1rem 0;">Publications</h2>
-  <p style="font-size: 1.1rem;">A list of selected publications (Yearwise).</p>
+        <div class="research-grid">
 
-  <!-- Tabs for years -->
-  <div style="margin-top: 2rem;">
-    <button class="tab-btn active" onclick="showPublications('2026')">2026</button>
-    <button class="tab-btn" onclick="showPublications('2025')">2025</button>
-    <button class="tab-btn" onclick="showPublications('2024')">2024</button>
-    <button class="tab-btn" onclick="showPublications('2023')">2023</button>
-    <button class="tab-btn" onclick="showPublications('2022')">2022</button>
-    <button class="tab-btn" onclick="showPublications('2021')">2021</button>
-    <button class="tab-btn" onclick="showPublications('2020')">2020</button>
-    <button class="tab-btn" onclick="showPublications('2019')">2019</button>
-    <button class="tab-btn" onclick="showPublications('2018')">2018</button>
-    <button class="tab-btn" onclick="showPublications('2017')">2017</button>
-    <button class="tab-btn" onclick="showPublications('2016')">2016</button>
-    <!-- Add more years here as needed -->
-  </div>
- 
-  <!-- Publication Lists -->
-<div id="2026" class="pub-list" style="display: block; text-align: left; max-width: 900px; margin: 2rem auto;">
-    <ul>
-       <li class="pub-item">
-       Soumya U K, and <b>Amreen Bano*</b>, 
-      "Multimodal Computational Insights Into Hydrogen Evolution Reaction Mitigation in Zn Electrolytes: The Role of Anion-Surface Coupling", 
-      <span class="highlight-name">Batteries & Supercaps </span>, 2026. 
-      <a href="https://doi.org/10.1002/batt.202600001" target="_blank">View Publication</a> 
-      </li> 
-      
-      <li class="pub-item">
-       Nayan Dey, Arun Venkatnathan*, Satish Ogale*, and  <b>Amreen Bano*</b>, 
-      "Strategic Screening of Dopants for Na0.67Ni0.33Mn0.67O2 Cathodes: A Computational Roadmap for Sodium-Ion Battery Innovation", 
-      <span class="highlight-name">Small </span>, 2026. 
-      <a href="https://doi.org/10.1002/smll.202513165" target="_blank">View Publication</a> 
-      </li> 
- 
-      
-      <li class="pub-item"> 
-        Ankush Kumar Singh, Swapnil Barthwal, Akanksha Joshi, Soumya U K, Arun Krishnan, Nicole Leifer, Hagit Aviv, <b>Amreen Bano</b>, Malachi Noked,
-      "LiBr-Rich SEI for Stabilizing Lithium Metal Batteries”", 
-      <span class="highlight-name"> Advanced Functional Materials</span>, 2026. 
-      <a href="https://doi.org/10.1002/adfm.77365" target="_blank">View Publication</a> 
-      </li> 
-      
-      <li class="pub-item"> 
-        Susmita Bera, Selva Chandrasekaran Selvaraj, Lily Mandal, Ripan K Biswas, Novotna Seal, Nisha Kumari, Amit Kumar, Seikh Mohammad Yusuf, Dhanapal Pravarthana, Sheetal Kumar Jain, Jagjit Nanda, <b>Amreen Bano</b>, Anh Ngo, Abhik Banerjee,
-      "Insights into the Transition from Ionic Insulator to Conductor for Li-Mn-Cl-Based Halospinel", 
-      <span class="highlight-name">ACS Energy Letters</span>, 2026. 
-      <a href="https://doi.org/10.1021/acsenergylett.6c01247" target="_blank">View Publication</a> 
-      </li> 
-     
-      <li class="pub-item"> 
-        Anubha Yadav#, Antra Mohini#, Babasaheb M. Matsagar, Norman C.-R. Chen, Ahin Roy, Kevin C.-W. Wu, <b>Amreen Bano*</b>, Saikat Dutta, (#Equal Contribution)
-      "Synergistic Charge Redistribution in a Dual-Atomic Fe−CoN6 on Nanofiber With Fe−N Site Preference of Intermediates Compared to Pristine Fe Single Atoms for Oxygen Redox in Zinc-Air Battery", 
-      <span class="highlight-name">Small </span>, 2026. 
-      <a href="https://doi.org/10.1002/smll.74296" target="_blank">View Publication</a> 
-      </li> 
 
-      <li class="pub-item">
-       Ashwin P V, Supriya Sau, Novotna Seal, <b>Amreen Bano</b>, and Sagar Mitra, 
-      "A Hybrid Bilayer Design to Control Lithium Nucleation and Dendrite Growth in Lithium Metal Batteries", 
-      <span class="highlight-name">ACS Applied Materials & Interfaces</span>, 2026. 
-      <a href="https://pubs.acs.org/doi/10.1021/acsami.5c23307" target="_blank">View Publication</a> 
-      </li>
-    </ul> 
+            <!-- Research 1 -->
+
+            <article
+                class="research-item"
+                onclick="openResearch('cathodes')"
+            >
+
+                <div class="research-image">
+
+                    <img
+                        src="images/high_entropy_figure.jpg"
+                        alt="Layered oxide cathode materials"
+                    >
+
+                </div>
+
+                <div class="research-content">
+
+                    <div class="research-number">01</div>
+
+                    <h3>
+                        Layered Oxide Cathodes
+                    </h3>
+
+                    <p>
+                        Designing stable and high-performance Li- and
+                        Na-ion layered oxide cathodes.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- Research 2 -->
+
+            <article
+                class="research-item"
+                onclick="openResearch('anodes')"
+            >
+
+                <div class="research-image">
+
+                    <img
+                        src="images/ml_figure.jpg"
+                        alt="Anode materials"
+                    >
+
+                </div>
+
+                <div class="research-content">
+
+                    <div class="research-number">02</div>
+
+                    <h3>
+                        Anode Materials
+                    </h3>
+
+                    <p>
+                        Computational design of carbon, metal and
+                        high-entropy anodes for ion storage.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- Research 3 -->
+
+            <article
+                class="research-item"
+                onclick="openResearch('electrolytes')"
+            >
+
+                <div class="research-image">
+
+                    <img
+                        src="images/electrolyte_design_figure.jpg"
+                        alt="Electrolyte design"
+                    >
+
+                </div>
+
+                <div class="research-content">
+
+                    <div class="research-number">03</div>
+
+                    <h3>
+                        Electrolyte Design
+                    </h3>
+
+                    <p>
+                        Understanding solvation, ion transport and
+                        electrolyte–electrode interactions.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- Research 4 -->
+
+            <article
+                class="research-item"
+                onclick="openResearch('solid')"
+            >
+
+                <div class="research-image">
+
+                    <img
+                        src="images/electrolyte_design_figure.jpg"
+                        alt="Solid electrolyte materials"
+                    >
+
+                </div>
+
+                <div class="research-content">
+
+                    <div class="research-number">04</div>
+
+                    <h3>
+                        Solid-State Electrolytes
+                    </h3>
+
+                    <p>
+                        Ion migration, grain boundaries and interfacial
+                        stability in solid electrolytes.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- Research 5 -->
+
+            <article
+                class="research-item"
+                onclick="openResearch('entropy')"
+            >
+
+                <div class="research-image">
+
+                    <img
+                        src="images/high_entropy_figure.jpg"
+                        alt="High entropy materials"
+                    >
+
+                </div>
+
+                <div class="research-content">
+
+                    <div class="research-number">05</div>
+
+                    <h3>
+                        High-Entropy Materials
+                    </h3>
+
+                    <p>
+                        Exploring compositional complexity to improve
+                        structural and electrochemical stability.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- Research 6 -->
+
+            <article
+                class="research-item"
+                onclick="openResearch('ml')"
+            >
+
+                <div class="research-image">
+
+                    <img
+                        src="images/ml_figure.jpg"
+                        alt="Machine learning materials modelling"
+                    >
+
+                </div>
+
+                <div class="research-content">
+
+                    <div class="research-number">06</div>
+
+                    <h3>
+                        ML & Atomistic Modelling
+                    </h3>
+
+                    <p>
+                        Machine-learning interatomic potentials for
+                        accelerated atomistic simulations.
+                    </p>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     RESEARCH MODAL
+======================================================== -->
+
+<div class="modal" id="researchModal">
+
+    <div class="modal-box">
+
+        <button
+            class="modal-close"
+            onclick="closeResearch()"
+            aria-label="Close"
+        >
+            ×
+        </button>
+
+        <div id="modalContent"></div>
+
+    </div>
+
 </div>
 
 
-  
-  <div id="2025" class="pub-list" style="display: block; text-align: left; max-width: 900px; margin: 2rem auto;">
-    <ul> 
-       <li class="pub-item">
-       Ankush Kumar Singh,  Mithilesh Patel,  Abhinav Pratap Singh Bais,  Rashmi Yadav, <b>Amreen Bano</b>,  Rosy, 
-      "Role of NaF in Attenuating Interfacial Instability of Lithium Metal Anode: A Strategy to Modulate SEI for Enabling Dendrite Free Lithium Metal Batteries", 
-      <span class="highlight-name">Small </span>, 2025. 
-      <a href="https://doi.org/10.1002/smll.202512650" target="_blank">View Publication</a> 
-      </li> 
-      
-      <li class="pub-item">
-       Tanu Bagaria,  Ayesha Rahman,  Soumya U K,  Ashadul Adalder,  Hirak Kumar Basak,  Uttam Kumar Ghorai,  Biswarup Chakraborty,  <b>Amreen Bano*</b>,  Bharati Debnath*, 
-      "Upcycling Nitrate Waste into Power: Designing Mo Incorporated Ni–Fe Based Phosphide Nanosheets for Electrocatalytic Green Ammonia Synthesis and Zn-Nitrate Batteries", 
-      <span class="highlight-name">Small </span>, 2025. 
-      <a href="https://doi.org/10.1002/smll.202513455" target="_blank">View Publication</a> 
-      </li>
-      
-      <li class="pub-item">
-       Akanksha Joshi,  <b>Amreen Bano</b>,  Sandipan Maiti,  Arun Krishnan,  Aleksandr Kondrakov,  Shubham Patel,  Roman R. Kapaev,  Tatiana K. Zakharchenko,  Nicole Leifer,  Dan Thomas Major,  Doron Aurbach,  Malachi Noked, 
-      "Mitigating Structural Degradation in O3-Layered Sodium-Ion Cathodes: Insights from Mg Doping in NaNi0.2Fe0.4Mn0.4O2", 
-      <span class="highlight-name">Advanced Energy Materials </span>, 2025. 
-      <a href="https://doi.org/10.1002/aenm.202503573" target="_blank">View Publication</a> 
-      </li>
-       <li class="pub-item">
-       Harshita Lohani, <b>Amreen Bano</b>, Arpita Ghosh, Ajit Kumar, Dhruv Kumar, Pratima Kumari, Dan Thomas Major, Sagar Mitra, 
-      "Tuning Interphase Composition in Sodium-Ion Batteries via Co-Solvent Selection and Anion-Driven Solvation Shell Engineering", 
-      <span class="highlight-name">Small Methods </span>, 2025. 
-      <a href="https://doi.org/10.1002/smtd.202501563" target="_blank">View Publication</a>
-    </li>
-       <li class="pub-item">
-       Khorsed Alam, Shubham Patel, <b>Amreen Bano</b>, Langyuan Wu, Netanel Shpigel, and Dan T. Major, 
-      "Predicting Electrolyte Redox Potential Trends through Long-Range Electrostatics and Configuration Ensembles: Insights from MD and QM/MM Simulations", 
-      <span class="highlight-name">Journal of Chemical Theory and Computation </span>, 2025. 
-      <a href="https://pubs.acs.org/doi/10.1021/acs.jctc.5c01297" target="_blank">View Publication</a>
-    </li>
-      <li class="pub-item">
-       Tapan Dey, Anubha Yadav, Novotna Seal, Babasaheb M. Matsagar, Norman C. R. Chen, Praveen Yadav, Kevin C.-W. Wu*, <b>Amreen Bano*</b>, Saikat Dutta*, 
-      "Single-Atomic Ni-N4 Biofuel Cell for Mimicking Intramolecular Electron-Harnessing of Laccase", 
-      <span class="highlight-name">Angew. Chem. Int. Ed. </span>, 2025. 
-      <a href="https://doi.org/10.1002/anie.202511892" target="_blank">View Publication</a>
-    </li>
-       <li class="pub-item">
-       Srija Ghosh, Ashutosh Rana, Antra Mohini, Ponraj Jenis, S Renjitha, Md. Arif Faisal, Koushik Barman, James H. Ngyuen, <b>Amreen Bano*</b>, Jeffrey E. Dick*, Kingshuk Roy*, 
-      "Decoding Anode Stability: From Nucleation Kinetics to Pattern-Guided Flux Control for Long-Cycling Anode-Less Sodium Metal Batteries", 
-      <span class="highlight-name">Advanced Energy Materials</span>, 2025. 
-      <a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/aenm.202503588" target="_blank">View Publication</a>
-    </li>
-      <li class="pub-item">
-       Ashutosh Rana, Saptarshi Paul, Ashutosh Bhadouria, <b>Amreen Bano</b>, James H. Nguyen, Md. Arif Faisal, Kingshuk Roy, Brian M. Tackett, Jeffrey E. Dick, 
-      "Beyond the Artifact: In Situ Quantification of True HER Kinetics During Zn Electrodeposition in Aqueous Zinc Metal Batteries", 
-      <span class="highlight-name">Advanced Energy Materials</span>, 2025. 
-      <a href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/aenm.202503155" target="_blank">View Publication</a>
-    </li>
-      <li class="pub-item">
-       Susmita Bera, Anagha Vinayan, Lily Mandal, Ripan K. Biswas, Zhao Chen, Aditya Rawal, Selva Chandrasekaran Selvaraj, Maxim Avdeev, <b>Amreen Bano</b>, Anh T. Ngo, Neeraj Sharma*, Abhik Banerjee*, 
-      "Effect of the Cation Sublattice Configuration on Li Ion Dynamics for the Spinel Li–Mg–Al–Cl System", 
-      <span class="highlight-name"> ACS Energy Letters</span>, 2025. 
-      <a href="https://pubs.acs.org/doi/10.1021/acsenergylett.5c02238" target="_blank">View Publication</a>
-    </li>
-      <li class="pub-item">
-       Swati Jadhav*, Laxman Kaulage, Suparna Saha, <b>Amreen Bano*</b>, Satishchandra Ogale*, 
-      "Black Phosphorus Nanosheets as Efficient Ion Navigators at Room Temperature in Polyacrylonitrile-Based Composite Solid Polymer Electrolyte for Li-Ion Batteries", 
-      <span class="highlight-name"> Small</span>, 2025. 
-      <a href="https://doi.org/10.1002/smll.202504995" target="_blank">View Publication</a>
-    </li>
-      <li class="pub-item">
-       Rahul Patil, Prakash Kumar Pathak, Meemansha Mishra, Babasaheb M. Matsagar, Antra Mohini, Norman C.-R. Chen, Kevn C.-W. Wu, <b>Amreen Bano*</b>, 
-        Rahul R. Salunkhe*, and Saikat Dutta*, 
-      "Fe-Single-Atom Incorporated Wood-Derived Anode with Fe-N-C/Fe3C Structural Unit and Hollow Diffusion Sites for Enhanced Sodium-Ion Storage", 
-      <span class="highlight-name"> Small</span>, 2025. 
-      <a href="https://doi.org/10.1002/smll.202507064" target="_blank">View Publication</a>
-    </li>
-      <li class="pub-item">
-       Orly Aminov, <b>Amreen Bano</b>, Ortal Shalev, Moriah Perry, Dan T. Major & Malachi Noked, 
-      "LixSiyOz coating for LiCoO2 cathode material using atomic layer deposition (ALD)", 
-      <span class="highlight-name"> Journal of Solid State Electrochemistry</span>, 2025. 
-      <a href="https://link.springer.com/article/10.1007/s10008-025-06399-7" target="_blank">View Publication</a>
-    </li>
-      <li class="pub-item">
-       Arup Chakraborty, <b>Amreen Bano</b>, Sooraj Kunnikuruvan, Boris Markovsky, Doron Aurbach, and Dan Thomas Major, 
-      "Doping Strategies in Ni-Rich NCM Cathode Materials for Next-Generation Li-Ion Batteries: A Systematic Computational Study", 
-      <span class="highlight-name">ACS Applied Energy Materials</span>, 2025 (Equal 1st Author). 
-      <a href="https://pubs.acs.org/doi/10.1021/acsaem.5c01325" target="_blank">View Publication</a>
-    </li>
-    <li class="pub-item">
-      <b>Amreen Bano</b>, Dan Thomas Major, 
-      "Multidopant Induced Entropy Effect on TiS2/TiSe2‐Based Layered Anode and Formation of Electrode–Electrolyte Interphase", 
-      <span class="highlight-name">Batteries and Supercapacitors</span>, 2025. 
-      <a href="https://doi.org/10.1002/batt.202500299" target="_blank">View Publication</a>
-    </li>
-    <li class="pub-item">
-      Khorsed Alam, Akanksha Joshi, <b>Amreen Bano</b>, Malachi Noked, Dan Thomas Major, 
-      "Theoretical Study on High-Entropy Oxyfluoride Cathodes for Sodium-Ion Batteries", 
-      <span class="highlight-name">ACS Applied Energy Materials</span>, 2025. 
-      <a href="https://pubs.acs.org/doi/abs/10.1021/acsaem.5c00035" target="_blank">View Publication</a>
-    </li>
-  </ul>
- </div>
-  
-  <div id="2024" class="pub-list" style="display: block; text-align: left; max-width: 900px; margin: 2rem auto;">
-    <ul>
-    <li class="pub-item">
-      Naresh Vangapally, David Lusztig, Suman Rathod, <b>Amreen Bano</b>, Hadar Scalar, Sri Harsha Akella, 
-      Malachi Noked, Dan.T. Major, Ion C. Halalay, Suresh Sriramulu, Shalom Luski, Doron Aurbach, 
-      "Fluorinated Co-Solvents Enable Excellent Performances of Practical Cells Comprising 
-      LixSiO-Graphite Composite Anodes and LiNi0.89Co0.05Mn0.05Al0.01O2 (NCMA) Cathodes", 
-      <span class="highlight-name">Small</span>, 2024. 
-      <a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/smll.202403694" target="_blank">View Publication</a>
-    </li>
-    <li class="pub-item">
-      Harshita Lohani, Ajit Kumar, <b>Amreen Bano</b>, Arpita Ghosh, Pratima Kumari, Aakash Ahuja, 
-      Abhinanda Sengupta, Dhruv Kumar, Dan Thomas Major, Sagar Mitra, 
-      "Inclusion of Anion Additives in the Inner Solvation Shell to Regulate the Composition of Solid Electrolyte Interphase", 
-      <span class="highlight-name">Advanced Energy Materials</span>, 2024. 
-      <a href="https://advanced.onlinelibrary.wiley.com/doi/abs/10.1002/aenm.202401268" target="_blank">View Publication</a>
-    </li>
-    <li class="pub-item">
-      Abhinanda Sengupta, Ajit Kumar, <b>Amreen Bano</b>, Aakash Ahuja, Harshita Lohani, Sri Harsha Akella, 
-      Pratima Kumari, Malachi Noked, Dan T Major, Sagar Mitra, 
-      "Unleashing the impact of Nb-doped, single crystal, cobalt-free P2-type Na0.67Ni0.33Mn0.67O2 
-      on elevating the cycle life of sodium-ion batteries", <span class="highlight-name">Energy Storage Materials</span>, 2024. 
-      <a href="https://www.sciencedirect.com/science/article/pii/S2405829724002629" target="_blank">View Publication</a>
-    </li>
-  </ul>
- </div>
-  
-  <div id="2023" class="pub-list" style="display: block; text-align: left; max-width: 900px; margin: 2rem auto;">
-    <ul>
-    <li class="pub-item">
-      Nabil El Halya, Mohamed Aqil, Karim El Ouardi, <b>Amreen Bano</b>, Ayoub El bendali, Loubna Hdidou, Rachid Amine, Seoung-Bum Son, 
-      Fouad Ghamouss, Dan Thomas Major, Khalil Amine, Jones Alami, Mouad Dahbi, 
-      "Biopolymer‐Assisted Synthesis of P‐Doped TiO2 Nanoparticles for High‐Performance Li‐ion Batteries: A Comprehensive Study", 
-     <span class="highlight-name">Batteries & Supercaps</span>, 2023. 
-      <a href="https://chemistry-europe.onlinelibrary.wiley.com/doi/abs/10.1002/batt.202300424" target="_blank">View Publication</a>
-    </li>
-    <li class="pub-item">
-      <b>Amreen Bano</b>, Malachi Noked, Dan Thomas Major, 
-      "Theoretical Insights into High-Entropy Ni-Rich Layered Oxide Cathodes for Low-Strain Li-Ion Batteries", 
-      <span class="highlight-name">Chemistry of Materials</span>, 2023. 
-      <a href="https://pubs.acs.org/doi/abs/10.1021/acs.chemmater.3c01182" target="_blank">View Publication</a>
-    </li>
-    <li class="pub-item">
-      <b>Amreen Bano</b>, Dan Thomas Major, 
-      "Coexistence of Rashba effect and spin–valley coupling in TiX2 (X= Te, S, and Se) based heterostructures", 
-      <span class="highlight-name">Applied Physics Letters</span>, 2023. 
-      <a href="https://doi.org/10.1063/5.0142404" target="_blank">View Publication</a>
-    </li>
-    <li class="pub-item">
-      Francis Amalraj Susai, <b>Amreen Bano</b>, Sandipan Maiti, Judith Grinblat, Arup Chakraborty, Hadar Sclar, Tatyana Kravchuk, Aleksandr Kondrakov, Maria Tkachev, Michael Talianker, Dan Thomas Major, Boris Markovsky, Doron Aurbach,
-      "Stabilizing Ni-rich high energy cathodes for advanced lithium-ion batteries: the case of LiNi0.9Co0.1O2", 
-      <span class="highlight-name">Journal of Materials Chemistry A</span>, 2023 (Equal 1st Author). 
-      <a href="https://pubs.rsc.org/en/content/articlehtml/2023/ta/d3ta00444a" target="_blank">View Publication</a>
-    </li>
-  </ul>
+<!-- =======================================================
+     COMPUTATIONAL APPROACH
+======================================================== -->
+
+<section class="section section-dark">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <div class="section-label">
+                Our Approach
+            </div>
+
+            <h2>
+                From fundamental understanding to materials design
+            </h2>
+
+            <p>
+                We combine complementary computational techniques to
+                understand materials across length and time scales.
+            </p>
+
+        </div>
+
+
+        <div class="approach-grid">
+
+            <div class="approach-item">
+
+                <div class="approach-number">01</div>
+
+                <h3>
+                    Electronic Structure
+                </h3>
+
+                <p>
+                    DFT-based calculations of structure, energetics,
+                    electronic properties, bonding, charge and magnetism.
+                </p>
+
+            </div>
+
+
+            <div class="approach-item">
+
+                <div class="approach-number">02</div>
+
+                <h3>
+                    Atomistic Dynamics
+                </h3>
+
+                <p>
+                    Classical MD and AIMD simulations to investigate
+                    ion transport, interfaces and structural evolution.
+                </p>
+
+            </div>
+
+
+            <div class="approach-item">
+
+                <div class="approach-number">03</div>
+
+                <h3>
+                    Machine Learning
+                </h3>
+
+                <p>
+                    ML interatomic potentials are used to extend
+                    atomistic simulations to larger systems and longer
+                    time scales.
+                </p>
+
+            </div>
+
+
+            <div class="approach-item">
+
+                <div class="approach-number">04</div>
+
+                <h3>
+                    Experimental Validation
+                </h3>
+
+                <p>
+                    Computational predictions are connected with
+                    experimental synthesis, characterization and
+                    electrochemical measurements through collaborations.
+                </p>
+
+            </div>
+
+        </div>
+
     </div>
 
-<div id="2022" class="pub-list" style="display: block; text-align: left; max-width: 900px; margin: 2rem auto;">
-    <ul>
-    <li class="pub-item">
-      Amreen Bano, Dan Thomas Major,
-      "Coexistence of Rashba Effect and Spin-valley Coupling in TiX2 (X= Te, S and Se) based Heterostructures", 
-      <span class="highlight-name">Archive</span>, 2022. 
-      <a href="https://doi.org/10.48550/arXiv.2212.14508" target="_blank">View Publication</a>
-    </li>
-  </ul>
- </div>
-  
-  <div id="2021" class="pub-list" style="display: block; text-align: left; max-width: 900px; margin: 2rem auto;">
-    <ul>
-    <li class="pub-item">
-      <b>Amreen Bano</b>, Lokanath Patra, Ravindra Pandey, 
-      "Stability and electronic properties of the graphene-supported FeO nanostructures including clusters and monolayer", 
-      <span class="highlight-name">Applied Surface Science</span>, 2021. 
-      <a href="https://www.sciencedirect.com/science/article/pii/S0169433221020341" target="_blank">View Publication</a>
-    </li>
-    <li class="pub-item">
-      Vipin Kumar, <b>Amreen Bano</b>, Kaptan Rajput, Debesh R Roy, 
-      "The interaction of two-dimensional P2SiS nanosheet with environmental toxic NCG molecules for sensor application: A DFT study", 
-      <span class="highlight-name">Sensors and Actuators A: Physical</span>, 2021. 
-      <a href="https://www.sciencedirect.com/science/article/pii/S0924424721000698" target="_blank">View Publication</a>
-    </li>
-    <li class="pub-item">
-      Vipin Kumar, <b>Amreen Bano</b>, Debesh R Roy, 
-      "First-principles calculations of SiBi nanosheets as sensors for oxygen-containing gases", 
-      <span class="highlight-name">ACS Applied Nano Materials</span>, 2021. 
-      <a href="https://pubs.acs.org/doi/abs/10.1021/acsanm.0c02998" target="_blank">View Publication</a>
-    </li>
-    <li class="pub-item">
-      <b>Amreen Bano</b>, Neeraj K Gaur, 
-      "Electronic and thermal properties of monolayer MoS2: a first-principles study", 
-      <span class="highlight-name">Materials Today: Proceedings</span>, 2021. 
-      <a href="https://www.sciencedirect.com/science/article/pii/S2214785321056212" target="_blank">View Publication</a>
-    </li>
-  </ul>
-    </div>
-
-  <div id="2020" class="pub-list" style="display: block; text-align: left; max-width: 900px; margin: 2rem auto;">
-    <ul>
-    <li class="pub-item">
-      <b>Amreen Bano</b>, NK Gaur, 
-      "Chemical topology of 2-dimensional MoB2 sheet: First-principles study", 
-      <span class="highlight-name">AIP Conference Proceedings</span>, 2020. 
-      <a href="https://doi.org/10.1063/5.0016624" target="_blank">View Publication</a>
-    </li>
-  </ul>
-    </div>
-
-  <div id="2019" class="pub-list" style="display: block; text-align: left; max-width: 900px; margin: 2rem auto;">
-    <ul>
-    <li class="pub-item">
-      <b>Amreen Bano</b>, Jyoti Krishna, Tulika Maitra, NK Gaur, 
-      "CrI3-WTe2: A Novel Two-Dimensional Heterostructure as Multisensor for BrF3 and COCl2 Toxic Gases", 
-      <span class="highlight-name">Scientific Reports</span>, 2019. 
-      <a href="https://www.nature.com/articles/s41598-019-47685-5" target="_blank">View Publication</a>
-    </li>
-    <li class="pub-item">
-      <b>Amreen Bano</b>, NK Gaur, 
-      "Effect of Nb doping on electron transport mechanism of CrSi2: A first-principles investigation", 
-      <span class="highlight-name">AIP Conference Proceedings</span>, 2019. 
-      <a href="https://doi.org/10.1063/1.5113258" target="_blank">View Publication</a>
-    </li>
-    <li class="pub-item">
-      <b>Amreen Bano</b>, N K Gaur, 
-      "Effect of SrO termination on electron transport of MoS2/SrTiO3 heterostructure: A DFT approach", 
-      <span class="highlight-name">Applied Surface Science</span>, 2019. 
-      <a href="https://doi.org/10.1016/j.apsusc.2019.05.051" target="_blank">View Publication</a>
-    </li>
-    <li class="pub-item">
-      <b>Amreen Bano</b>, N K Gaur, 
-      "Effect of transition metal (TM: Cr and Mn) doping on charge transport properties of ScNiBi: a density functional theory approach", 
-      <span class="highlight-name">Materials Research Express</span>, 2019. 
-      <a href="https://iopscience.iop.org/article/10.1088/2053-1591/ab0156/meta" target="_blank">View Publication</a>
-    </li>
-     <li class="pub-item">
-    <b>Amreen Bano</b>, Jyoti Krishna, Devendra K. Pandey, N. K. Gaur,  
-    "An ab initio study of sensing applications of MoB<sub>2</sub> monolayer: a potential gas sensor", 
-    <span class="highlight-name">Physical Chemistry Chemical Physics</span>, 2019. 
-    <a href="https://doi.org/10.1039/C8CP07038E" target="_blank">View Publication</a>
-  </li>
-</ul>
-    </div>
-
-<div id="2018" class="pub-list" style="display: block; text-align: left; max-width: 900px; margin: 2rem auto;">
-    <ul>
-    <li class="pub-item">
-    <b>Amreen Bano</b>, D. K. Pandey, A. Modi, N. K. Gaur,  
-    "MoB<sub>2</sub> Driven Metallic Behavior and Interfacial Charge Transport Mechanism in MoS<sub>2</sub>/MoB<sub>2</sub> Heterostructure: A First-Principles Study", 
-    <span class="highlight-name">Scientific Reports</span>, 2018. 
-    <a href="https://www.nature.com/articles/s41598-018-32850-z" target="_blank">View Publication</a>
-  </li>
-  <li class="pub-item">
-    <b>Amreen Bano</b>, N. K. Gaur,  
-    "Investigation of electronic structure and chemical bonding of intermetallic Pd<sub>2</sub>HfIn: An ab-initio study", 
-    <span class="highlight-name">AIP Conference Proceedings</span>, 2018. 
-    <a href="https://doi.org/10.1063/1.5033029" target="_blank">View Publication</a>
-  </li>
-  <li class="pub-item">
-    <b>Amreen Bano</b>, N. K. Gaur,  
-    "Investigation of strain effect on electronic, chemical bonding, magnetic and phonon properties of ScNiBi: a DFT study", 
-    <span class="highlight-name">Materials Research Express</span>, 2018. 
-    <a href="https://iopscience.iop.org/article/10.1088/2053-1591/aab7ca/meta" target="_blank">View Publication</a>
-  </li>
-  <li class="pub-item">
-    <b>Amreen Bano</b>, N. K. Gaur,  
-    "Interfacial Coupling Effect on Electron Transport in MoS<sub>2</sub>/SrTiO<sub>3</sub> Heterostructure: An Ab-initio Study", 
-    <span class="highlight-name">Scientific Reports</span>, 2018. 
-    <a href="https://www.nature.com/articles/s41598-017-18984-6" target="_blank">View Publication</a>
-  </li>
-</ul>
-   </div>
-
-<div id="2017" class="pub-list" style="display: block; text-align: left; max-width: 900px; margin: 2rem auto;">
-    <ul>
-    <li class="pub-item">
-    <b>Amreen Bano</b>, Preeti Khare, N. K. Gaur,  
-    "Electro-optic response of metal halide: A first-principles study", 
-    <span class="highlight-name">Pramana-J Phys</span>, 2017. 
-    <a href="https://link.springer.com/article/10.1007/s12043-017-1411-2" target="_blank">View Publication</a>
-  </li>
-  <li class="pub-item">
-    <b>Amreen Bano</b>, Preeti Khare, N. K. Gaur,  
-    "Thermal transport properties of bulk and monolayer MoS<sub>2</sub>: an ab-initio approach", 
-    <span class="highlight-name">Journal of Physics: Conference Series</span>, 2017. 
-    <a href="https://iopscience.iop.org/article/10.1088/1742-6596/836/1/012052/meta" target="_blank">View Publication</a>
-  </li>
-</ul>
-   </div>
-
-    <div id="2016" class="pub-list" style="display: block; text-align: left; max-width: 900px; margin: 2rem auto;">
-    <ul>
-    <li class="pub-item">
-    <b>Amreen Bano</b>, Preeti Khare, N. K. Gaur,  
-    "First-principles calculation for phonon and optoelectronic properties of CsSnI<sub>3</sub>", 
-    <span class="highlight-name">AIP Conference Proceedings</span>, 2016. 
-    <a href="https://doi.org/10.1063/1.4947965" target="_blank">View Publication</a>
-  </li>
-  <li class="pub-item">
-    <b>Amreen Bano</b>, Preeti Khare, Vanshree Parey, Aarti Shukla, N. K. Gaur,  
-    "The structural, electronic and phonon behavior of CsPbI<sub>3</sub>: a first principles study", 
-    <span class="highlight-name">AIP Conference Proceedings</span>, 2016. 
-    <a href="https://doi.org/10.1063/1.4946150" target="_blank">View Publication</a>
-  </li>
-  <li class="pub-item">
-    Aarti Shukla, Vanshree Parey, <b>Amreen Bano</b>, Preeti Khare, N. K. Gaur,  
-    "Thermodynamical properties of ceramic fuel cell Ba<sub>0.2</sub>Ca<sub>0.8</sub>ZrO<sub>3</sub>", 
-    <span class="highlight-name">AIP Conference Proceedings</span>, 2016. 
-    <a href="https://doi.org/10.1063/1.4948027" target="_blank">View Publication</a>
-  </li>
-  <li class="pub-item">
-    Vanshree Parey, Aarti Shukla, Atahar Parveen, <b>Amreen Bano</b>, Preeti Khare, N. K. Gaur,  
-    "Thermal properties of solid oxide fuel cell perovskite LaCrO<sub>3</sub>", 
-    <span class="highlight-name">AIP Conference Proceedings</span>, 2016. 
-    <a href="https://doi.org/10.1063/1.4946076" target="_blank">View Publication</a>
-  </li>
-</ul>
- </div>
-  
-  <!--COPY THIS SECTION TO ADD NEW PUBLICATION  -->
-  <!--  <li class="pub-item"> -->
-  <!--     Author, Title, <i>Journal</i>, Year -->
-  <!--     <a href="[URL]" target="_blank">View Publication</a>   -->
-   <!--   </li>   -->
-    
 </section>
 
-<!-- Gallery Section -->
-<section id="gallery" style="padding: 3rem 0; background-color: #f9f9f9;">
-  <div style="text-align: center; margin-bottom: 2rem;">
-    <h2 style="font-size: 2rem; color: #333;">Gallery</h2>
-    <p style="font-size: 1rem; color: #666;">A glimpse into our group activities and moments</p>
-  </div>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; padding: 0 2rem;">
-    <img src="images/poster_award.jpg" alt="Gallery Image 1" style="width: 100%; border-radius: 10px; object-fit: cover; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-    <img src="images/group_2026.jpg" alt="Gallery Image 2" style="width: 100%; border-radius: 10px; object-fit: cover; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-    <img src="images/group_pic.jpg" alt="Gallery Image 3" style="width: 100%; border-radius: 10px; object-fit: cover; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-    <img src="images/Group1.jpeg" alt="Gallery Image 4" style="width: 100%; border-radius: 10px; object-fit: cover; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-    <img src="images/Group2.jpeg" alt="Gallery Image 5" style="width: 100%; border-radius: 10px; object-fit: cover; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-    <img src="images/Group3.jpg" alt="Gallery Image 6" style="width: 100%; border-radius: 10px; object-fit: cover; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-    <img src="images/Group4.jpg" alt="Gallery Image 7" style="width: 100%; border-radius: 10px; object-fit: cover; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-    <img src="images/group_pic2.jpeg" alt="Gallery Image 8" style="width: 100%; border-radius: 10px; object-fit: cover; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-  </div>
+
+<!-- =======================================================
+     RESEARCH HIGHLIGHTS
+======================================================== -->
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <div class="section-label">
+                Selected Work
+            </div>
+
+            <h2>
+                Research Highlights
+            </h2>
+
+        </div>
+
+
+        <div class="highlight-grid">
+
+
+            <article class="highlight">
+
+                <div class="highlight-image">
+
+                    <img
+                        src="images/aem_mg.jpg"
+                        alt="Mg doped sodium layered oxide"
+                    >
+
+                </div>
+
+                <div class="highlight-content">
+
+                    <h3>
+                        Stabilizing Layered Sodium Cathodes
+                    </h3>
+
+                    <p>
+                        Computational and experimental investigation of
+                        Mg doping in O3-type NaNi<sub>0.2</sub>Fe<sub>0.4</sub>Mn<sub>0.4</sub>O<sub>2</sub>
+                        to mitigate structural degradation, transition-metal
+                        migration and irreversible oxygen activity.
+                    </p>
+
+                    <p style="margin-top:15px;">
+                        <a
+                            href="https://doi.org/10.1002/aenm.202503573"
+                            target="_blank"
+                        >
+                            Read publication →
+                        </a>
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <article class="highlight">
+
+                <div class="highlight-image">
+
+                    <img
+                        src="images/aem_antra.jpg"
+                        alt="Sodium metal anode stability"
+                    >
+
+                </div>
+
+                <div class="highlight-content">
+
+                    <h3>
+                        Understanding Anode Stability
+                    </h3>
+
+                    <p>
+                        Combining experiments, AIMD and multiphysics
+                        modelling to understand nucleation, plating and
+                        pattern-guided flux control in anode-less sodium
+                        metal batteries.
+                    </p>
+
+                    <p style="margin-top:15px;">
+                        <a
+                            href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/aenm.202503588"
+                            target="_blank"
+                        >
+                            Read publication →
+                        </a>
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <article class="highlight">
+
+                <div class="highlight-image">
+
+                    <img
+                        src="images/small_antra.jpg"
+                        alt="Wood derived anode"
+                    >
+
+                </div>
+
+                <div class="highlight-content">
+
+                    <h3>
+                        Atomically Engineered Carbon Anodes
+                    </h3>
+
+                    <p>
+                        Understanding the role of Fe single-atom structural
+                        motifs and hollow diffusion sites in wood-derived
+                        carbon anodes for sodium-ion storage.
+                    </p>
+
+                    <p style="margin-top:15px;">
+                        <a
+                            href="https://doi.org/10.1002/smll.202507064"
+                            target="_blank"
+                        >
+                            Read publication →
+                        </a>
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <article class="highlight">
+
+                <div class="highlight-image">
+
+                    <img
+                        src="images/electrolyte_design_figure.jpg"
+                        alt="Electrolyte design"
+                    >
+
+                </div>
+
+                <div class="highlight-content">
+
+                    <h3>
+                        Electrolyte–Interface Engineering
+                    </h3>
+
+                    <p>
+                        Molecular-level understanding of solvation,
+                        anion-driven interfacial chemistry and ion transport
+                        for improved battery electrolyte performance.
+                    </p>
+
+                    <p style="margin-top:15px;">
+                        <a href="#publications">
+                            Explore publications →
+                        </a>
+                    </p>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
 </section>
 
-<!-- Opportunities Section -->
-  <section id="opportunities" style="padding: 3rem 0; background-color: #f9f9f9; text-align: center;">
-  <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Opportunities</h2>
-  <p style="font-size: 1.1rem;">We are actively hiring for the following positions:</p>
 
-  
-  <div class="accordion">
+<!-- =======================================================
+     NEWS
+======================================================== -->
 
-    <!-- PhD Position -->
-    <div class="accordion-item">
-  <button class="accordion-header">PhD Positions</button>
-  <div class="accordion-body">
-    <p><b>PhD Admissions are active at TCG CREST for 2025.</b></p>
+<section class="section section-light" id="news">
 
-    <p>
-      📢 View our official advertisement:
-      <a href="https://www.tcgcrest.org/programs/" target="_blank" style="color: #0066cc; text-decoration: underline;">
-        https://www.tcgcrest.org/programs/
-      </a>
-    </p>
+    <div class="container">
 
-    <p><b>Deadline:</b> <i>7th June 2025</i></p>
+        <div class="section-header">
 
-    <a href="https://www.tcgcrest.org/institutes/rise/" target="_blank" style="
-      display: inline-block;
-      padding: 10px 18px;
-      margin: 10px 0 20px 0;
-      background-color: #0056b3;
-      color: #fff;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;">
-      🌱 Visit RISE Website – Sustainable Energy Research
-    </a>
+            <div class="section-label">
+                Latest
+            </div>
 
-    <p>
-      At <b>The AMREEN Group</b>, we are looking for motivated PhD students interested in 
-      <b>battery materials</b>, <b>computational chemistry</b>, and <b>AI/ML in materials science</b>.
-      Applicants should have a strong academic background in Chemistry, Materials Science, or a related field.
-      Fully funded positions are available. <br><br>
-      📩 <b>Contact us</b> with your CV and a brief research statement to apply.
-    </p>
-  </div>
-</div>
+            <h2>
+                News
+            </h2>
 
-    <!-- Postdoc Position -->
-    <div class="accordion-item">
-      <button class="accordion-header">Postdoctoral Positions</button>
-      <div class="accordion-body">
-        <p>To be updated soon.....</p>
-      </div>
+        </div>
+
+
+        <div class="news-list">
+
+            <div class="news-item">
+
+                <div class="news-date">
+                    JUNE 2026
+                </div>
+
+                <div>
+
+                    <h3>
+                        Congratulations to Antra Mohini for receiving the Best Poster Award
+                        at 2D MatTechGlobal, IIT Indore.
+                    </h3>
+
+                    <p>
+                        The AMREEN Group congratulates Antra for this achievement.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="news-item">
+
+                <div class="news-date">
+                    AUGUST 2025
+                </div>
+
+                <div>
+
+                    <h3>
+                        A warm welcome to Ms. Soumya U K
+                    </h3>
+
+                    <p>
+                        Soumya joined the group as a PhD student working on
+                        computational design and understanding of solid electrolytes.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="news-item">
+
+                <div class="news-date">
+                    MAY 2025
+                </div>
+
+                <div>
+
+                    <h3>
+                        Invited talk at APALI Psi-K 2025, IISER Pune
+                    </h3>
+
+                    <p>
+                        Dr. Amreen Bano delivered an invited presentation on
+                        computational materials research.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="news-item">
+
+                <div class="news-date">
+                    FEBRUARY 2025
+                </div>
+
+                <div>
+
+                    <h3>
+                        Welcome to our new PhD students
+                    </h3>
+
+                    <p>
+                        A warm welcome to Ms. Antra Mohini and Ms. Novotna Seal
+                        to the AMREEN Group.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
 
-    <!-- Project Assistant -->
-    <div class="accordion-item">
-      <button class="accordion-header">Project Assistant</button>
-      <div class="accordion-body">
-        <p>To be updated soon......</p>
-      </div>
-    </div>
-
-  </div>
 </section>
-  
-  
-<section id="contact" class="contact-section">
-  <div class="contact-container">
-    <h2 class="contact-title">Get in Touch</h2>
-    
-    <div class="contact-item">
-      <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12l-4-4-4 4m0 0l4 4 4-4" />
-      </svg>
-      <span>
-        <a href="mailto:amreen.bano@tcgcrest.org">amreen.bano@tcgcrest.org</a> / 
-        <a href="mailto:banoamreen.7@gmail.com">banoamreen.7@gmail.com</a>
-      </span>
-    </div>
-    
-    <div class="contact-item">
-      <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13 21.314 8.343 16.657a8 8 0 1111.314 0z" />
-      </svg>
-      <span>Research Institute for Sustainable Energy (RISE), TCG CREST, Kolkata, India</span>
+
+
+<!-- =======================================================
+     PUBLICATIONS
+======================================================== -->
+
+<section class="section" id="publications">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <div class="section-label">
+                Research Output
+            </div>
+
+            <h2>
+                Publications
+            </h2>
+
+            <p>
+                Selected publications from the AMREEN Group and collaborative research.
+            </p>
+
+        </div>
+
+
+        <div class="publication-tabs">
+
+            <button class="pub-tab active" onclick="showYear('2026', this)">2026</button>
+            <button class="pub-tab" onclick="showYear('2025', this)">2025</button>
+            <button class="pub-tab" onclick="showYear('2024', this)">2024</button>
+            <button class="pub-tab" onclick="showYear('2023', this)">2023</button>
+            <button class="pub-tab" onclick="showYear('2022', this)">2022</button>
+            <button class="pub-tab" onclick="showYear('2021', this)">2021</button>
+            <button class="pub-tab" onclick="showYear('2020', this)">2020</button>
+            <button class="pub-tab" onclick="showYear('2019', this)">2019</button>
+            <button class="pub-tab" onclick="showYear('2018', this)">2018</button>
+            <button class="pub-tab" onclick="showYear('2017', this)">2017</button>
+            <button class="pub-tab" onclick="showYear('2016', this)">2016</button>
+
+        </div>
+
+
+        <!-- 2026 -->
+
+        <div class="pub-year active" id="pub-2026">
+
+            <ul class="pub-list">
+
+                <li class="pub-item">
+                    Soumya U K and <strong>Amreen Bano*</strong>,
+                    <span class="pub-title">
+                        “Multimodal Computational Insights Into Hydrogen Evolution Reaction Mitigation in Zn Electrolytes: The Role of Anion-Surface Coupling,”
+                    </span>
+                    <span class="pub-journal">Batteries & Supercaps</span>, 2026.
+                    <a class="pub-link" href="https://doi.org/10.1002/batt.202600001" target="_blank">DOI →</a>
+                </li>
+
+                <li class="pub-item">
+                    Nayan Dey, Arun Venkatnathan*, Satish Ogale*, and
+                    <strong>Amreen Bano*</strong>,
+                    <span class="pub-title">
+                        “Strategic Screening of Dopants for Na<sub>0.67</sub>Ni<sub>0.33</sub>Mn<sub>0.67</sub>O<sub>2</sub> Cathodes: A Computational Roadmap for Sodium-Ion Battery Innovation,”
+                    </span>
+                    <span class="pub-journal">Small</span>, 2026.
+                    <a class="pub-link" href="https://doi.org/10.1002/smll.202513165" target="_blank">DOI →</a>
+                </li>
+
+                <li class="pub-item">
+                    Ankush Kumar Singh, Swapnil Barthwal, Akanksha Joshi,
+                    Soumya U K, Arun Krishnan, Nicole Leifer, Hagit Aviv,
+                    <strong>Amreen Bano</strong>, Malachi Noked,
+                    <span class="pub-title">
+                        “LiBr-Rich SEI for Stabilizing Lithium Metal Batteries,”
+                    </span>
+                    <span class="pub-journal">Advanced Functional Materials</span>, 2026.
+                    <a class="pub-link" href="https://doi.org/10.1002/adfm.77365" target="_blank">DOI →</a>
+                </li>
+
+                <li class="pub-item">
+                    Susmita Bera, Selva Chandrasekaran Selvaraj, Lily Mandal,
+                    Ripan K Biswas, Novotna Seal, Nisha Kumari, Amit Kumar,
+                    Seikh Mohammad Yusuf, Dhanapal Pravarthana, Sheetal Kumar Jain,
+                    Jagjit Nanda, <strong>Amreen Bano</strong>, Anh Ngo,
+                    Abhik Banerjee,
+                    <span class="pub-title">
+                        “Insights into the Transition from Ionic Insulator to Conductor for Li-Mn-Cl-Based Halospinel,”
+                    </span>
+                    <span class="pub-journal">ACS Energy Letters</span>, 2026.
+                    <a class="pub-link" href="https://doi.org/10.1021/acsenergylett.6c01247" target="_blank">DOI →</a>
+                </li>
+
+                <li class="pub-item">
+                    Anubha Yadav#, Antra Mohini#, Babasaheb M. Matsagar,
+                    Norman C.-R. Chen, Ahin Roy, Kevin C.-W. Wu,
+                    <strong>Amreen Bano*</strong>, Saikat Dutta,
+                    <span class="pub-title">
+                        “Synergistic Charge Redistribution in a Dual-Atomic Fe−CoN6 on Nanofiber With Fe−N Site Preference of Intermediates Compared to Pristine Fe Single Atoms for Oxygen Redox in Zinc-Air Battery,”
+                    </span>
+                    <span class="pub-journal">Small</span>, 2026.
+                    <a class="pub-link" href="https://doi.org/10.1002/smll.74296" target="_blank">DOI →</a>
+                </li>
+
+                <li class="pub-item">
+                    Ashwin P V, Supriya Sau, Novotna Seal,
+                    <strong>Amreen Bano</strong>, and Sagar Mitra,
+                    <span class="pub-title">
+                        “A Hybrid Bilayer Design to Control Lithium Nucleation and Dendrite Growth in Lithium Metal Batteries,”
+                    </span>
+                    <span class="pub-journal">ACS Applied Materials & Interfaces</span>, 2026.
+                    <a class="pub-link" href="https://pubs.acs.org/doi/10.1021/acsami.5c23307" target="_blank">DOI →</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- 2025 -->
+
+        <div class="pub-year" id="pub-2025">
+
+            <ul class="pub-list">
+
+                <li class="pub-item">
+                    Ankush Kumar Singh, Mithilesh Patel, Abhinav Pratap Singh Bais,
+                    Rashmi Yadav, <strong>Amreen Bano</strong>, Rosy,
+                    <span class="pub-title">
+                        “Role of NaF in Attenuating Interfacial Instability of Lithium Metal Anode: A Strategy to Modulate SEI for Enabling Dendrite Free Lithium Metal Batteries,”
+                    </span>
+                    <span class="pub-journal">Small</span>, 2025.
+                    <a class="pub-link" href="https://doi.org/10.1002/smll.202512650" target="_blank">DOI →</a>
+                </li>
+
+                <li class="pub-item">
+                    Tanu Bagaria, Ayesha Rahman, Soumya U K, Ashadul Adalder,
+                    Hirak Kumar Basak, Uttam Kumar Ghorai, Biswarup Chakraborty,
+                    <strong>Amreen Bano*</strong>, Bharati Debnath*,
+                    <span class="pub-title">
+                        “Upcycling Nitrate Waste into Power: Designing Mo Incorporated Ni–Fe Based Phosphide Nanosheets for Electrocatalytic Green Ammonia Synthesis and Zn-Nitrate Batteries,”
+                    </span>
+                    <span class="pub-journal">Small</span>, 2025.
+                    <a class="pub-link" href="https://doi.org/10.1002/smll.202513455" target="_blank">DOI →</a>
+                </li>
+
+                <li class="pub-item">
+                    Akanksha Joshi, <strong>Amreen Bano</strong>, Sandipan Maiti,
+                    Arun Krishnan, Aleksandr Kondrakov, Shubham Patel,
+                    Roman R. Kapaev, Tatiana K. Zakharchenko, Nicole Leifer,
+                    Dan Thomas Major, Doron Aurbach, Malachi Noked,
+                    <span class="pub-title">
+                        “Mitigating Structural Degradation in O3-Layered Sodium-Ion Cathodes: Insights from Mg Doping in NaNi0.2Fe0.4Mn0.4O2,”
+                    </span>
+                    <span class="pub-journal">Advanced Energy Materials</span>, 2025.
+                    <a class="pub-link" href="https://doi.org/10.1002/aenm.202503573" target="_blank">DOI →</a>
+                </li>
+
+                <li class="pub-item">
+                    Harshita Lohani, <strong>Amreen Bano</strong>, Arpita Ghosh,
+                    Ajit Kumar, Dhruv Kumar, Pratima Kumari, Dan Thomas Major,
+                    Sagar Mitra,
+                    <span class="pub-title">
+                        “Tuning Interphase Composition in Sodium-Ion Batteries via Co-Solvent Selection and Anion-Driven Solvation Shell Engineering,”
+                    </span>
+                    <span class="pub-journal">Small Methods</span>, 2025.
+                    <a class="pub-link" href="https://doi.org/10.1002/smtd.202501563" target="_blank">DOI →</a>
+                </li>
+
+                <li class="pub-item">
+                    Khorsed Alam, Shubham Patel, <strong>Amreen Bano</strong>,
+                    Langyuan Wu, Netanel Shpigel, and Dan T. Major,
+                    <span class="pub-title">
+                        “Predicting Electrolyte Redox Potential Trends through Long-Range Electrostatics and Configuration Ensembles: Insights from MD and QM/MM Simulations,”
+                    </span>
+                    <span class="pub-journal">Journal of Chemical Theory and Computation</span>, 2025.
+                    <a class="pub-link" href="https://pubs.acs.org/doi/10.1021/acs.jctc.5c01297" target="_blank">DOI →</a>
+                </li>
+
+                <li class="pub-item">
+                    Tapan Dey, Anubha Yadav, Novotna Seal,
+                    Babasaheb M. Matsagar, Norman C. R. Chen, Praveen Yadav,
+                    Kevin C.-W. Wu*, <strong>Amreen Bano*</strong>, Saikat Dutta*,
+                    <span class="pub-title">
+                        “Single-Atomic Ni-N4 Biofuel Cell for Mimicking Intramolecular Electron-Harnessing of Laccase,”
+                    </span>
+                    <span class="pub-journal">Angew. Chem. Int. Ed.</span>, 2025.
+                    <a class="pub-link" href="https://doi.org/10.1002/anie.202511892" target="_blank">DOI →</a>
+                </li>
+
+                <li class="pub-item">
+                    Srija Ghosh, Ashutosh Rana, Antra Mohini, Ponraj Jenis,
+                    S Renjitha, Md. Arif Faisal, Koushik Barman,
+                    James H. Ngyuen, <strong>Amreen Bano*</strong>,
+                    Jeffrey E. Dick*, Kingshuk Roy*,
+                    <span class="pub-title">
+                        “Decoding Anode Stability: From Nucleation Kinetics to Pattern-Guided Flux Control for Long-Cycling Anode-Less Sodium Metal Batteries,”
+                    </span>
+                    <span class="pub-journal">Advanced Energy Materials</span>, 2025.
+                    <a class="pub-link" href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/aenm.202503588" target="_blank">DOI →</a>
+                </li>
+
+                <li class="pub-item">
+                    Ashutosh Rana, Saptarshi Paul, Ashutosh Bhadouria,
+                    <strong>Amreen Bano</strong>, James H. Nguyen,
+                    Md. Arif Faisal, Kingshuk Roy, Brian M. Tackett,
+                    Jeffrey E. Dick,
+                    <span class="pub-title">
+                        “Beyond the Artifact: In Situ Quantification of True HER Kinetics During Zn Electrodeposition in Aqueous Zinc Metal Batteries,”
+                    </span>
+                    <span class="pub-journal">Advanced Energy Materials</span>, 2025.
+                    <a class="pub-link" href="https://advanced.onlinelibrary.wiley.com/doi/10.1002/aenm.202503155" target="_blank">DOI →</a>
+                </li>
+
+                <li class="pub-item">
+                    Susmita Bera, Anagha Vinayan, Lily Mandal, Ripan K. Biswas,
+                    Zhao Chen, Aditya Rawal, Selva Chandrasekaran Selvaraj,
+                    Maxim Avdeev, <strong>Amreen Bano</strong>, Anh T. Ngo,
+                    Neeraj Sharma*, Abhik Banerjee*,
+                    <span class="pub-title">
+                        “Effect of the Cation Sublattice Configuration on Li Ion Dynamics for the Spinel Li–Mg–Al–Cl System,”
+                    </span>
+                    <span class="pub-journal">ACS Energy Letters</span>, 2025.
+                    <a class="pub-link" href="https://pubs.acs.org/doi/10.1021/acsenergylett.5c02238" target="_blank">DOI →</a>
+                </li>
+
+                <li class="pub-item">
+                    Swati Jadhav*, Laxman Kaulage, Suparna Saha,
+                    <strong>Amreen Bano*</strong>, Satishchandra Ogale*,
+                    <span class="pub-title">
+                        “Black Phosphorus Nanosheets as Efficient Ion Navigators at Room Temperature in Polyacrylonitrile-Based Composite Solid Polymer Electrolyte for Li-Ion Batteries,”
+                    </span>
+                    <span class="pub-journal">Small</span>, 2025.
+                    <a class="pub-link" href="https://doi.org/10.1002/smll.202504995" target="_blank">DOI →</a>
+                </li>
+
+                <li class="pub-item">
+                    Rahul Patil, Prakash Kumar Pathak, Meemansha Mishra,
+                    Babasaheb M. Matsagar, Antra Mohini, Norman C.-R. Chen,
+                    Kevn C.-W. Wu, <strong>Amreen Bano*</strong>,
+                    Rahul R. Salunkhe*, and Saikat Dutta*,
+                    <span class="pub-title">
+                        “Fe-Single-Atom Incorporated Wood-Derived Anode with Fe-N-C/Fe3C Structural Unit and Hollow Diffusion Sites for Enhanced Sodium-Ion Storage,”
+                    </span>
+                    <span class="pub-journal">Small</span>, 2025.
+                    <a class="pub-link" href="https://doi.org/10.1002/smll.202507064" target="_blank">DOI →</a>
+                </li>
+
+                <li class="pub-item">
+                    Orly Aminov, <strong>Amreen Bano</strong>, Ortal Shalev,
+                    Moriah Perry, Dan T. Major & Malachi Noked,
+                    <span class="pub-title">
+                        “LixSiyOz coating for LiCoO2 cathode material using atomic layer deposition (ALD),”
+                    </span>
+                    <span class="pub-journal">Journal of Solid State Electrochemistry</span>, 2025.
+                    <a class="pub-link" href="https://link.springer.com/article/10.1007/s10008-025-06399-7" target="_blank">DOI →</a>
+                </li>
+
+                <li class="pub-item">
+                    Arup Chakraborty, <strong>Amreen Bano</strong>,
+                    Sooraj Kunnikuruvan, Boris Markovsky, Doron Aurbach,
+                    and Dan Thomas Major,
+                    <span class="pub-title">
+                        “Doping Strategies in Ni-Rich NCM Cathode Materials for Next-Generation Li-Ion Batteries: A Systematic Computational Study,”
+                    </span>
+                    <span class="pub-journal">ACS Applied Energy Materials</span>, 2025.
+                    <a class="pub-link" href="https://pubs.acs.org/doi/10.1021/acsaem.5c01325" target="_blank">DOI →</a>
+                </li>
+
+                <li class="pub-item">
+                    <strong>Amreen Bano</strong>, Dan Thomas Major,
+                    <span class="pub-title">
+                        “Multidopant Induced Entropy Effect on TiS2/TiSe2-Based Layered Anode and Formation of Electrode–Electrolyte Interphase,”
+                    </span>
+                    <span class="pub-journal">Batteries and Supercapacitors</span>, 2025.
+                    <a class="pub-link" href="https://doi.org/10.1002/batt.202500299" target="_blank">DOI →</a>
+                </li>
+
+                <li class="pub-item">
+                    Khorsed Alam, Akanksha Joshi, <strong>Amreen Bano</strong>,
+                    Malachi Noked, Dan Thomas Major,
+                    <span class="pub-title">
+                        “Theoretical Study on High-Entropy Oxyfluoride Cathodes for Sodium-Ion Batteries,”
+                    </span>
+                    <span class="pub-journal">ACS Applied Energy Materials</span>, 2025.
+                    <a class="pub-link" href="https://pubs.acs.org/doi/abs/10.1021/acsaem.5c00035" target="_blank">DOI →</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- 2024 -->
+
+        <div class="pub-year" id="pub-2024">
+
+            <ul class="pub-list">
+
+                <li class="pub-item">
+                    Naresh Vangapally, David Lusztig, Suman Rathod,
+                    <strong>Amreen Bano</strong>, Hadar Scalar,
+                    Sri Harsha Akella, Malachi Noked, Dan.T. Major,
+                    Ion C. Halalay, Suresh Sriramulu, Shalom Luski,
+                    Doron Aurbach,
+                    <span class="pub-title">
+                        “Fluorinated Co-Solvents Enable Excellent Performances of Practical Cells Comprising LixSiO-Graphite Composite Anodes and LiNi0.89Co0.05Mn0.05Al0.01O2 (NCMA) Cathodes,”
+                    </span>
+                    <span class="pub-journal">Small</span>, 2024.
+                    <a class="pub-link" href="https://onlinelibrary.wiley.com/doi/abs/10.1002/smll.202403694" target="_blank">DOI →</a>
+                </li>
+
+                <li class="pub-item">
+                    Harshita Lohani, Ajit Kumar, <strong>Amreen Bano</strong>,
+                    Arpita Ghosh, Pratima Kumari, Aakash Ahuja,
+                    Abhinanda Sengupta, Dhruv Kumar, Dan Thomas Major,
+                    Sagar Mitra,
+                    <span class="pub-title">
+                        “Inclusion of Anion Additives in the Inner Solvation Shell to Regulate the Composition of Solid Electrolyte Interphase,”
+                    </span>
+                    <span class="pub-journal">Advanced Energy Materials</span>, 2024.
+                    <a class="pub-link" href="https://advanced.onlinelibrary.wiley.com/doi/abs/10.1002/aenm.202401268" target="_blank">DOI →</a>
+                </li>
+
+                <li class="pub-item">
+                    Abhinanda Sengupta, Ajit Kumar, <strong>Amreen Bano</strong>,
+                    Aakash Ahuja, Harshita Lohani, Sri Harsha Akella,
+                    Pratima Kumari, Malachi Noked, Dan T Major,
+                    Sagar Mitra,
+                    <span class="pub-title">
+                        “Unleashing the impact of Nb-doped, single crystal, cobalt-free P2-type Na0.67Ni0.33Mn0.67O2 on elevating the cycle life of sodium-ion batteries,”
+                    </span>
+                    <span class="pub-journal">Energy Storage Materials</span>, 2024.
+                    <a class="pub-link" href="https://www.sciencedirect.com/science/article/pii/S2405829724002629" target="_blank">DOI →</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- 2023 -->
+
+        <div class="pub-year" id="pub-2023">
+
+            <ul class="pub-list">
+
+                <li class="pub-item">
+                    Nabil El Halya, Mohamed Aqil, Karim El Ouardi,
+                    <strong>Amreen Bano</strong>, Ayoub El bendali,
+                    Loubna Hdidou, Rachid Amine, Seoung-Bum Son,
+                    Fouad Ghamouss, Dan Thomas Major, Khalil Amine,
+                    Jones Alami, Mouad Dahbi,
+                    <span class="pub-title">
+                        “Biopolymer-Assisted Synthesis of P-Doped TiO2 Nanoparticles for High-Performance Li-ion Batteries: A Comprehensive Study,”
+                    </span>
+                    <span class="pub-journal">Batteries & Supercaps</span>, 2023.
+                    <a class="pub-link" href="https://chemistry-europe.onlinelibrary.wiley.com/doi/abs/10.1002/batt.202300424" target="_blank">DOI →</a>
+                </li>
+
+                <li class="pub-item">
+                    <strong>Amreen Bano</strong>, Malachi Noked, Dan Thomas Major,
+                    <span class="pub-title">
+                        “Theoretical Insights into High-Entropy Ni-Rich Layered Oxide Cathodes for Low-Strain Li-Ion Batteries,”
+                    </span>
+                    <span class="pub-journal">Chemistry of Materials</span>, 2023.
+                    <a class="pub-link" href="https://pubs.acs.org/doi/abs/10.1021/acs.chemmater.3c01182" target="_blank">DOI →</a>
+                </li>
+
+                <li class="pub-item">
+                    <strong>Amreen Bano</strong>, Dan Thomas Major,
+                    <span class="pub-title">
+                        “Coexistence of Rashba effect and spin–valley coupling in TiX2 (X= Te, S, and Se) based heterostructures,”
+                    </span>
+                    <span class="pub-journal">Applied Physics Letters</span>, 2023.
+                    <a class="pub-link" href="https://doi.org/10.1063/5.0142404" target="_blank">DOI →</a>
+                </li>
+
+                <li class="pub-item">
+                    Francis Amalraj Susai, <strong>Amreen Bano</strong>,
+                    Sandipan Maiti, Judith Grinblat, Arup Chakraborty,
+                    Hadar Sclar, Tatyana Kravchuk, Aleksandr Kondrakov,
+                    Maria Tkachev, Michael Talianker, Dan Thomas Major,
+                    Boris Markovsky, Doron Aurbach,
+                    <span class="pub-title">
+                        “Stabilizing Ni-rich high energy cathodes for advanced lithium-ion batteries: the case of LiNi0.9Co0.1O2,”
+                    </span>
+                    <span class="pub-journal">Journal of Materials Chemistry A</span>, 2023.
+                    <a class="pub-link" href="https://pubs.rsc.org/en/content/articlehtml/2023/ta/d3ta00444a" target="_blank">DOI →</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- 2022 -->
+
+        <div class="pub-year" id="pub-2022">
+
+            <ul class="pub-list">
+
+                <li class="pub-item">
+                    <strong>Amreen Bano</strong>, Dan Thomas Major,
+                    <span class="pub-title">
+                        “Coexistence of Rashba Effect and Spin-valley Coupling in TiX2 (X= Te, S and Se) based Heterostructures,”
+                    </span>
+                    <span class="pub-journal">Archive</span>, 2022.
+                    <a class="pub-link" href="https://doi.org/10.48550/arXiv.2212.14508" target="_blank">DOI →</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- 2021 -->
+
+        <div class="pub-year" id="pub-2021">
+
+            <ul class="pub-list">
+
+                <li class="pub-item">
+                    <strong>Amreen Bano</strong>, Lokanath Patra, Ravindra Pandey,
+                    <span class="pub-title">
+                        “Stability and electronic properties of the graphene-supported FeO nanostructures including clusters and monolayer,”
+                    </span>
+                    <span class="pub-journal">Applied Surface Science</span>, 2021.
+                    <a class="pub-link" href="https://www.sciencedirect.com/science/article/pii/S0169433221020341" target="_blank">DOI →</a>
+                </li>
+
+                <li class="pub-item">
+                    Vipin Kumar, <strong>Amreen Bano</strong>, Kaptan Rajput,
+                    Debesh R Roy,
+                    <span class="pub-title">
+                        “The interaction of two-dimensional P2SiS nanosheet with environmental toxic NCG molecules for sensor application: A DFT study,”
+                    </span>
+                    <span class="pub-journal">Sensors and Actuators A: Physical</span>, 2021.
+                    <a class="pub-link" href="https://www.sciencedirect.com/science/article/pii/S0924424721000698" target="_blank">DOI →</a>
+                </li>
+
+                <li class="pub-item">
+                    Vipin Kumar, <strong>Amreen Bano</strong>, Debesh R Roy,
+                    <span class="pub-title">
+                        “First-principles calculations of SiBi nanosheets as sensors for oxygen-containing gases,”
+                    </span>
+                    <span class="pub-journal">ACS Applied Nano Materials</span>, 2021.
+                    <a class="pub-link" href="https://pubs.acs.org/doi/abs/10.1021/acsanm.0c02998" target="_blank">DOI →</a>
+                </li>
+
+                <li class="pub-item">
+                    <strong>Amreen Bano</strong>, Neeraj K Gaur,
+                    <span class="pub-title">
+                        “Electronic and thermal properties of monolayer MoS2: a first-principles study,”
+                    </span>
+                    <span class="pub-journal">Materials Today: Proceedings</span>, 2021.
+                    <a class="pub-link" href="https://www.sciencedirect.com/science/article/pii/S2214785321056212" target="_blank">DOI →</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- 2020 -->
+
+        <div class="pub-year" id="pub-2020">
+
+            <ul class="pub-list">
+
+                <li class="pub-item">
+                    <strong>Amreen Bano</strong>, NK Gaur,
+                    <span class="pub-title">
+                        “Chemical topology of 2-dimensional MoB2 sheet: First-principles study,”
+                    </span>
+                    <span class="pub-journal">AIP Conference Proceedings</span>, 2020.
+                    <a class="pub-link" href="https://doi.org/10.1063/5.0016624" target="_blank">DOI →</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- 2019 -->
+
+        <div class="pub-year" id="pub-2019">
+
+            <ul class="pub-list">
+
+                <li class="pub-item">
+                    <strong>Amreen Bano</strong>, Jyoti Krishna, Tulika Maitra,
+                    NK Gaur,
+                    <span class="pub-title">
+                        “CrI3-WTe2: A Novel Two-Dimensional Heterostructure as Multisensor for BrF3 and COCl2 Toxic Gases,”
+                    </span>
+                    <span class="pub-journal">Scientific Reports</span>, 2019.
+                    <a class="pub-link" href="https://www.nature.com/articles/s41598-019-47685-5" target="_blank">DOI →</a>
+                </li>
+
+                <li class="pub-item">
+                    <strong>Amreen Bano</strong>, NK Gaur,
+                    <span class="pub-title">
+                        “Effect of Nb doping on electron transport mechanism of CrSi2: A first-principles investigation,”
+                    </span>
+                    <span class="pub-journal">AIP Conference Proceedings</span>, 2019.
+                    <a class="pub-link" href="https://doi.org/10.1063/1.5113258" target="_blank">DOI →</a>
+                </li>
+
+                <li class="pub-item">
+                    <strong>Amreen Bano</strong>, N K Gaur,
+                    <span class="pub-title">
+                        “Effect of SrO termination on electron transport of MoS2/SrTiO3 heterostructure: A DFT approach,”
+                    </span>
+                    <span class="pub-journal">Applied Surface Science</span>, 2019.
+                    <a class="pub-link" href="https://doi.org/10.1016/j.apsusc.2019.05.051" target="_blank">DOI →</a>
+                </li>
+
+                <li class="pub-item">
+                    <strong>Amreen Bano</strong>, N K Gaur,
+                    <span class="pub-title">
+                        “Effect of transition metal (TM: Cr and Mn) doping on charge transport properties of ScNiBi: a density functional theory approach,”
+                    </span>
+                    <span class="pub-journal">Materials Research Express</span>, 2019.
+                    <a class="pub-link" href="https://iopscience.iop.org/article/10.1088/2053-1591/ab0156/meta" target="_blank">DOI →</a>
+                </li>
+
+                <li class="pub-item">
+                    <strong>Amreen Bano</strong>, Jyoti Krishna,
+                    Devendra K. Pandey, N. K. Gaur,
+                    <span class="pub-title">
+                        “An ab initio study of sensing applications of MoB2 monolayer: a potential gas sensor,”
+                    </span>
+                    <span class="pub-journal">Physical Chemistry Chemical Physics</span>, 2019.
+                    <a class="pub-link" href="https://doi.org/10.1039/C8CP07038E" target="_blank">DOI →</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- 2018 -->
+
+        <div class="pub-year" id="pub-2018">
+
+            <ul class="pub-list">
+
+                <li class="pub-item">
+                    <strong>Amreen Bano</strong>, D. K. Pandey, A. Modi,
+                    N. K. Gaur,
+                    <span class="pub-title">
+                        “MoB2 Driven Metallic Behavior and Interfacial Charge Transport Mechanism in MoS2/MoB2 Heterostructure: A First-Principles Study,”
+                    </span>
+                    <span class="pub-journal">Scientific Reports</span>, 2018.
+                    <a class="pub-link" href="https://www.nature.com/articles/s41598-018-32850-z" target="_blank">DOI →</a>
+                </li>
+
+                <li class="pub-item">
+                    <strong>Amreen Bano</strong>, N. K. Gaur,
+                    <span class="pub-title">
+                        “Investigation of electronic structure and chemical bonding of intermetallic Pd2HfIn: An ab-initio study,”
+                    </span>
+                    <span class="pub-journal">AIP Conference Proceedings</span>, 2018.
+                    <a class="pub-link" href="https://doi.org/10.1063/1.5033029" target="_blank">DOI →</a>
+                </li>
+
+                <li class="pub-item">
+                    <strong>Amreen Bano</strong>, N. K. Gaur,
+                    <span class="pub-title">
+                        “Investigation of strain effect on electronic, chemical bonding, magnetic and phonon properties of ScNiBi: a DFT study,”
+                    </span>
+                    <span class="pub-journal">Materials Research Express</span>, 2018.
+                    <a class="pub-link" href="https://iopscience.iop.org/article/10.1088/2053-1591/aab7ca/meta" target="_blank">DOI →</a>
+                </li>
+
+                <li class="pub-item">
+                    <strong>Amreen Bano</strong>, N. K. Gaur,
+                    <span class="pub-title">
+                        “Interfacial Coupling Effect on Electron Transport in MoS2/SrTiO3 Heterostructure: An Ab-initio Study,”
+                    </span>
+                    <span class="pub-journal">Scientific Reports</span>, 2018.
+                    <a class="pub-link" href="https://www.nature.com/articles/s41598-017-18984-6" target="_blank">DOI →</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- 2017 -->
+
+        <div class="pub-year" id="pub-2017">
+
+            <ul class="pub-list">
+
+                <li class="pub-item">
+                    <strong>Amreen Bano</strong>, Preeti Khare, N. K. Gaur,
+                    <span class="pub-title">
+                        “Electro-optic response of metal halide: A first-principles study,”
+                    </span>
+                    <span class="pub-journal">Pramana-J Phys</span>, 2017.
+                    <a class="pub-link" href="https://link.springer.com/article/10.1007/s12043-017-1411-2" target="_blank">DOI →</a>
+                </li>
+
+                <li class="pub-item">
+                    <strong>Amreen Bano</strong>, Preeti Khare, N. K. Gaur,
+                    <span class="pub-title">
+                        “Thermal transport properties of bulk and monolayer MoS2: an ab-initio approach,”
+                    </span>
+                    <span class="pub-journal">Journal of Physics: Conference Series</span>, 2017.
+                    <a class="pub-link" href="https://iopscience.iop.org/article/10.1088/1742-6596/836/1/012052/meta" target="_blank">DOI →</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- 2016 -->
+
+        <div class="pub-year" id="pub-2016">
+
+            <ul class="pub-list">
+
+                <li class="pub-item">
+                    <strong>Amreen Bano</strong>, Preeti Khare, N. K. Gaur,
+                    <span class="pub-title">
+                        “First-principles calculation for phonon and optoelectronic properties of CsSnI3,”
+                    </span>
+                    <span class="pub-journal">AIP Conference Proceedings</span>, 2016.
+                    <a class="pub-link" href="https://doi.org/10.1063/1.4947965" target="_blank">DOI →</a>
+                </li>
+
+                <li class="pub-item">
+                    <strong>Amreen Bano</strong>, Preeti Khare, Vanshree Parey,
+                    Aarti Shukla, N. K. Gaur,
+                    <span class="pub-title">
+                        “The structural, electronic and phonon behavior of CsPbI3: a first principles study,”
+                    </span>
+                    <span class="pub-journal">AIP Conference Proceedings</span>, 2016.
+                    <a class="pub-link" href="https://doi.org/10.1063/1.4946150" target="_blank">DOI →</a>
+                </li>
+
+                <li class="pub-item">
+                    Aarti Shukla, Vanshree Parey, <strong>Amreen Bano</strong>,
+                    Preeti Khare, N. K. Gaur,
+                    <span class="pub-title">
+                        “Thermodynamical properties of ceramic fuel cell Ba0.2Ca0.8ZrO3,”
+                    </span>
+                    <span class="pub-journal">AIP Conference Proceedings</span>, 2016.
+                    <a class="pub-link" href="https://doi.org/10.1063/1.4948027" target="_blank">DOI →</a>
+                </li>
+
+                <li class="pub-item">
+                    Vanshree Parey, Aarti Shukla, Atahar Parveen,
+                    <strong>Amreen Bano</strong>, Preeti Khare, N. K. Gaur,
+                    <span class="pub-title">
+                        “Thermal properties of solid oxide fuel cell perovskite LaCrO3,”
+                    </span>
+                    <span class="pub-journal">AIP Conference Proceedings</span>, 2016.
+                    <a class="pub-link" href="https://doi.org/10.1063/1.4946076" target="_blank">DOI →</a>
+                </li>
+
+            </ul>
+
+        </div>
+
     </div>
 
-    <div class="social-links">
-  <a href="mailto:banoamreen.7@gmail.com" target="_blank" title="Gmail">
-    <img src="images/gmail_logo.jpg" alt="Gmail" />
-  </a>
-  <a href="https://www.linkedin.com/in/amreen-bano-ph-d-48a28844/" target="_blank" title="LinkedIn">
-    <img src="images/linkedin_logo.png" alt="LinkedIn" />
-  </a>
-  <a href="https://www.researchgate.net/profile/Amreen-Bano?ev=hdr_xprf" target="_blank" title="ResearchGate">
-    <img src="images/researchgate_logo.png" alt="ResearchGate" />
-  </a>
-  <a href="https://scholar.google.com/citations?user=0IR8OWkAAAAJ&hl=en" target="_blank" title="Google Scholar">
-    <img src="images/google_scholar_logo.png" alt="Google Scholar" />
-  </a>
-</div>
-  </div>
 </section>
-  
-  
- <footer>
-  <div class="footer-line">
-    <p>&copy; 2025 The Amreen's Group | RISE | 
-      <i class="fas fa-envelope"></i> 
-      <a href="mailto:amreen.bano@tcgcrest.org" style="color: #00ccff;">Contact Us</a> | 
-      All rights reserved. | Website created by Amreen Bano
-    </p>
-  </div>
-  <div class="footer-line">
-    <p>Visitor Count: 
-      <a href="https://www.hitwebcounter.com" target="_blank">
-        <img src="https://hitwebcounter.com/counter/counter.php?page=123456&style=0006&nbdigits=5&type=ip&initCount=0" 
-             title="Website Counter" alt="visitor counter" style="vertical-align: middle;"/>
-      </a>
-    </p>
-  </div>
+
+
+<!-- =======================================================
+     PEOPLE
+======================================================== -->
+
+<section class="section section-light" id="people">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <div class="section-label">
+                The Group
+            </div>
+
+            <h2>
+                People
+            </h2>
+
+            <p>
+                Researchers working on computational materials design,
+                energy storage and atomistic modelling.
+            </p>
+
+        </div>
+
+
+        <!-- PI -->
+
+        <div class="pi-profile">
+
+            <img
+                src="images/amreen_2026.jpg"
+                alt="Dr. Amreen Bano"
+                class="pi-photo"
+            >
+
+            <div>
+
+                <h3>
+                    Dr. Amreen Bano
+                </h3>
+
+                <div class="position">
+                    Principal Investigator
+                </div>
+
+                <p>
+                    Computational modelling of battery materials,
+                    electrolyte design, atomistic simulations and
+                    machine-learning approaches for materials discovery.
+                </p>
+
+                <p>
+                    <a href="mailto:amreen.bano@tcgcrest.org">
+                        amreen.bano@tcgcrest.org
+                    </a>
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <h3 class="people-title">
+            PhD Students
+        </h3>
+
+
+        <div class="people-grid">
+
+
+            <div class="person">
+
+                <img
+                    src="images/Antra solo.jpeg"
+                    alt="Antra Mohini"
+                >
+
+                <h3>
+                    Antra Mohini
+                </h3>
+
+                <div class="role">
+                    PhD Student · 2025
+                </div>
+
+                <p>
+                    Computational design of high entropy anode
+                    materials and SEI analysis.
+                </p>
+
+                <a href="mailto:antra.mohini.198@tcgcrest.org">
+                    Email
+                </a>
+
+            </div>
+
+
+            <div class="person">
+
+                <img
+                    src="images/Novotna solo.jpeg"
+                    alt="Novotna Seal"
+                >
+
+                <h3>
+                    Novotna Seal
+                </h3>
+
+                <div class="role">
+                    PhD Student · 2025
+                </div>
+
+                <p>
+                    Modelling and analysis of high-entropy cathode
+                    materials for Na-ion batteries.
+                </p>
+
+                <a href="mailto:novotna.seal.185@tcgcrest.org">
+                    Email
+                </a>
+
+            </div>
+
+
+            <div class="person">
+
+                <img
+                    src="images/Soumya.jpg"
+                    alt="Soumya U K"
+                >
+
+                <h3>
+                    Soumya U K
+                </h3>
+
+                <div class="role">
+                    PhD Student · 2025
+                </div>
+
+                <p>
+                    Designing and understanding solid electrolytes
+                    for Li-ion batteries.
+                </p>
+
+                <a href="mailto:soumya.uk_phd25@tcgcrestdtbu.ac.in">
+                    Email
+                </a>
+
+            </div>
+
+
+            <div class="person">
+
+                <img
+                    src="images/nayan.jpg"
+                    alt="Nayan Dey"
+                >
+
+                <h3>
+                    Nayan Dey
+                </h3>
+
+                <div class="role">
+                    Co-PI · PhD Student · IISER Pune
+                </div>
+
+                <p>
+                    Doping strategies in P2-type Na-ion batteries.
+                </p>
+
+                <a href="mailto:nayan.dey@students.iiserpune.ac.in">
+                    Email
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     COLLABORATIONS
+======================================================== -->
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <div class="section-label">
+                Network
+            </div>
+
+            <h2>
+                Collaborations
+            </h2>
+
+            <p>
+                Our research is strengthened through collaborations
+                spanning computational materials science, electrochemistry,
+                energy storage and materials synthesis.
+            </p>
+
+        </div>
+
+
+        <div class="collaboration-list">
+
+            <div class="collaboration">
+                Prof. Dan T. Major
+                <span>Bar-Ilan University, Israel</span>
+            </div>
+
+            <div class="collaboration">
+                Prof. Doron Aurbach
+                <span>Bar-Ilan University, Israel</span>
+            </div>
+
+            <div class="collaboration">
+                Prof. Sagar Mitra
+                <span>IIT Bombay, India</span>
+            </div>
+
+            <div class="collaboration">
+                Prof. Malachi Noked
+                <span>Bar-Ilan University, Israel</span>
+            </div>
+
+            <div class="collaboration">
+                Prof. Rahul Salunkhe
+                <span>IIT Jammu, India</span>
+            </div>
+
+            <div class="collaboration">
+                Prof. Saikat Datta
+                <span>Amity University, Noida, India</span>
+            </div>
+
+            <div class="collaboration">
+                Prof. Premkumar Senguttuvan
+                <span>JNCASR, India</span>
+            </div>
+
+            <div class="collaboration">
+                Prof. Rosy
+                <span>IIT BHU, India</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     GALLERY
+======================================================== -->
+
+<section class="section section-light" id="gallery">
+
+    <div class="container">
+
+        <div class="section-header center">
+
+            <div class="section-label">
+                Group Life
+            </div>
+
+            <h2>
+                Gallery
+            </h2>
+
+            <p>
+                A glimpse into our group activities, achievements
+                and scientific interactions.
+            </p>
+
+        </div>
+
+
+        <div class="gallery-grid">
+
+            <figure>
+                <img
+                    src="images/poster_award.jpg"
+                    alt="Poster award"
+                >
+            </figure>
+
+            <figure>
+                <img
+                    src="images/group_2026.jpg"
+                    alt="AMREEN Group 2026"
+                >
+            </figure>
+
+            <figure>
+                <img
+                    src="images/group_pic.jpg"
+                    alt="Group photograph"
+                >
+            </figure>
+
+            <figure>
+                <img
+                    src="images/Group1.jpeg"
+                    alt="Group activity"
+                >
+            </figure>
+
+            <figure>
+                <img
+                    src="images/Group2.jpeg"
+                    alt="Group activity"
+                >
+            </figure>
+
+            <figure>
+                <img
+                    src="images/Group3.jpg"
+                    alt="Group activity"
+                >
+            </figure>
+
+            <figure>
+                <img
+                    src="images/Group4.jpg"
+                    alt="Group activity"
+                >
+            </figure>
+
+            <figure>
+                <img
+                    src="images/group_pic2.jpeg"
+                    alt="Group activity"
+                >
+            </figure>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     OPPORTUNITIES
+======================================================== -->
+
+<section class="section" id="opportunities">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <div class="section-label">
+                Join Us
+            </div>
+
+            <h2>
+                Opportunities
+            </h2>
+
+            <p>
+                We welcome motivated researchers interested in
+                computational materials science and energy storage.
+            </p>
+
+        </div>
+
+
+        <div class="opportunity-grid">
+
+
+            <article class="opportunity">
+
+                <h3>
+                    PhD Positions
+                </h3>
+
+                <p>
+                    PhD admissions at TCG CREST are announced periodically.
+                    The AMREEN Group welcomes applicants interested in
+                    battery materials, computational chemistry,
+                    atomistic modelling and materials science.
+                </p>
+
+                <p>
+                    Applicants should have a strong academic background
+                    in Chemistry, Materials Science, Physics or a related
+                    discipline.
+                </p>
+
+                <p>
+                    <a
+                        href="https://www.tcgcrest.org/programs/"
+                        target="_blank"
+                    >
+                        TCG CREST Admissions →
+                    </a>
+                </p>
+
+                <p>
+                    <a
+                        href="https://www.tcgcrest.org/institutes/rise/"
+                        target="_blank"
+                    >
+                        RISE Website →
+                    </a>
+                </p>
+
+            </article>
+
+
+            <article class="opportunity">
+
+                <h3>
+                    Postdoctoral Positions
+                </h3>
+
+                <p>
+                    Postdoctoral opportunities will be announced
+                    as positions become available.
+                </p>
+
+                <p>
+                    Researchers with expertise in DFT, molecular dynamics,
+                    machine-learning interatomic potentials, electrochemistry
+                    or computational materials science are encouraged to
+                    follow future announcements.
+                </p>
+
+            </article>
+
+
+            <article class="opportunity">
+
+                <h3>
+                    Project Positions
+                </h3>
+
+                <p>
+                    Project Assistant and research positions may become
+                    available through externally funded research projects.
+                </p>
+
+                <p>
+                    Interested candidates may contact the group with a
+                    CV and a brief description of their research interests.
+                </p>
+
+                <p>
+                    <a href="mailto:amreen.bano@tcgcrest.org">
+                        Contact the PI →
+                    </a>
+                </p>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     CONTACT
+======================================================== -->
+
+<section class="section contact-section" id="contact">
+
+    <div class="container">
+
+        <div class="contact-grid">
+
+
+            <div>
+
+                <div class="section-label">
+                    Contact
+                </div>
+
+                <h2>
+                    Get in Touch
+                </h2>
+
+                <p>
+                    We are interested in collaborations involving
+                    computational materials modelling, battery materials,
+                    electrolytes, interfaces and atomistic simulations.
+                </p>
+
+                <p>
+                    For prospective students and researchers, please
+                    include your CV and a brief description of your
+                    research interests.
+                </p>
+
+
+                <div class="social-links">
+
+                    <a
+                        href="mailto:banoamreen.7@gmail.com"
+                        title="Email"
+                    >
+                        <img
+                            src="images/gmail_logo.jpg"
+                            alt="Email"
+                        >
+                    </a>
+
+                    <a
+                        href="https://www.linkedin.com/in/amreen-bano-ph-d-48a28844/"
+                        target="_blank"
+                        title="LinkedIn"
+                    >
+                        <img
+                            src="images/linkedin_logo.png"
+                            alt="LinkedIn"
+                        >
+                    </a>
+
+                    <a
+                        href="https://www.researchgate.net/profile/Amreen-Bano?ev=hdr_xprf"
+                        target="_blank"
+                        title="ResearchGate"
+                    >
+                        <img
+                            src="images/researchgate_logo.png"
+                            alt="ResearchGate"
+                        >
+                    </a>
+
+                    <a
+                        href="https://scholar.google.com/citations?user=0IR8OWkAAAAJ&hl=en"
+                        target="_blank"
+                        title="Google Scholar"
+                    >
+                        <img
+                            src="images/google_scholar_logo.png"
+                            alt="Google Scholar"
+                        >
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="contact-details">
+
+                <div class="contact-row">
+
+                    <span class="contact-label">
+                        Principal Investigator
+                    </span>
+
+                    <span class="contact-value">
+                        Dr. Amreen Bano
+                    </span>
+
+                </div>
+
+
+                <div class="contact-row">
+
+                    <span class="contact-label">
+                        Email
+                    </span>
+
+                    <span class="contact-value">
+
+                        <a href="mailto:amreen.bano@tcgcrest.org">
+                            amreen.bano@tcgcrest.org
+                        </a>
+
+                        <br>
+
+                        <a href="mailto:banoamreen.7@gmail.com">
+                            banoamreen.7@gmail.com
+                        </a>
+
+                    </span>
+
+                </div>
+
+
+                <div class="contact-row">
+
+                    <span class="contact-label">
+                        Institution
+                    </span>
+
+                    <span class="contact-value">
+                        Research Institute for Sustainable Energy (RISE),
+                        TCG CREST
+                    </span>
+
+                </div>
+
+
+                <div class="contact-row">
+
+                    <span class="contact-label">
+                        Location
+                    </span>
+
+                    <span class="contact-value">
+                        Kolkata, India
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     FOOTER
+======================================================== -->
+
+<footer>
+
+    <div class="container footer-content">
+
+        <div>
+            © 2026 The AMREEN Group · RISE · TCG CREST
+        </div>
+
+        <div>
+            Website created by Amreen Bano
+        </div>
+
+    </div>
+
 </footer>
 
-  <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const headers = document.querySelectorAll(".accordion-header");
 
-    headers.forEach(header => {
-      header.addEventListener("click", () => {
-        const body = header.nextElementSibling;
-        const isOpen = body.style.display === "block";
+<!-- =======================================================
+     BACK TO TOP
+======================================================== -->
 
-        // Close all other open bodies
-        document.querySelectorAll(".accordion-body").forEach(b => {
-          b.style.display = "none";
+<button
+    class="back-to-top"
+    id="backToTop"
+    onclick="window.scrollTo({top:0, behavior:'smooth'})"
+    aria-label="Back to top"
+>
+    ↑
+</button>
+
+
+<!-- =======================================================
+     JAVASCRIPT
+======================================================== -->
+
+<script>
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+function toggleMenu() {
+
+    const nav = document.getElementById("navLinks");
+
+    nav.classList.toggle("open");
+
+}
+
+
+/* =========================================================
+   RESEARCH MODAL
+========================================================= */
+
+const researchData = {
+
+    cathodes: {
+
+        title: "Layered Oxide Cathodes",
+
+        text: `
+            <p>
+                We investigate layered oxide cathodes for Li-ion and
+                Na-ion batteries, with particular emphasis on structural
+                stability, transition-metal chemistry, ion diffusion and
+                electrochemical degradation.
+            </p>
+
+            <p>
+                Our computational studies examine dopant selection,
+                transition-metal migration, lattice strain, oxygen
+                activity, redox mechanisms and Na/Li-ion migration.
+            </p>
+
+            <p>
+                The ultimate goal is to identify compositional and
+                structural strategies that simultaneously improve
+                capacity, voltage, stability and long-term cycling.
+            </p>
+        `
+    },
+
+
+    anodes: {
+
+        title: "Anode Materials",
+
+        text: `
+            <p>
+                Our work on anodes spans graphite, carbonaceous materials,
+                metal-based systems, single-atom modified carbons and
+                high-entropy materials.
+            </p>
+
+            <p>
+                We investigate ion adsorption, diffusion, charge transfer,
+                structural evolution and electrode–electrolyte interactions
+                using DFT and atomistic simulations.
+            </p>
+
+            <p>
+                Particular emphasis is placed on understanding the
+                mechanisms controlling Na/Li storage and improving
+                stability during repeated cycling.
+            </p>
+        `
+    },
+
+
+    electrolytes: {
+
+        title: "Liquid and Polymer Electrolytes",
+
+        text: `
+            <p>
+                We use molecular dynamics and first-principles simulations
+                to understand ion transport, solvation structure and
+                electrolyte–electrode interactions.
+            </p>
+
+            <p>
+                Our studies include liquid electrolytes, polymer
+                electrolytes, salt–solvent systems and composite
+                electrolytes.
+            </p>
+
+            <p>
+                We investigate diffusion coefficients, coordination
+                environments, radial distribution functions, transference
+                behaviour and interfacial chemistry.
+            </p>
+        `
+    },
+
+
+    solid: {
+
+        title: "Solid-State Electrolytes",
+
+        text: `
+            <p>
+                We investigate solid electrolytes for Li-ion batteries,
+                focusing on ionic migration, diffusion pathways,
+                grain boundaries and interfacial stability.
+            </p>
+
+            <p>
+                Atomistic modelling is used to determine migration
+                barriers, structural flexibility and the influence of
+                defects and interfaces on Li-ion transport.
+            </p>
+
+            <p>
+                Machine-learning interatomic potentials allow these
+                phenomena to be explored over larger length and time
+                scales.
+            </p>
+        `
+    },
+
+
+    entropy: {
+
+        title: "High-Entropy Materials",
+
+        text: `
+            <p>
+                High-entropy materials provide a powerful route to
+                manipulating the structural, electronic and chemical
+                landscape of battery electrodes.
+            </p>
+
+            <p>
+                We combine DFT, molecular dynamics and statistical
+                approaches to understand the influence of compositional
+                disorder on phase stability, strain, diffusion and
+                electrochemical properties.
+            </p>
+
+            <p>
+                Our research includes high-entropy layered oxides,
+                oxyfluorides, anodes and electrode–electrolyte interfaces.
+            </p>
+        `
+    },
+
+
+    ml: {
+
+        title: "Machine Learning and Atomistic Modelling",
+
+        text: `
+            <p>
+                We use machine-learning interatomic potentials to
+                accelerate atomistic simulations of energy materials.
+            </p>
+
+            <p>
+                Different MLIPs are benchmarked against first-principles
+                calculations to assess their reliability for structural,
+                energetic, dynamical and interfacial properties.
+            </p>
+
+            <p>
+                These approaches enable simulations that would be
+                computationally prohibitive using direct DFT-based
+                molecular dynamics.
+            </p>
+        `
+    }
+
+};
+
+
+function openResearch(key) {
+
+    const data = researchData[key];
+
+    document.getElementById("modalContent").innerHTML = `
+        <div class="section-label">Research Area</div>
+        <h2>${data.title}</h2>
+        ${data.text}
+    `;
+
+    document
+        .getElementById("researchModal")
+        .classList.add("open");
+
+    document.body.style.overflow = "hidden";
+}
+
+
+function closeResearch() {
+
+    document
+        .getElementById("researchModal")
+        .classList.remove("open");
+
+    document.body.style.overflow = "";
+
+}
+
+
+document
+    .getElementById("researchModal")
+    .addEventListener("click", function(event) {
+
+        if (event.target === this) {
+            closeResearch();
+        }
+
+    });
+
+
+document.addEventListener("keydown", function(event) {
+
+    if (event.key === "Escape") {
+        closeResearch();
+    }
+
+});
+
+
+/* =========================================================
+   PUBLICATION YEAR TABS
+========================================================= */
+
+function showYear(year, button) {
+
+    document
+        .querySelectorAll(".pub-year")
+        .forEach(section => {
+            section.classList.remove("active");
         });
 
-        // Toggle current
-        body.style.display = isOpen ? "none" : "block";
-      });
+    document
+        .querySelectorAll(".pub-tab")
+        .forEach(tab => {
+            tab.classList.remove("active");
+        });
+
+    document
+        .getElementById("pub-" + year)
+        .classList.add("active");
+
+    button.classList.add("active");
+
+}
+
+
+/* =========================================================
+   ACTIVE NAVIGATION
+========================================================= */
+
+const sections = document.querySelectorAll("section[id]");
+
+const navLinks = document.querySelectorAll(".nav-links a");
+
+
+window.addEventListener("scroll", function() {
+
+    let current = "";
+
+    sections.forEach(section => {
+
+        const sectionTop = section.offsetTop - 150;
+
+        if (window.scrollY >= sectionTop) {
+            current = section.getAttribute("id");
+        }
+
     });
-  });
+
+    navLinks.forEach(link => {
+
+        link.classList.remove("active");
+
+        if (
+            link.getAttribute("href") === "#" + current
+        ) {
+            link.classList.add("active");
+        }
+
+    });
+
+});
+
+
+/* =========================================================
+   CLOSE MOBILE MENU AFTER CLICK
+========================================================= */
+
+navLinks.forEach(link => {
+
+    link.addEventListener("click", function() {
+
+        document
+            .getElementById("navLinks")
+            .classList.remove("open");
+
+    });
+
+});
+
+
+/* =========================================================
+   BACK TO TOP
+========================================================= */
+
+window.addEventListener("scroll", function() {
+
+    const button = document.getElementById("backToTop");
+
+    if (window.scrollY > 500) {
+
+        button.classList.add("show");
+
+    } else {
+
+        button.classList.remove("show");
+
+    }
+
+});
+
+
 </script>
 
-  <script>
-  function showPublications(year) {
-    const lists = document.querySelectorAll(".pub-list");
-    const buttons = document.querySelectorAll(".tab-btn");
 
-    lists.forEach(list => list.style.display = "none");
-    buttons.forEach(btn => btn.classList.remove("active"));
-
-    document.getElementById(year).style.display = "block";
-    event.target.classList.add("active");
-  }
-</script>
+</body>
+</html>
